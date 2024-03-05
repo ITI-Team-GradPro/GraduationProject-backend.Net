@@ -8,5 +8,7 @@ namespace GraduationProject.Data.Models
 {
     internal class WishList
 {
-}
+        public int UserId { get; set; }
+        public int PlaceId { get; set; }
+    }
 }
