@@ -8,5 +8,15 @@ namespace GraduationProject.Data.Models
 {
     internal class Booking
 {
-}
+        public int BookingId { get; set; }
+        public int UserId { get; set; }
+        public int PlaceId { get; set; }
+        public double TotalPrice { get; set; }
+        public enum Status { Confirmed, Canceled, Finished }
+        public DateTime EventDate { get; set; }
+        public DateTime BookingDate { get; set; }
+        public enum BookingPeriod { Day, Night, AllDay } 
+
+
+    }
 }

@@ -8,5 +8,8 @@ namespace GraduationProject.Data.Models
 {
     internal class ImgsPlace
 {
+        public int ImgsPlaceId { get; set; }
+        public int PlaceId { get; set; }
+        public string ImageUrl { get; set; }
 }
 }
