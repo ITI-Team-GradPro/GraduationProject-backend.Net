@@ -8,5 +8,6 @@ namespace GraduationProject.Data.Models
 {
     internal class Reviews
 {
+
 }
 }
