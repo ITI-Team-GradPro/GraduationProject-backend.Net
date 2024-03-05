@@ -6,8 +6,21 @@ using System.Threading.Tasks;
 
 namespace GraduationProject.Data.Models
 {
-    public class Reviews
-{
+    internal class Reviews
+    {
+        [Key]
+        public int ReviewID { get; set; }
 
-}
+        [ForeignKey]
+        public int UserID { get; set; }
+
+        [ForeignKey]
+        public int PlaceID { get; set; }
+
+        public DateTime ReviewDate { get; set; }
+
+        public string ReviewText { get; set; }
+
+        public double Rating { get; set; }
+    }
 }
