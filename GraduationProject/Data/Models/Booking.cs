@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GraduationProject.Data.Models
 {
-    internal class Booking
+    public class Booking
 {
         public int BookingId { get; set; }
         public int UserId { get; set; }

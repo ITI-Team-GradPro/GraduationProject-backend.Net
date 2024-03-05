@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GraduationProject.Data.Models
 {
-    internal class UserRole
+    public class UserRole
 {
         public int UserRoleId { get; set; }
         public string Name  { get; set; }

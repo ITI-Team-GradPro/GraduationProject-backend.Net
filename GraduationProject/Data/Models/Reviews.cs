@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GraduationProject.Data.Models
 {
-    internal class Reviews
+    public class Reviews
 {
 
 }

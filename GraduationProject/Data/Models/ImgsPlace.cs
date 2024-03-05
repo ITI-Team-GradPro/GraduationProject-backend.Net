@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GraduationProject.Data.Models
 {
-    internal class ImgsPlace
+    public class ImgsPlace
 {
         public int ImgsPlaceId { get; set; }
         public int PlaceId { get; set; }

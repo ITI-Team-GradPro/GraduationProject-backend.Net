@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GraduationProject.Data.Models
 {
-    internal class WishList
+    public class WishList
 {
         public int UserId { get; set; }
         public int PlaceId { get; set; }
