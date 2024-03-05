@@ -17,6 +17,10 @@ namespace GraduationProject.Data.Context
         {
 
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+          
+        }
 
 
 

@@ -8,19 +8,26 @@ using System.Threading.Tasks;
 
 namespace GraduationProject.Data.Models
 {
-    internal class Comments
+    public class Comment
     {
         [Key]
         public int CommentID { get; set; }
 
-        [ForeignKey]
+        //[ForeignKey]
         public int UserID { get; set; }
 
-        [ForeignKey]
+        //[ForeignKey]
         public int PlaceID { get; set; }
 
         public string CommentText { get; set; }
 
         public DateTime CommentDate { get; set; }
+        //Navigation Properties
+        [ForeignKey("User")]
+        public int UserId { get; set; }
+        public User User { get; set; }
+        [ForeignKey("Place")]
+        public int PlaceId { get; set; }
+        public Place Place { get; set; }
     }
 }
