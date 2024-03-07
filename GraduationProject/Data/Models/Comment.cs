@@ -12,13 +12,6 @@ namespace GraduationProject.Data.Models
     {
         [Key]
         public int CommentID { get; set; }
-
-        //[ForeignKey]
-        public int UserID { get; set; }
-
-        //[ForeignKey]
-        public int PlaceID { get; set; }
-
         public string CommentText { get; set; }
 
         public DateTime CommentDate { get; set; }

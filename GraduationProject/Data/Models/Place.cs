@@ -26,6 +26,6 @@ namespace GraduationProject.Data.Models
         public ICollection<Review> Reviews { get; set; } = new HashSet<Review>();
         public ICollection<ImgsPlace> Images { get; set; } = new HashSet<ImgsPlace>();
         public ICollection<Booking> Bookings { get; set; } = new HashSet<Booking>();
-
+        public ICollection<PlacesCategory> PlacesCategory { get; set; } = new HashSet<PlacesCategory>();
     }
 }

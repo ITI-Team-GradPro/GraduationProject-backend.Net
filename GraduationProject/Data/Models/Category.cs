@@ -10,5 +10,7 @@ namespace GraduationProject.Data.Models
 {
         public int CategoryId { get; set; }
         public string Name { get; set; }
-}
+        public ICollection<PlacesCategory> PlacesCategory { get; set; } = new HashSet<PlacesCategory>();
+
+    }
 }
