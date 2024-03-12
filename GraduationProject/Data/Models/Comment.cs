@@ -11,16 +11,40 @@ namespace GraduationProject.Data.Models
     public class Comment
     {
         [Key]
-        public int CommentID { get; set; }
+        public Guid CommentID { get; set; }
+        [Required]
+        [StringLength(500)]
         public string CommentText { get; set; }
 
-        public DateTime CommentDate { get; set; }
-        //Navigation Properties
+
+        // Make date time offset 
+        [Required]
+        public DateTimeOffset CommentDateTime { get; set; }
+
+        // The date and the time come from the constractor
+        [NotMapped]
+        public DateTime CommentDate => CommentDateTime.Date;
+
+        [NotMapped]
+        public TimeSpan CommentTime => CommentDateTime.TimeOfDay;
+
         [ForeignKey("User")]
         public int UserId { get; set; }
-        public User User { get; set; }
+       
         [ForeignKey("Place")]
         public int PlaceId { get; set; }
+
+        //Navigation Properties
         public Place Place { get; set; }
+        public User User { get; set; }
+
+
+        public Comment()
+        {
+            CommentDateTime = DateTimeOffset.UtcNow;
+        }
+
     }
 }
+
+

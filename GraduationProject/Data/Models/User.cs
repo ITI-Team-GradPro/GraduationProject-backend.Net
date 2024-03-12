@@ -1,36 +1,80 @@
-﻿using System;
+﻿using GraduationProject.Data.Models;
+using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GraduationProject.Data.Models
 {
     public class User
     {
+
+        public enum UserRole
+        {
+            Admin = 1,
+            Host = 2,
+            Client = 3
+        }
+
+        public enum GenderEnum
+        {
+            Male = 1,
+            Female = 2 
+        }
+
         public int Id { get; set; }
-        public string Email { get; set; }
+
+        [Required]
+        [EmailAddress]
+        public string Email { get; set;}
+
+        [Required]
+        [MinLength(8)] 
         public string Password { get; set; }
+
+        [Required]
+        [StringLength(50)] 
         public string FirstName { get; set; }
+
+        [Required]
+        [StringLength(50)] 
         public string LastName { get; set; }
-        public string Phone { get; set; }
-        public string Bio { get; set; }
-        public string Address { get; set; }
-        public string ImageUrl { get; set; }
-        public byte Gender { get; set; }
+
+        [Required]
+        public GenderEnum Gender { get; set; }
+
+        [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
 
-        //Navigation Property
-        [ForeignKey("UserRole")]
-        public int UserRoleId { get; set; }
-        public UserRole UserRole { get; set; }
+        [Phone]
+        public string Phone { get; set; }
 
-        public ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
-        public ICollection<Notification> Notifications { get; set; } = new HashSet<Notification>();
-        public ICollection<Review> Reviews { get; set; } = new HashSet<Review>();
+        [StringLength(500)] 
+        public string Bio { get; set; }
 
-        public ICollection<Place> HostPlaces { get; set; } = new HashSet<Place>();
-        public ICollection<Booking> ClientBookings { get; set; } = new HashSet<Booking>();
+        [StringLength(100)] 
+        public string Address { get; set; }
+
+        public string ImageUrl { get; set; }
+
+
+        // Navigation Property
+        public ICollection<Place> OwnedPlaces { get; set; } = new List<Place>();
+ 
         public ICollection<WishList> WishListUserPlaces { get; set; } = new HashSet<WishList>();
 
+        public ICollection<Comment> Comments { get; set; } = new HashSet<Comment>();
 
+        public ICollection<Review> Reviews { get; set; } = new HashSet<Review>();
+
+        public ICollection<Notification> SentNotifications { get; set; } = new List<Notification>();
+
+        public ICollection<Notification> ReceivedNotifications { get; set; } = new List<Notification>();
+
+        public ICollection<Booking> ClientBookings { get; set; } = new HashSet<Booking>();
 
     }
+
 }
+
+
+
