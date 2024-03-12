@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GraduationProject.Data.Models
 {
@@ -12,17 +8,27 @@ namespace GraduationProject.Data.Models
     {
         [Key]
         public int ReviewID { get; set; }
+
+        [Required]
         public DateTime ReviewDate { get; set; }
 
+        [Required]
+        [StringLength(500)]
         public string ReviewText { get; set; }
 
+        [Required]
+        [Range(0, 5)] 
         public double Rating { get; set; }
-        //Navigation Properties
+
+        // Navigation Properties
+        [Required]
         [ForeignKey("User")]
         public int UserId { get; set; }
         public User User { get; set; }
+
+        [Required]
         [ForeignKey("Place")]
-        public int PlaceId { get; set; }
+        public Guid PlaceId { get; set; }
         public Place Place { get; set; }
     }
 }
