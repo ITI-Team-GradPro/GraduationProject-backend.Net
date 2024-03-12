@@ -11,10 +11,10 @@ namespace GraduationProject.Data.Models
     public class ImgsPlace
     {
         [Key]
-        public Guid ImgsPlaceId { get; set; }
+        public int ImgsPlaceId { get; set; }
 
         [Required]
-        [StringLength(500)] 
+        [StringLength(500)]
         public string ImageUrl { get; set; }
 
         [ForeignKey("Place")]

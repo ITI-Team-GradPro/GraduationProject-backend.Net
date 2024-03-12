@@ -8,7 +8,7 @@ namespace GraduationProject.Data.Models
 {
     public class BlackList
 {
-        public String Email { get; set; }
+        public string Email { get; set; }
         public int AdminId { get; set; }
         public string BanReason { get; set; }
         public DateTime BanDate { get; set; }

@@ -20,8 +20,8 @@ namespace GraduationProject.Data.Models
             Male = 1,
             Female = 2 
         }
-
-        public int Id { get; set; }
+        [Key]
+        public Guid Id { get; set; }
 
         [Required]
         [EmailAddress]
@@ -66,9 +66,7 @@ namespace GraduationProject.Data.Models
 
         public ICollection<Review> Reviews { get; set; } = new HashSet<Review>();
 
-        public ICollection<Notification> SentNotifications { get; set; } = new List<Notification>();
-
-        public ICollection<Notification> ReceivedNotifications { get; set; } = new List<Notification>();
+        public ICollection<Notification> Notifications { get; set; } = new List<Notification>();
 
         public ICollection<Booking> ClientBookings { get; set; } = new HashSet<Booking>();
 
