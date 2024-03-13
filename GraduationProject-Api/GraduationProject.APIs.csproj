@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GraduationProject\GraduationProject-Db.csproj" />
+    <ProjectReference Include="..\Graduation Project.BL\GraduationProject.BL.csproj" />
   </ItemGroup>
 
 </Project>
