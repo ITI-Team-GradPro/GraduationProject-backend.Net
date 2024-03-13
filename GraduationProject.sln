@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraduationProject-Db", "GraduationProject\GraduationProject-Db.csproj", "{9CFBCC5C-C7EB-4AD3-83CD-2246449934C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraduationProject.DAL", "GraduationProject\GraduationProject.DAL.csproj", "{9CFBCC5C-C7EB-4AD3-83CD-2246449934C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraduationProject-Api", "GraduationProject-Api\GraduationProject-Api.csproj", "{E7DAA83E-B2EE-4356-AB91-17A916D0D2C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraduationProject.APIs", "GraduationProject-Api\GraduationProject.APIs.csproj", "{E7DAA83E-B2EE-4356-AB91-17A916D0D2C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraduationProject.BL", "Graduation Project.BL\GraduationProject.BL.csproj", "{DCAE04DA-CDF7-4C0F-9BFD-4EF9A74DFDCF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{E7DAA83E-B2EE-4356-AB91-17A916D0D2C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7DAA83E-B2EE-4356-AB91-17A916D0D2C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7DAA83E-B2EE-4356-AB91-17A916D0D2C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCAE04DA-CDF7-4C0F-9BFD-4EF9A74DFDCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCAE04DA-CDF7-4C0F-9BFD-4EF9A74DFDCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCAE04DA-CDF7-4C0F-9BFD-4EF9A74DFDCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCAE04DA-CDF7-4C0F-9BFD-4EF9A74DFDCF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
