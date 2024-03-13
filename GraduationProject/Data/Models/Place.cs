@@ -25,18 +25,20 @@ namespace GraduationProject.Data.Models
         [StringLength(255)] 
         public string Location { get; set; }
 
+        [Required]
         [StringLength(500)] 
         public string Description { get; set; }
 
+        [Required]
         public int PeopleCapacity { get; set; }
 
         [Required]
         [ForeignKey("Owner")]
-        public int OwnerId { get; set; }
+        public Guid OwnerId { get; set; }
 
         [Required]
         [ForeignKey("Category")]
-        public string CategoryName { get; set; }
+        public int CategoryId { get; set; }
 
 
         public bool ConfirmReq { get; set; } = false;
@@ -44,6 +46,7 @@ namespace GraduationProject.Data.Models
 
         // Navigation Property
         // for Places
+
         public User Owner { get; set; }
 
         public Category Category { get; set; }

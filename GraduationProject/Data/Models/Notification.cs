@@ -19,7 +19,7 @@ namespace GraduationProject.Data.Models
 
         [Required]
         [ForeignKey("Recipient")]
-        public int RecipientId { get; set; }
+        public Guid RecipientId { get; set; }
 
         // Navigation Property
         public User Recipient { get; set; }
