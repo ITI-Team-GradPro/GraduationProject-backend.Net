@@ -54,11 +54,11 @@ namespace GraduationProject.Data.Context
             .OnDelete(DeleteBehavior.Restrict);
 
 
-             modelBuilder.Entity<WishList>()
-            .HasOne(wl => wl.User)
-            .WithMany(u => u.WishListUserPlaces)
-            .HasForeignKey(wl => wl.UserId)
-            .OnDelete(DeleteBehavior.Restrict)
+            modelBuilder.Entity<WishList>()
+           .HasOne(wl => wl.User)
+           .WithMany(u => u.WishListUserPlaces)
+           .HasForeignKey(wl => wl.UserId)
+           .OnDelete(DeleteBehavior.Restrict);
 
         }
 
