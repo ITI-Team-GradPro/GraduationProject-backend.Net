@@ -11,7 +11,7 @@ namespace GraduationProject.Data.Models
     public class Comment
     {
         [Key]
-        public Guid CommentID { get; set; }
+        public int CommentID { get; set; }
         [Required]
         [StringLength(500)]
         public string CommentText { get; set; }

@@ -9,8 +9,8 @@ namespace GraduationProject.Data.Models
 {
     public class Category
     {
-        public Guid CategoryId { get; set; }
         [Key]
+        public int CategoryId { get; set; }
         [Required]
         [StringLength(255)]
         public string CategoryName { get; set; }
