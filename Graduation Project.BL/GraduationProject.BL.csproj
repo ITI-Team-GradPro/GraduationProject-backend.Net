@@ -11,9 +11,4 @@
     <ProjectReference Include="..\GraduationProject\GraduationProject.DAL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Dtos\" />
-    <Folder Include="Managers\" />
-  </ItemGroup>
-
 </Project>
