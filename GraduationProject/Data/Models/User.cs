@@ -57,6 +57,13 @@ namespace GraduationProject.Data.Models
         public string ImageUrl { get; set; }
 
 
+        [Required]
+        public UserRole Role { get; set; }
+
+
+
+
+
         // Navigation Property
         public ICollection<Place> OwnedPlaces { get; set; } = new List<Place>();
  
