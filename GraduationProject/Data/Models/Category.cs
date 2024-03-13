@@ -11,6 +11,7 @@ namespace GraduationProject.Data.Models
     {
         [Key]
         public int CategoryId { get; set; }
+
         [Required]
         [StringLength(255)]
         public string CategoryName { get; set; }

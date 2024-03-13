@@ -18,7 +18,7 @@ namespace GraduationProject.Data.Models
         public string ImageUrl { get; set; }
 
         [ForeignKey("Place")]
-        public int PlaceId { get; set; }
+        public Guid PlaceId { get; set; }
 
         // Navigation Property
         public Place Place { get; set; }

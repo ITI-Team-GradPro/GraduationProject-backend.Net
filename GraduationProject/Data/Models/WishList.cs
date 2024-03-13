@@ -10,7 +10,7 @@ namespace GraduationProject.Data.Models
     public class WishList
 {
         [ForeignKey("User")]
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
         public User User { get; set; }
 
         [ForeignKey("Place")]
