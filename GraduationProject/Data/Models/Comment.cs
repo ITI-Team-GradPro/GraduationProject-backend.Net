@@ -29,10 +29,10 @@ namespace GraduationProject.Data.Models
         public TimeSpan CommentTime => CommentDateTime.TimeOfDay;
 
         [ForeignKey("User")]
-        public Guid UserId { get; set; }
+        public string UserId { get; set; }
        
         [ForeignKey("Place")]
-        public Guid PlaceId { get; set; }
+        public int PlaceId { get; set; }
 
         //Navigation Properties
         public Place Place { get; set; }

@@ -1,6 +1,11 @@
 
 using GraduationProject.Data.Context;
+using GraduationProject.Data.Models;
+using GraduationProject_Api.TRepo;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace GraduationProject_Api
 {
@@ -17,11 +22,49 @@ namespace GraduationProject_Api
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            builder.Services.AddDbContext<GP_Db>(a =>
+
+            builder.Services.AddDbContext<GP_Db>(options =>
             {
-                a.UseSqlServer(builder.Configuration.GetConnectionString("con1"));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("con1"));
             });
 
+            builder.Services.AddIdentity<User, IdentityRole>(options =>
+            {
+              
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequiredLength = 8;
+
+                //options.User.RequireUniqueEmail = true;
+
+                options.Lockout.MaxFailedAccessAttempts = 3;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(2);
+            })
+                  .AddEntityFrameworkStores<GP_Db>();
+            //verify token
+
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = "default";
+                options.DefaultChallengeScheme = "default";
+            }).
+                 AddJwtBearer("default", options =>
+                 {
+                     var secretKey = builder.Configuration.GetValue<string>("SecretKey")!;
+                     var secretKeyInBytes = Encoding.ASCII.GetBytes(secretKey);
+                     var key = new SymmetricSecurityKey(secretKeyInBytes);
+
+                     options.TokenValidationParameters = new TokenValidationParameters
+                     {
+                         ValidateIssuer = false,
+                         ValidateAudience = false,
+                         IssuerSigningKey = key
+                     };
+                 });
+
+
+            //builder.Services.AddScoped<ITIUserRepository, TUserRepository>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -32,6 +75,8 @@ namespace GraduationProject_Api
             }
 
             app.UseHttpsRedirection();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

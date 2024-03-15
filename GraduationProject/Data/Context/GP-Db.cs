@@ -1,10 +1,12 @@
 ﻿using GraduationProject.Data.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 
 namespace GraduationProject.Data.Context
 {
-    public class GP_Db : DbContext
+    public class GP_Db : IdentityDbContext<User>
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Place> Places { get; set; }
@@ -17,14 +19,30 @@ namespace GraduationProject.Data.Context
         public DbSet<ImgsPlace> ImagesPlaces { get; set; }
 
 
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
+        //{
+        //    //optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=GP-Evently;Integrated Security=True;Trust Server Certificate=True");
+        //    //base.OnConfiguring(optionsBuilder);
+
+        //}
+
+
+        public GP_Db(DbContextOptions<GP_Db> options) : base(options)
+        {
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=GP-Evently;Integrated Security=True;Trust Server Certificate=True");
-            base.OnConfiguring(optionsBuilder);
+            //optionsBuilder.UseSqlServer(
+            //   ("Data Source=.;Initial Catalog=GP-Evently;Integrated Security=True;Trust Server Certificate=True"),
+            //    b => b.MigrationsAssembly("GraduationProject.DAL")); // Replace with your migrations assembly name
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //to make the two columns as primary key 
+            base.OnModelCreating(modelBuilder);
+
+            //to make the two columns as promary key 
             modelBuilder.Entity<WishList>()
             .HasKey(wl => new { wl.UserId, wl.PlaceId });
 
@@ -60,10 +78,21 @@ namespace GraduationProject.Data.Context
            .HasForeignKey(wl => wl.UserId)
            .OnDelete(DeleteBehavior.Restrict);
 
+
+            modelBuilder.Entity<Place>()
+                .HasOne(p => p.Owner)
+                .WithMany(u => u.OwnedPlaces)
+                .HasForeignKey(p => p.OwnerId);
+
+
+
+
         }
 
     }
 }
+
+
 
 
 

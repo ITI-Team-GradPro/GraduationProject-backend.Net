@@ -27,7 +27,7 @@ namespace GraduationProject.Data.Models
         }
 
         [Key]
-        public Guid BookingId { get; set; }
+        public int BookingId { get; set; }
 
         [Required]
         [Column(TypeName = "decimal(6, 2)")]
@@ -49,11 +49,11 @@ namespace GraduationProject.Data.Models
 
         //Navigation Properties
         [ForeignKey("User")]
-        public Guid UserId { get; set; }
+        public string UserId { get; set; }
         public User User { get; set; }
 
         [ForeignKey("Place")]
-        public Guid PlaceId { get; set; }
+        public int PlaceId { get; set; }
         public Place Place { get; set; }
     }
 

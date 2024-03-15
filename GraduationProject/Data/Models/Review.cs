@@ -23,12 +23,12 @@ namespace GraduationProject.Data.Models
         // Navigation Properties
         [Required]
         [ForeignKey("User")]
-        public Guid UserId { get; set; }
+        public string UserId { get; set; }
         public User User { get; set; }
 
         [Required]
         [ForeignKey("Place")]
-        public Guid PlaceId { get; set; }
+        public int PlaceId { get; set; }
         public Place Place { get; set; }
     }
 }
