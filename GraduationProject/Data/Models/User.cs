@@ -2,10 +2,11 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Identity;
 
 namespace GraduationProject.Data.Models
 {
-    public class User
+    public class User : IdentityUser
     {
 
         public enum UserRole
@@ -32,11 +33,11 @@ namespace GraduationProject.Data.Models
         public string Password { get; set; }
 
         [Required]
-        [StringLength(50)] 
+        [StringLength(30 , MinimumLength =3)] 
         public string FirstName { get; set; }
 
         [Required]
-        [StringLength(50)] 
+        [StringLength(50 , MinimumLength =5)] 
         public string LastName { get; set; }
 
         [Required]

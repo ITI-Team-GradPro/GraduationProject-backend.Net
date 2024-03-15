@@ -9,16 +9,22 @@ namespace Graduation_Project.BL;
 
 public class UserRegistrationDto 
 {
-    public string? FirstName { get; set; }
-    public string? LastName { get; set; }
+    [Required(ErrorMessage = "User First Name must be at least 3 letters and maximum 30 letters.")]
+    [StringLength(50, MinimumLength = 5)]
+    public string FirstName { get; set; } = string.Empty;
+    [Required(ErrorMessage = "User Last Name must be at least 3 letters and maximum 30 letters.")]
+    [StringLength(50, MinimumLength = 5)]
+    public string LastName { get; set; } = string.Empty;
+    public string Role { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "Email is required.")]
-    public string? Email { get; set; }
+    public string Email { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "Password is required")]
-    public string? Password { get; set; }
+    [StringLength(20, MinimumLength = 8)]
+    public string? Password { get; set; } = string.Empty;
 
     [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-    public string? ConfirmPassword { get; set; }
-    
+    public string? ConfirmPassword { get; set; } = string.Empty;
+
 }
