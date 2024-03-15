@@ -24,7 +24,7 @@ namespace GraduationProject.Data.Context
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //to make the two columns as promary key 
+            //to make the two columns as primary key 
             modelBuilder.Entity<WishList>()
             .HasKey(wl => new { wl.UserId, wl.PlaceId });
 
