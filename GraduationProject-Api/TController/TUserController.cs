@@ -32,7 +32,7 @@ namespace GraduationProject_Api.TController
         public async Task<ActionResult<TokenDTO>> Login(LoginDTO credentials)
         {
             //Using GetUserByNameAsync:to retrieve the user with the provided username from the database. 
-            var user = await _userManager.FindByNameAsync(credentials.UserName);
+            var user = await _userManager.FindByEmailAsync(credentials.Email);
 
             if (user == null)
             {
