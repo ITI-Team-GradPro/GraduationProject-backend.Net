@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Graduation_Project.BL.Dtos
 {
-    public class LoginDTO
+    public class LoginDTO 
     {
             public string UserName { get; set; } // User's username
             public string Password { get; set; } // User's password

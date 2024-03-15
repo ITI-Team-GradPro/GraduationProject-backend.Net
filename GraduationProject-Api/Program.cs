@@ -28,9 +28,6 @@ namespace GraduationProject_Api
                 options.UseSqlServer(builder.Configuration.GetConnectionString("con1"));
             });
 
-
-
-
             builder.Services.AddIdentity<User, IdentityRole>(options =>
             {
                 options.Password.RequireUppercase = false;
@@ -44,7 +41,7 @@ namespace GraduationProject_Api
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(2);
             })
                   .AddEntityFrameworkStores<GP_Db>();
-
+            //verify token
 
             builder.Services.AddAuthentication(options =>
             {
@@ -66,7 +63,7 @@ namespace GraduationProject_Api
                  });
 
 
-            builder.Services.AddScoped<ITIUserRepository, TUserRepository>();
+            //builder.Services.AddScoped<ITIUserRepository, TUserRepository>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
