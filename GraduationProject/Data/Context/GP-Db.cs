@@ -19,59 +19,80 @@ namespace GraduationProject.Data.Context
         public DbSet<ImgsPlace> ImagesPlaces { get; set; }
 
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) 
         //{
         //    //optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=GP-Evently;Integrated Security=True;Trust Server Certificate=True");
         //    //base.OnConfiguring(optionsBuilder);
+
         //}
 
 
         public GP_Db(DbContextOptions<GP_Db> options) : base(options)
         {
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            //optionsBuilder.UseSqlServer(
+            //   ("Data Source=.;Initial Catalog=GP-Evently;Integrated Security=True;Trust Server Certificate=True"),
+            //    b => b.MigrationsAssembly("GraduationProject.DAL")); // Replace with your migrations assembly name
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            //to make the two columns as promary key 
+            modelBuilder.Entity<WishList>()
+            .HasKey(wl => new { wl.UserId, wl.PlaceId });
+
+            // to make the email uniqe 
+            modelBuilder.Entity<User>()
+            .HasIndex(u => u.Email)
+            .IsUnique();
+
+            modelBuilder.Entity<Booking>()
+            .HasOne(b => b.Place)
+            .WithMany(p => p.Bookings)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Comment>()
+            .HasOne(c => c.Place)
+            .WithMany(p => p.Comments)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Review>()
+           .HasOne(r => r.Place)
+            .WithMany(p => p.Reviews)
+            .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<WishList>()
+            .HasOne(wl => wl.Place)
+            .WithMany(p => p.WishListPlaceUsers)
+            .OnDelete(DeleteBehavior.Restrict);
+
+
+            modelBuilder.Entity<WishList>()
+           .HasOne(wl => wl.User)
+           .WithMany(u => u.WishListUserPlaces)
+           .HasForeignKey(wl => wl.UserId)
+           .OnDelete(DeleteBehavior.Restrict);
+
+
+            modelBuilder.Entity<Place>()
+                .HasOne(p => p.Owner)
+                .WithMany(u => u.OwnedPlaces)
+                .HasForeignKey(p => p.OwnerId);
+
+
+
 
         }
-        //protected override void OnModelCreating(ModelBuilder modelBuilder)
-        //{
-        //    //to make the two columns as promary key 
-        //    modelBuilder.Entity<WishList>()
-        //    .HasKey(wl => new { wl.UserId, wl.PlaceId });
-
-        //    // to make the email uniqe 
-        //    modelBuilder.Entity<User>()
-        //    .HasIndex(u => u.Email)
-        //    .IsUnique();
-
-        //    modelBuilder.Entity<Booking>()
-        //    .HasOne(b => b.Place)
-        //    .WithMany(p => p.Bookings)
-        //    .OnDelete(DeleteBehavior.Restrict);
-
-        //    modelBuilder.Entity<Comment>()
-        //    .HasOne(c => c.Place)
-        //    .WithMany(p => p.Comments)
-        //    .OnDelete(DeleteBehavior.Restrict);
-
-        //    modelBuilder.Entity<Review>()
-        //   .HasOne(r => r.Place)
-        //    .WithMany(p => p.Reviews)
-        //    .OnDelete(DeleteBehavior.Restrict);
-
-        //    modelBuilder.Entity<WishList>()
-        //    .HasOne(wl => wl.Place)
-        //    .WithMany(p => p.WishListPlaceUsers)
-        //    .OnDelete(DeleteBehavior.Restrict);
-
-
-        //    modelBuilder.Entity<WishList>()
-        //   .HasOne(wl => wl.User)
-        //   .WithMany(u => u.WishListUserPlaces)
-        //   .HasForeignKey(wl => wl.UserId)
-        //   .OnDelete(DeleteBehavior.Restrict);
-
-        //}
 
     }
 }
+
+
 
 
 

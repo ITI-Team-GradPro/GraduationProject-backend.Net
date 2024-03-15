@@ -8,7 +8,7 @@ namespace GraduationProject.Data.Models
     {
 
         [Key]
-        public Guid PlaceId { get; set; }
+        public int PlaceId { get; set; }
 
         [Required]
         [StringLength(255)] 
@@ -34,7 +34,7 @@ namespace GraduationProject.Data.Models
 
         [Required]
         [ForeignKey("Owner")]
-        public Guid OwnerId { get; set; }
+        public string OwnerId { get; set; }
 
         [Required]
         [ForeignKey("Category")]
