@@ -3,6 +3,13 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+
+# Ignore Entity Framework Core migration files
+*/Migrations/*.cs
+*/Migrations/*.Designer.cs
+*/Migrations/*.resx
+
+
 # User-specific files
 *.rsuser
 *.suo
