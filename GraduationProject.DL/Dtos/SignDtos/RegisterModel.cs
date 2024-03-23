@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static GraduationProject.Data.Models.User;
 
-namespace GraduationProject.DL.Dtos.SignDtos
+namespace GraduationProject.BL.Dtos.SignDtos
 {
     public class RegisterModel
     {

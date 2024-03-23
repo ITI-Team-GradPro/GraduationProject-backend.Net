@@ -1,6 +1,6 @@
 ﻿using GraduationProject.API.Services;
 using GraduationProject.Data.Models;
-using GraduationProject.DL.Dtos.SignDtos;
+using GraduationProject.BL.Dtos.SignDtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
 using static GraduationProject.Data.Models.User;
-using GraduationProject.DL.Dtos;
+using GraduationProject.BL.Dtos;
 using GraduationProject.API.Services;
-using GraduationProject.DL.Dtos.SignDtos;
+using GraduationProject.BL.Dtos.SignDtos;
 using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace GraduationProject.API.Controllers
