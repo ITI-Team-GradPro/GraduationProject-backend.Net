@@ -16,4 +16,10 @@ public class CategoryRepo : GenericRepo<Category> , ICategoryRepo
     {
         _context = context;
     }
+
+    string ICategoryRepo.GetByName(string name)
+    {
+      var category =  _context.Categories.FirstOrDefault(d => d.CategoryName == name);
+        return category.CategoryName;
+    }
 }

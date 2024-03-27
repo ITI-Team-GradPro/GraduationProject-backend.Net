@@ -12,5 +12,5 @@ public class CategoryReadDto
 {
     public required string Name { get; set; } = string.Empty;
 
-    public ICollection<GetPlacesDtos> Places { get; set; } = new List<GetPlacesDtos>();
+    //public ICollection<GetPlacesDtos> Places { get; set; } 
 }

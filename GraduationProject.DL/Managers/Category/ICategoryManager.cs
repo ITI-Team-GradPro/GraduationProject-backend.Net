@@ -11,7 +11,7 @@ public interface ICategoryManager
 {
     IEnumerable<CategoryReadDto> GetAll();
 
-    CategoryReadDto? GetById(int id);
+    CategoryReadDto? GetByName(string name);
 
     int Add(CategoryAddDto categoryAddDto);
 
