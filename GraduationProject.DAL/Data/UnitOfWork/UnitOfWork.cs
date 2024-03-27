@@ -19,5 +19,11 @@ public class UnitOfWork : IUnitOfWork
     }
     public ICategoryRepo Categoryrepo { get; } 
 
+    public int SaveChanges()
+    {
+        return _context.SaveChanges();
+    }
+
+
     //ICategoryRepo IUnitOfWork.categoryRepo => throw new NotImplementedException();
 }

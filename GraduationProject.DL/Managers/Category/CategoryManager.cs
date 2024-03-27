@@ -17,28 +17,56 @@ public class CategoryManager : ICategoryManager
     {
         _UnitOfWork = unitOfWork;
     }
-    IEnumerable<CategoryReadDto> ICategoryManager.GetAll()
+    IEnumerable<CategoryReadDto>ICategoryManager.GetAll()
     {
-        IEnumerable<Category> CategoryData = _UnitOfWork.Categoryrepo.GetAll();
-        return (IEnumerable<CategoryReadDto>)CategoryData.Select(x => new Category
+        IEnumerable<Category> CategoryData =  _UnitOfWork.Categoryrepo.GetAll();
+
+        var categorydt = CategoryData.Select(x => new CategoryReadDto
         {
-            CategoryId = x.CategoryId,
-            CategoryName = x.CategoryName,
-            Places = x.Places
+            Name = x.CategoryName
         });
+        return categorydt;
+
+        //return (IEnumerable<CategoryReadDto>)CategoryData.Select(x => new Category
+        //{
+        //    CategoryId = x.CategoryId,
+        //    CategoryName = x.CategoryName,
+        //    Places = x.Places
+        //});
     }
-    CategoryReadDto ICategoryManager.GetById(int id)
+    CategoryReadDto ICategoryManager.GetByName(string name)
     {
-        throw new NotImplementedException();
+        string? categorybyname = _UnitOfWork.Categoryrepo.GetByName(name);
+        if(categorybyname is null)
+        {
+            return null;
+        }
+        return new CategoryReadDto
+        {
+            Name = categorybyname
+        };
     }
     int ICategoryManager.Add(CategoryAddDto categoryAddDto)
     {
-        throw new NotImplementedException();
+        Category categoryadded = new Category
+        {
+            CategoryName = categoryAddDto.Name
+        };
+        _UnitOfWork.Categoryrepo.Add(categoryadded);
+        _UnitOfWork.SaveChanges();
+        return categoryadded.CategoryId;
     }
 
     bool ICategoryManager.Delete(int id)
     {
-        throw new NotImplementedException();
+        Category categorydeleted = _UnitOfWork.Categoryrepo.GetById(id);
+        if(categorydeleted is null)
+        {
+            return false;
+        }
+        _UnitOfWork.Categoryrepo.Delete(categorydeleted);
+        _UnitOfWork.SaveChanges();
+        return true;
     }
 
     
