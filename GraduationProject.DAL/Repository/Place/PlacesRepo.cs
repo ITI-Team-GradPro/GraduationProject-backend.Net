@@ -1,5 +1,6 @@
 ﻿using GraduationProject.Data.Context;
 using GraduationProject.Data.Models;
+using Microsoft.AspNetCore.OData.Query;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ public class PlacesRepo : IPlacesRepo
     }
     public void Add(Place place)
     {
-       _context.Places.Add(place);
+        _context.Places.Add(place);
     }
 
     public void Delete(Place place)
@@ -38,8 +39,22 @@ public class PlacesRepo : IPlacesRepo
 
     public int SaveChanges()
     {
-       return _context.SaveChanges();
+        return _context.SaveChanges();
+    }
+    public IQueryable<Place> FilterPlaces()
+    {
+        var places = _context.Places.AsQueryable();
+        return places;
     }
 
+    public IQueryable<Place> SearchPlaces()
+    {
+        var places = _context.Places.AsQueryable();
+        return places;
+    }
 
+    //public IQueryable<Place> MapPlaces()
+    //{
+    //    return _context.Places;
+    //}
 }

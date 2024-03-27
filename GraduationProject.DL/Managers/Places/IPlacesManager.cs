@@ -1,5 +1,6 @@
 ﻿using GraduationProject.Bl.Dtos.PlaceDtos;
 using GraduationProject.BL.Dtos.PlaceDtos;
+using GraduationProject.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,8 @@ public interface IPlacesManager
     int Add(AddPlaceDto place);
 
     bool Delete(int id);
+    IQueryable<FilterSearchPlaceDto> FilterPlaces();
+    IQueryable<FilterSearchPlaceDto> SearchPlaces();
+
 
 }

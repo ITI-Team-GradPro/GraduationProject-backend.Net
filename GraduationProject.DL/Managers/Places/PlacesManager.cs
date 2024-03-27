@@ -23,7 +23,7 @@ namespace GraduationProject.BL.Managers.Places
         }
         public int Add(AddPlaceDto place)
         {
-            
+
             Place placedb = new Place()
             {
                 Name = place.Name,
@@ -43,21 +43,22 @@ namespace GraduationProject.BL.Managers.Places
 
         public bool Delete(int id)
         {
-            Place? placedb=_placesRepo.GetPlaceById(id);
-            if(placedb == null)
+            Place? placedb = _placesRepo.GetPlaceById(id);
+            if (placedb == null)
             {
                 return false;
             }
             try
             {
 
-            _placesRepo.Delete(placedb);
-            _placesRepo.SaveChanges();
-            return true;
+                _placesRepo.Delete(placedb);
+                _placesRepo.SaveChanges();
+                return true;
 
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
-              return false;
+                return false;
             }
         }
 
@@ -75,17 +76,33 @@ namespace GraduationProject.BL.Managers.Places
                 PeopleCapacity = x.PeopleCapacity
             });
             return placedto;
-            
+
         }
+
+        //public IQueryable<GetPlacesDtos> GetPlacesByFilters()
+        //{
+        //    IQueryable<Place> placesdb = _placesRepo.GetPlacesByFilters();
+        //    var placedto = placesdb.Select(x => new GetPlacesDtos
+        //    {
+        //        Name = x.Name,
+        //        Description = x.Description,
+        //        PlaceId = x.PlaceId,
+        //        Price = x.Price,
+        //        Location = x.Location,
+        //        OverAllRating = x.OverAllRating,
+        //        PeopleCapacity = x.PeopleCapacity
+        //    });
+        //    return placedto;
+        //}
 
         public GetPlacesDtos GetPlacesById(int id)
         {
-            Place? placesdb=_placesRepo.GetPlaceById(id);
+            Place? placesdb = _placesRepo.GetPlaceById(id);
             if (placesdb == null)
             {
                 return null;
             }
-            var placedto =  new GetPlacesDtos
+            var placedto = new GetPlacesDtos
             {
                 Name = placesdb.Name,
                 Description = placesdb.Description,
@@ -96,6 +113,42 @@ namespace GraduationProject.BL.Managers.Places
                 PeopleCapacity = placesdb.PeopleCapacity
             };
             return placedto;
+
+        }
+        public IQueryable<FilterSearchPlaceDto> FilterPlaces()
+        {
+            IQueryable<Place> filterPlacesDB = _placesRepo.FilterPlaces();
+            var filterPlacesDto = filterPlacesDB.Select(x => new FilterSearchPlaceDto
+            {
+                Id = x.PlaceId,
+                CategoryId = x.CategoryId,
+                Rating = x.OverAllRating,
+                Price = x.Price,
+                PeopleCapacity = x.PeopleCapacity,
+                Location = x.Location,
+                ImgUrl = "",
+                description = x.Description,
+                Name = x.Name
+            }) ;
+            return filterPlacesDto;
+        }
+
+        public IQueryable<FilterSearchPlaceDto> SearchPlaces()
+        {
+            IQueryable<Place> searchPlacesDB = _placesRepo.SearchPlaces();
+            var searchPlacesDto = searchPlacesDB.Select(x => new FilterSearchPlaceDto
+            {
+                Id = x.PlaceId,
+                CategoryId = x.CategoryId,
+                Rating = x.OverAllRating,
+                Price = x.Price,
+                PeopleCapacity = x.PeopleCapacity,
+                Location = x.Location,
+                ImgUrl = "",
+                description = x.Description,
+                Name = x.Name
+            });
+            return searchPlacesDto;
 
         }
     }

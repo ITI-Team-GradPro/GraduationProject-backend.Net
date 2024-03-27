@@ -1,25 +1,29 @@
+using GraduationProject.BL;
+using GraduationProject.BL.Managers.Places;
+using GraduationProject.DAL;
+using GraduationProject.Data.Context;
+using GraduationProject.Data.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.OData;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OData.Edm;
+using Microsoft.OData.ModelBuilder;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Globalization;
-using System.Text;
-using GraduationProject.Data.Context;
-using GraduationProject.Data.Models;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
 using System.Net;
 using System.Net.Mail;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.Extensions.Options;
-using GraduationProject.DAL;
-using GraduationProject.BL;
-using GraduationProject.BL.Managers.Places;
+using System.Text;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace GraduationProject.API
 {
@@ -31,9 +35,19 @@ namespace GraduationProject.API
 
             CultureInfo.DefaultThreadCurrentCulture = culture;
             CultureInfo.DefaultThreadCurrentUICulture = culture;
-
+            //Add OData Service
             var builder = WebApplication.CreateBuilder(args);
             ConfigureServices(builder.Services, builder.Configuration);
+            builder.Services.AddControllers()
+                            .AddOData(options => options
+                            .AddRouteComponents("odata", GetEdmModel())
+                            .Select()
+                            .Filter()
+                            .OrderBy()
+                            .SetMaxTop(20)
+                            .Count()
+                            .Expand()
+    );
             var app = builder.Build();
 
             if (app.Environment.IsDevelopment())
@@ -42,7 +56,6 @@ namespace GraduationProject.API
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GraduationProject.API v1"));
             }
-
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthentication();
@@ -128,6 +141,13 @@ namespace GraduationProject.API
             {
                 CultureInfo.CurrentCulture = originalCulture;
             }
+        }
+        //OData Entity Data Model Configuration
+        static IEdmModel GetEdmModel()
+        {
+            ODataConventionModelBuilder builder = new();
+            builder.EntitySet<Place>("Places");
+            return builder.GetEdmModel();
         }
     }
 

@@ -14,7 +14,10 @@ public interface IPlacesRepo
     void Add (Place place);
     void Delete (Place place);
     int SaveChanges();
+    IQueryable<Place> FilterPlaces();
+    IQueryable<Place> SearchPlaces();
 
-   
+
+
 
 }
