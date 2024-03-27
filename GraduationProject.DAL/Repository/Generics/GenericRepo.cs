@@ -1,7 +1,9 @@
 ﻿using GraduationProject.Data.Context;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,28 +17,48 @@ namespace GraduationProject.DAL.Repository.Generics
         {
             _context = context;
         }
-        IEnumerable<TEntity> IGenericRepo<TEntity>.GetAll()
+
+        public async Task<IEnumerable<TEntity>> GetAll()
         {
-            return _context.Set<TEntity>().ToList();
-        }
-        TEntity IGenericRepo<TEntity>.GetById(int id)
-        {
-            return _context.Set<TEntity>().Find(id);
+            var query = _context.Set<TEntity>(); // Get DbSet
+            return await query.ToListAsync(); // Execute query asynchronously and materialize results
         }
 
-        void IGenericRepo<TEntity>.Add(TEntity entity)
+
+        public async Task<TEntity> GetById(int id)
         {
-            _context.Set<TEntity>().Add(entity);
+            return await _context.Set<TEntity>().FindAsync(id);
         }
-        void IGenericRepo<TEntity>.Update(TEntity entity)
+
+        public async Task AddAsync(TEntity entity)
+        {
+            _context.Set<TEntity>().Add(entity);// Get DbSet of data first
+            await _context.SaveChangesAsync(); // Save changes asynchronously
+        }
+
+
+        public async Task Update(TEntity entity)
         {
             _context.Set<TEntity>().Update(entity);
+            await _context.SaveChangesAsync();
         }
 
-        void IGenericRepo<TEntity>.Delete(TEntity entity)
+        public async Task Delete(TEntity entity)
         {
             _context.Set<TEntity>().Remove(entity);
+            await _context.SaveChangesAsync();
         }
 
+
+        public async Task<IEnumerable<TEntity>> GetAllById(string Id, Expression<Func<TEntity, bool>> predicate)
+        {
+            var query = _context.Set<TEntity>(); // Get DbSet
+
+            // Apply filtering with Where (builds IQueryable)
+            var filteredQuery = query.Where(predicate);
+
+            // Execute the query asynchronously and materialize results
+            return await filteredQuery.ToListAsync();
+        }
     }
 }
