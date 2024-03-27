@@ -26,6 +26,7 @@ public class CategoryManager : ICategoryManager
             Name = x.CategoryName
         });
         return categorydt;
+        
 
         //return (IEnumerable<CategoryReadDto>)CategoryData.Select(x => new Category
         //{
