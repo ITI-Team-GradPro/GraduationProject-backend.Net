@@ -10,8 +10,5 @@ namespace GraduationProject.DAL.Data;
 public interface IUnitOfWork
 {
     public ICategoryRepo Categoryrepo { get; }
-
-    public IWishlistRepo Wishlistrepo { get; }
-
-    int SaveChanges();
+    public IPlacesRepo Placesrepo { get; }
 }

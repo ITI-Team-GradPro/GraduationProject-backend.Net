@@ -16,6 +16,8 @@ namespace GraduationProject.Data.Models
         [Required]
         [StringLength(500)]
         public string ImageUrl { get; set; }
+        public string publicId { get; set; }
+
 
         [ForeignKey("Place")]
         public int PlaceId { get; set; }

@@ -12,14 +12,15 @@ public class UnitOfWork : IUnitOfWork
 {
     private readonly ApplicationDbContext _context;
 
-    public UnitOfWork(ApplicationDbContext context , ICategoryRepo categoryRepo , IWishlistRepo Wishlistrepo)
+    public UnitOfWork(ApplicationDbContext context , ICategoryRepo categoryRepo,IPlacesRepo placesRepo)
     {
         _context = context;
         Categoryrepo = categoryRepo;
+        Placesrepo = placesRepo;
     }
-    public ICategoryRepo Categoryrepo { get; } 
+    public ICategoryRepo Categoryrepo { get; }
 
-    public IWishlistRepo Wishlistrepo { get; }
+    public IPlacesRepo Placesrepo {  get; }
 
     public int SaveChanges()
     {

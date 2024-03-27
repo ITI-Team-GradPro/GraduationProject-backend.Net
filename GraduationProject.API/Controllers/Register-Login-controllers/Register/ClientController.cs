@@ -51,15 +51,15 @@ namespace GraduationProject.API.Controllers
             if (result.Succeeded)
             {
                 // Send confirmation email
-                var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                var callbackUrl = Url.Action("ConfirmEmail", "Client", new { userId = user.Id, token }, protocol: HttpContext.Request.Scheme);
+                //var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                //var callbackUrl = Url.Action("ConfirmEmail", "Client", new { userId = user.Id, token }, protocol: HttpContext.Request.Scheme);
 
-                var emailSubject = "Confirm your email";
-                var emailBody = $"Please confirm your account by <a href='{callbackUrl}'>clicking here</a>.";
+                //var emailSubject = "Confirm your email";
+                //var emailBody = $"Please confirm your account by <a href='{callbackUrl}'>clicking here</a>.";
 
-                await _emailSender.SendEmailAsync(user.Email, emailSubject, emailBody);
+                //await _emailSender.SendEmailAsync(user.Email, emailSubject, emailBody);
 
-                return Ok(new Response { Status = "Success", Message = "User created successfully! Please check your email for verification." });
+                return Ok(new Response { Status = "Success", Message = "User created successfully!." });
             }
             else
             {
