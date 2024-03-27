@@ -3,9 +3,9 @@ using GraduationProject.Data.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using GraduationProject.DL.Dtos.SignDtos.ForgotPassword;
+using GraduationProject.BL.Dtos.SignDtos.ForgotPassword;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using GraduationProject.DL.Dtos.SignDtos;
+using GraduationProject.BL.Dtos.SignDtos;
 
 
 namespace GraduationProject.API.Controllers.Register_Login_controllers.ForgotPass

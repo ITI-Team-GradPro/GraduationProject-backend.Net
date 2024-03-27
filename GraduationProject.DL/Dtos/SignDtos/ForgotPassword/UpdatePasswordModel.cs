@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GraduationProject.DL.Dtos.SignDtos.ForgotPassword
+namespace GraduationProject.BL.Dtos.SignDtos.ForgotPassword
 {
     public class UpdatePasswordModel
     {

@@ -17,6 +17,12 @@ using System.Net;
 using System.Net.Mail;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Options;
+using GraduationProject.DAL;
+using GraduationProject.BL;
+using GraduationProject.BL.Managers.Places;
+using GraduationProject.BL.Managers;
+using GraduationProject.DAL.Data;
+using GraduationProject.DAL.Repository;
 
 namespace GraduationProject.API
 {
@@ -58,6 +64,14 @@ namespace GraduationProject.API
                 services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseSqlServer(configuration.GetConnectionString("con1")));
             }
+
+            services.AddScoped<IPlacesRepo, PlacesRepo>();
+            services.AddScoped<IPlacesManager, PlacesManager>();
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<ICategoryRepo, CategoryRepo>();
+            services.AddScoped<ICategoryManager, CategoryManager>();
+
 
             // Add Identity
             services.AddIdentity<User, IdentityRole>(options =>
