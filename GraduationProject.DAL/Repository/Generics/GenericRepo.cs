@@ -38,5 +38,10 @@ namespace GraduationProject.DAL.Repository.Generics
             _context.Set<TEntity>().Remove(entity);
         }
 
+        public void SaveChanges()
+        {
+            _context.SaveChanges();
+
+        }
     }
 }

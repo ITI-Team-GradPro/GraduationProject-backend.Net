@@ -12,12 +12,15 @@ public class UnitOfWork : IUnitOfWork
 {
     private readonly ApplicationDbContext _context;
 
-    public UnitOfWork(ApplicationDbContext context , ICategoryRepo categoryRepo)
+    public UnitOfWork(ApplicationDbContext context , ICategoryRepo categoryRepo,IPlacesRepo placesRepo)
     {
         _context = context;
         Categoryrepo = categoryRepo;
+        Placesrepo = placesRepo;
     }
-    public ICategoryRepo Categoryrepo { get; } 
+    public ICategoryRepo Categoryrepo { get; }
+
+    public IPlacesRepo Placesrepo {  get; }
 
     //ICategoryRepo IUnitOfWork.categoryRepo => throw new NotImplementedException();
 }

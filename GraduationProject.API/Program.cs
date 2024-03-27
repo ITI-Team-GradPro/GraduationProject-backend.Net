@@ -20,6 +20,10 @@ using Microsoft.Extensions.Options;
 using GraduationProject.DAL;
 using GraduationProject.BL;
 using GraduationProject.BL.Managers.Places;
+using GraduationProject.DAL.Repository.Generics;
+using GraduationProject.DAL.Data;
+using GraduationProject.DAL.Repository;
+using GraduationProject.BL.Managers;
 
 namespace GraduationProject.API
 {
@@ -61,9 +65,13 @@ namespace GraduationProject.API
                 services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseSqlServer(configuration.GetConnectionString("con1")));
             }
-
+            services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
             services.AddScoped<IPlacesRepo, PlacesRepo>();
             services.AddScoped<IPlacesManager, PlacesManager>();
+            services.AddScoped<IUnitOfWork,UnitOfWork>();
+            services.AddScoped<ICategoryRepo,CategoryRepo>();
+            services.AddScoped<ICategoryManager,CategoryManager>();
+
 
 
             // Add Identity

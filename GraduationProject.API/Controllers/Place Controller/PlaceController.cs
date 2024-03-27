@@ -13,14 +13,18 @@ namespace GraduationProject.API.Controllers.Place_Controller
     public class PlaceController : ControllerBase
     {
         private readonly IPlacesManager _placesManager;
+        private readonly ApplicationDbContext _context;
 
-        public PlaceController(IPlacesManager placesManager)
+
+
+        public PlaceController(IPlacesManager placesManager , ApplicationDbContext context)
         {
             _placesManager = placesManager;
+            _context = context;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<GetPlacesDtos>>> GetAllPlaces()
+        public async Task<ActionResult<List<GetPlacesDtos>>> GetAll()
         {
             var allPlaces = _placesManager.GetAll().ToList();
             return Ok(allPlaces);
@@ -29,7 +33,7 @@ namespace GraduationProject.API.Controllers.Place_Controller
         [HttpGet("{id:int}")]
         public async Task<ActionResult<GetPlacesDtos>> GetById(int id)
         {
-            GetPlacesDtos? PlacesById = _placesManager.GetPlacesById(id);
+            GetPlacesDtos? PlacesById = _placesManager.GetById(id);
             if(PlacesById == null)
             {
                 return NotFound();
@@ -38,7 +42,7 @@ namespace GraduationProject.API.Controllers.Place_Controller
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add(AddPlaceDto placedto)
+        public async Task<IActionResult> Add([FromForm] AddPlaceDto placedto, IFormFile file)
         {
             if (!ModelState.IsValid)
                  return BadRequest();
@@ -69,6 +73,39 @@ namespace GraduationProject.API.Controllers.Place_Controller
             //    }
             //}
             //return BadRequest("Id Not Found");
+
+        }
+        [HttpPost("ADD-PHOTO")]
+        public async Task<ActionResult<AddPlaceDto>> AddPhoto([FromForm] AddPlaceDto NewPLace, IFormFile file)
+        {
+            Place placedb = new Place
+            {
+                Name = NewPLace.Name,
+                Price = NewPLace.Price,
+                Location = NewPLace.Location,
+                Description = NewPLace.Description,
+                PeopleCapacity = NewPLace.PeopleCapacity,
+                OwnerId = NewPLace.OwnerId,
+                CategoryId = NewPLace.CategoryId,
+
+            };
+            var result = await _placesManager.AddPhotoAsync(NewPLace, file);
+            if (result.Error != null) return BadRequest(result.Error.Message);
+
+            var ImgsPlace = new ImgsPlace
+            {
+                ImageUrl = result.SecureUrl.AbsoluteUri,
+                publicId = result.PublicId,
+                PlaceId = placedb.PlaceId,
+
+            };
+            _context.Places.Add(placedb);
+
+            placedb.Images.Add(ImgsPlace);
+
+            await _context.SaveChangesAsync();
+
+            return Ok();
 
         }
 
