@@ -11,4 +11,9 @@ public interface IUnitOfWork
 {
     public ICategoryRepo Categoryrepo { get; }
     public IPlacesRepo Placesrepo { get; }
+
+    public IBookingRepo Bookingrepo { get; }
+    
+    public int SaveChanges ();
+    public Task SaveChangesAsync();
 }
