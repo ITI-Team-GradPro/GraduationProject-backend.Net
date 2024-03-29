@@ -23,7 +23,5 @@ namespace GraduationProject.DAL.Repository.Generics
         Task Update(TEntity entity);
         Task Delete(TEntity entity);
 
-        //retrieve data based on an expression or something other than Id
-        Task<IEnumerable<TEntity>> GetAllById(string Id, Expression<Func<TEntity, bool>> predicate);
     }
 }

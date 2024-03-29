@@ -1,5 +1,4 @@
-﻿using GraduationProject.BL;
-using GraduationProject.BL.Dtos;
+﻿using GraduationProject.BL.Dtos;
 using GraduationProject.BL.Managers;
 using GraduationProject.Data.Models;
 using Microsoft.AspNetCore.Http;
@@ -31,7 +30,7 @@ namespace GraduationProject.API.Controllers.Category_Controller
         [HttpGet]
         public async Task <ActionResult<List<CategoryReadDto>>> GetAll()
         {
-            var categories = await _categoryManager.GetAll();
+            var categories = await _categoryManager.GetAll()/*.ToList()*/;
             return Ok(categories);
         }
 
@@ -57,9 +56,7 @@ namespace GraduationProject.API.Controllers.Category_Controller
             return Ok(category);
         }
 
-        //[HttpDelete("{id:int}")]
-
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int}")]
         public async Task<ActionResult> Delete(int id)
         {
             var IsFound = await _categoryManager.Delete(id);

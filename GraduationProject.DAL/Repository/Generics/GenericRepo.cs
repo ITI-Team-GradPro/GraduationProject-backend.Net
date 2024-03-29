@@ -50,15 +50,6 @@ namespace GraduationProject.DAL.Repository.Generics
         }
 
 
-        public async Task<IEnumerable<TEntity>> GetAllById(string Id, Expression<Func<TEntity, bool>> predicate)
-        {
-            var query = _context.Set<TEntity>(); // Get DbSet
-
-            // Apply filtering with Where (builds IQueryable)
-            var filteredQuery = query.Where(predicate);
-
-            // Execute the query asynchronously and materialize results
-            return await filteredQuery.ToListAsync();
-        }
+        
     }
 }

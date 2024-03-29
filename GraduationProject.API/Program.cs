@@ -24,9 +24,7 @@ using GraduationProject.DAL.Repository.Generics;
 using GraduationProject.DAL.Data;
 using GraduationProject.DAL.Repository;
 using GraduationProject.BL.Managers;
-using GraduationProject.BL.Managers;
-using GraduationProject.DAL.Data;
-using GraduationProject.DAL.Repository;
+
 
 namespace GraduationProject.API
 {
@@ -71,9 +69,13 @@ namespace GraduationProject.API
             services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
             services.AddScoped<IPlacesRepo, PlacesRepo>();
             services.AddScoped<IPlacesManager, PlacesManager>();
-            services.AddScoped<IUnitOfWork,UnitOfWork>();
+            services.AddScoped<IBookingRepo, BookingRepo>();
+            services.AddScoped<IBookingService, BookingService>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ICategoryRepo,CategoryRepo>();
-            services.AddScoped<ICategoryManager,CategoryManager>();
+            services.AddScoped<ICategoryManager, CategoryManager>();
+
+            services.AddAutoMapper(typeof(Program).Assembly);
             services.AddScoped<IWishlistRepo, WishlistRepo>();
 
 
