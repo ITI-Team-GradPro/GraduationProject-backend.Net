@@ -14,5 +14,7 @@ public interface IUnitOfWork
     public ICategoryRepo Categoryrepo { get; }
     public IPlacesRepo Placesrepo { get; }
 
-    void SaveChanges();
+    public IWishlistRepo Wishlistrepo { get;}
+
+    Task<int> SaveChangesAsync();
 }
