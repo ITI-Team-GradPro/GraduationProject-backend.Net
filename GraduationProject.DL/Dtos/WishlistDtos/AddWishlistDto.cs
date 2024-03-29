@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GraduationProject.BL.Dtos.PlaceDtos;
+using GraduationProject.Data.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,4 +10,7 @@ namespace GraduationProject.BL.Dtos;
 
 public class AddWishlistDto
 {
+    public int UserId { get; set; }
+   
+    public int PlaceId { get; set; }
 }

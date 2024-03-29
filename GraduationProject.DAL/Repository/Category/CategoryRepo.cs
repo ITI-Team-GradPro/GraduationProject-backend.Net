@@ -1,6 +1,7 @@
 ﻿using GraduationProject.DAL.Repository.Generics;
 using GraduationProject.Data.Context;
 using GraduationProject.Data.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,11 @@ public class CategoryRepo : GenericRepo<Category> , ICategoryRepo
         _context = context;
     }
 
-    string ICategoryRepo.GetByName(string name)
+    public async Task<string> GetByName(string name)
     {
-      var category =  _context.Categories.FirstOrDefault(d => d.CategoryName == name);
+        var category = await _context.Categories.FirstOrDefaultAsync(d=>d.CategoryName == name);
         return category.CategoryName;
     }
+
+   
 }

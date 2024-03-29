@@ -10,5 +10,6 @@ namespace GraduationProject.DAL.Repository;
 
 public interface ICategoryRepo : IGenericRepo<Category>
 {
-    string? GetByName(string name);
+    Task<string>? GetByName(string name);
+
 }

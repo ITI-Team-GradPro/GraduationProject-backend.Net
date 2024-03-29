@@ -73,11 +73,6 @@ namespace GraduationProject.API
             services.AddScoped<ICategoryManager,CategoryManager>();
 
 
-            services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<ICategoryRepo, CategoryRepo>();
-            services.AddScoped<ICategoryManager, CategoryManager>();
-
-
             // Add Identity
             services.AddIdentity<User, IdentityRole>(options =>
             {

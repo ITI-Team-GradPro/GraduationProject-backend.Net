@@ -24,7 +24,7 @@ namespace GraduationProject.BL.Managers.Places
         private readonly IUnitOfWork _UnitOfWork;
         private readonly Cloudinary _Cloudinary;
 
-      
+
         public PlacesManager(IUnitOfWork unitOfWork, IOptions<CloudinarySettings> config)
         {
             _UnitOfWork = unitOfWork;
@@ -59,7 +59,7 @@ namespace GraduationProject.BL.Managers.Places
             return (placedb.PlaceId);
         }
 
-        public async Task<ImageUploadResult> AddPhotoAsync(AddPlaceDto addPlaceDto,IFormFile file)
+        public async Task<ImageUploadResult> AddPhotoAsync(AddPlaceDto addPlaceDto, IFormFile file)
         {
             var uploadResult = new ImageUploadResult();
             if (file.Length > 0)
@@ -75,7 +75,7 @@ namespace GraduationProject.BL.Managers.Places
                 uploadResult = await _Cloudinary.UploadAsync(uploadParams);
                 _UnitOfWork.Placesrepo.SaveChanges();
 
-               
+
             }
             return uploadResult;
 
@@ -149,8 +149,7 @@ namespace GraduationProject.BL.Managers.Places
         }
 
 
-
-
+        //edit
 
 
         //private readonly IPlacesRepo _placesRepo;

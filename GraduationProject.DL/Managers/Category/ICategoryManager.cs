@@ -1,4 +1,5 @@
 ﻿using GraduationProject.BL.Dtos;
+using GraduationProject.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,13 @@ namespace GraduationProject.BL.Managers;
 
 public interface ICategoryManager
 {
-    IEnumerable<CategoryReadDto> GetAll();
+   Task<IEnumerable<CategoryReadDto>> GetAll();
 
-    CategoryReadDto? GetByName(string name);
+   Task< CategoryReadDto> GetByName(string name);
 
-    int Add(CategoryAddDto categoryAddDto);
+    Task <int> Add(CategoryAddDto categoryAddDto);
 
-    bool Delete(int id);
+   Task< bool> Delete(int id);
 
 
 }

@@ -9,15 +9,9 @@ namespace GraduationProject.BL.Managers;
 
 public interface IWishlistManager
 {
-    IEnumerable<GetWishListDto> GetAll(int userid);
+   Task<IEnumerable<GetWishListDto>> GetAll(int userid);
 
-    GetWishListDto? GetById(int userid, int placeid);
-
-    WishlistDetailsDto? detailsDto(int userid);
-
-    int Add(int userid, AddWishlistDto addWishlistDto);
-
-    bool Update(int userid, UpdateWishlistDto updateWishlistDto);
-    bool Delete(int userid);
+   Task<int> Add(int userid, AddWishlistDto addWishlistDto);
+   Task<bool>Delete(int userid);
 
 }
