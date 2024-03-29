@@ -27,20 +27,20 @@ public class UnitOfWork : IUnitOfWork
 
     public IBookingRepo Bookingrepo { get; }
 
-    public int SaveChanges()
-    {
-        return _context.SaveChanges();
-    }
+    //public int SaveChanges()
+    //{
+    //    return _context.SaveChanges();
+    //}
 
     public Task<int> SaveChangesAsync()
     {
         return _context.SaveChangesAsync();
     }
 
-    public Task SaveChangesAsync()
-    {
-       return _context.SaveChangesAsync();
-    }
+    //public Task SaveChangesAsync()
+    //{
+    //   return _context.SaveChangesAsync();
+    //}
 
 
     //ICategoryRepo IUnitOfWork.categoryRepo => throw new NotImplementedException();

@@ -16,8 +16,8 @@ public interface IUnitOfWork
 
     public IBookingRepo Bookingrepo { get; }
     
-    public int SaveChanges ();
-    public Task SaveChangesAsync();
+    //public int SaveChanges ();
+    //public Task SaveChangesAsync();
 
     public IWishlistRepo Wishlistrepo { get;}
 

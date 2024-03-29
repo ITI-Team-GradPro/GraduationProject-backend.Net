@@ -22,7 +22,7 @@ namespace GraduationProject.API.Controllers.Category_Controller
         {
             if (!ModelState.IsValid)
                 return BadRequest();
-            var NewCategory = _categoryManager.Add(category);
+            var NewCategory = await _categoryManager.Add(category);
             return Ok(NewCategory);
                   
         }
@@ -30,7 +30,7 @@ namespace GraduationProject.API.Controllers.Category_Controller
         [HttpGet]
         public async Task <ActionResult<List<CategoryReadDto>>> GetAll()
         {
-            var categories = _categoryManager.GetAll().ToList();
+            var categories = await _categoryManager.GetAll()/*.ToList()*/;
             return Ok(categories);
         }
 
@@ -48,7 +48,7 @@ namespace GraduationProject.API.Controllers.Category_Controller
         [HttpGet("{name}")]
         public async Task<ActionResult<CategoryReadDto>> GetByName(string name)
         {
-            CategoryReadDto? category = _categoryManager.GetByName(name);
+            CategoryReadDto? category = await _categoryManager.GetByName(name);
             if (category is null)
             {
                 return NotFound();
@@ -59,7 +59,7 @@ namespace GraduationProject.API.Controllers.Category_Controller
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var IsFound = _categoryManager.Delete(id);
+            var IsFound = await _categoryManager.Delete(id);
             if (!IsFound)
             {
                 return NotFound();
