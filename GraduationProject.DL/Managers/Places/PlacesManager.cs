@@ -151,5 +151,10 @@ namespace GraduationProject.BL.Managers.Places
             return searchPlacesDto;
 
         }
+
+        public IQueryable<CategoryPlacesDto> GetCategoryPlaces()
+        {
+            
+        }
     }
 }

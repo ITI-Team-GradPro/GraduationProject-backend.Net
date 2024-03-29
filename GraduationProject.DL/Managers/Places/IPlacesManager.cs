@@ -20,5 +20,5 @@ public interface IPlacesManager
     IQueryable<FilterSearchPlaceDto> FilterPlaces();
     IQueryable<FilterSearchPlaceDto> SearchPlaces();
 
-
+    IQueryable<CategoryPlacesDto> GetCategoryPlaces();
 }

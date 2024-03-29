@@ -53,6 +53,13 @@ public class PlacesRepo : IPlacesRepo
         return places;
     }
 
+    public IQueryable<Place> GetPlacesInCategory()
+    {
+        var places = _context.Places.AsQueryable();
+        return places;
+    }
+
+
     //public IQueryable<Place> MapPlaces()
     //{
     //    return _context.Places;

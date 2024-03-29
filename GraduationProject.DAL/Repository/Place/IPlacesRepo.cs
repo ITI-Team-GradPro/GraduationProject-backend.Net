@@ -16,7 +16,7 @@ public interface IPlacesRepo
     int SaveChanges();
     IQueryable<Place> FilterPlaces();
     IQueryable<Place> SearchPlaces();
-
+    IQueryable<Place> GetPlacesInCategory();
 
 
 
