@@ -33,14 +33,14 @@ namespace GraduationProject.API.Controllers.Place_Controller
         [HttpGet]
         public async Task<ActionResult<List<GetPlacesDtos>>> GetAll()
         {
-            var allPlaces = _placesManager.GetAll().ToList();
+            var allPlaces =await _placesManager.GetAll();
             return Ok(allPlaces);
         }
 
         [HttpGet("{id:int}")]
         public async Task<ActionResult<GetPlacesDtos>> GetById(int id)
         {
-            GetPlacesDtos? PlacesById = _placesManager.GetById(id);
+            GetPlacesDtos? PlacesById =await _placesManager.GetById(id);
             if(PlacesById == null)
             {
                 return NotFound();
@@ -54,7 +54,7 @@ namespace GraduationProject.API.Controllers.Place_Controller
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var isFound = _placesManager.Delete(id);
+            var isFound =await _placesManager.Delete(id);
             if (!isFound) return NotFound();
             return Ok("Place Remove Sucsses");
 

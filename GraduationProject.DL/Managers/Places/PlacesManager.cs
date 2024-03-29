@@ -43,7 +43,7 @@ namespace GraduationProject.BL.Managers.Places
             _Cloudinary = new Cloudinary(acc);
         }
 
-        public int Add(AddPlaceDto addPlaceDto)
+        public async Task< int> Add(AddPlaceDto addPlaceDto)
         {
 
             Place placedb = new Place()
@@ -58,7 +58,7 @@ namespace GraduationProject.BL.Managers.Places
 
             };
 
-            _UnitOfWork.Placesrepo.Add(placedb);
+           await _UnitOfWork.Placesrepo.AddAsync(placedb);
             _UnitOfWork.SaveChanges();
             return (placedb.PlaceId);
         }
@@ -87,10 +87,10 @@ namespace GraduationProject.BL.Managers.Places
         }
 
 
-        public bool Delete(int id)
+        public async Task< bool> Delete(int id)
         {
 
-            Place? placedb = _UnitOfWork.Placesrepo.GetById(id);
+            Place? placedb =await _UnitOfWork.Placesrepo.GetById(id);
             if (placedb == null)
             {
                 return false;
@@ -98,7 +98,7 @@ namespace GraduationProject.BL.Managers.Places
             try
             {
 
-                _UnitOfWork.Placesrepo.Delete(placedb);
+              await  _UnitOfWork.Placesrepo.Delete(placedb);
                 _UnitOfWork.SaveChanges();
                 return true;
 
@@ -110,9 +110,9 @@ namespace GraduationProject.BL.Managers.Places
         }
 
 
-        public IEnumerable<GetPlacesDtos> GetAll()
+        public async Task< IEnumerable<GetPlacesDtos>> GetAll()
         {
-            IEnumerable<Place> placesdb = _UnitOfWork.Placesrepo.GetAll();
+            IEnumerable<Place> placesdb = await _UnitOfWork.Placesrepo.GetAll();
             var placedto = placesdb.Select(x => new GetPlacesDtos
             {
                 Name = x.Name,
@@ -126,9 +126,9 @@ namespace GraduationProject.BL.Managers.Places
             return placedto;
         }
 
-        public GetPlacesDtos GetById(int id)
+        public async Task< GetPlacesDtos> GetById(int id)
         {
-            Place? placesdb = _UnitOfWork.Placesrepo.GetById(id);
+            Place? placesdb =await _UnitOfWork.Placesrepo.GetById(id);
             if (placesdb == null)
             {
                 return null;
@@ -147,9 +147,9 @@ namespace GraduationProject.BL.Managers.Places
         }
 
     //Update Place Only
-       public  bool Update(UpdatePlaceDto updatePlaceDto)
+       public async Task< bool> Update(UpdatePlaceDto updatePlaceDto)
         {
-            Place? place = _UnitOfWork.Placesrepo.GetById(updatePlaceDto.PlaceId);
+            Place? place =await _UnitOfWork.Placesrepo.GetById(updatePlaceDto.PlaceId);
 
             if (place == null) return false;
           
@@ -160,7 +160,7 @@ namespace GraduationProject.BL.Managers.Places
             place.PeopleCapacity = updatePlaceDto.PeopleCapacity;
 
 
-            _UnitOfWork.Placesrepo.Update(place);
+          await  _UnitOfWork.Placesrepo.Update(place);
             _UnitOfWork.SaveChanges();
 
             return true;

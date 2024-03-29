@@ -20,7 +20,13 @@ namespace GraduationProject.Data.Context
         {
         }
 
-
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer("Data Source= ICARUSLAPTOP\\SQLEXPRESS; Initial Catalog= API_Project; Integrated Security= true; Encrypt= false");
+            }
+        }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

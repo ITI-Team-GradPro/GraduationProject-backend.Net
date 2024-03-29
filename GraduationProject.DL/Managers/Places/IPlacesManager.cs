@@ -16,17 +16,17 @@ namespace GraduationProject.BL;
 
 public interface IPlacesManager
 {
-    IEnumerable<GetPlacesDtos> GetAll();
+   Task< IEnumerable<GetPlacesDtos>> GetAll();
 
-    GetPlacesDtos? GetById(int id);
+   Task< GetPlacesDtos?> GetById(int id);
 
-    int Add(AddPlaceDto addPlaceDto);
+    Task<int> Add(AddPlaceDto addPlaceDto);
 
-    bool Delete(int id);
+    Task< bool> Delete(int id);
 
     public  Task<ImageUploadResult> UpdateImageAsync(IFormFile file);
 
-     public bool Update(UpdatePlaceDto updatePlaceDto);
+     public Task <bool> Update(UpdatePlaceDto updatePlaceDto);
 
     Task<ImageUploadResult>AddPhotoAsync(AddPlaceDto addPlaceDto, IFormFile file);
   
