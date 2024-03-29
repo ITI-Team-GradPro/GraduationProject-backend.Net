@@ -8,6 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+
 
 namespace GraduationProject.BL;
 
@@ -21,14 +24,10 @@ public interface IPlacesManager
 
     bool Delete(int id);
 
-    Task<ImageUploadResult> AddPhotoAsync(AddPlaceDto addPlaceDto,IFormFile file);
-    Task<DeletionResult> DeletePhotoAsync(string ImgsPlaceId);
+    public  Task<ImageUploadResult> UpdateImageAsync(IFormFile file);
 
-    //IEnumerable<GetPlacesDtos> GetAll();
-    //GetPlacesDtos? GetPlacesById(int id);
+     public bool Update(UpdatePlaceDto updatePlaceDto);
 
-    //int Add(AddPlaceDto place);
-
-    //bool Delete(int id);
-
+    Task<ImageUploadResult>AddPhotoAsync(AddPlaceDto addPlaceDto, IFormFile file);
+  
 }

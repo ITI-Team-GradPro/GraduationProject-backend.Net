@@ -14,6 +14,6 @@ namespace GraduationProject.DAL.Repository.Generics
         void Add(TEntity entity);
         void Update(TEntity entity);
         void Delete(TEntity entity);
-        void SaveChanges();
+      
     }
 }

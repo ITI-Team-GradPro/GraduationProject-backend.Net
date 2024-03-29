@@ -20,34 +20,5 @@ public class PlacesRepo : GenericRepo<Place>, IPlacesRepo
     }
     
 
-    //private readonly ApplicationDbContext _context;
-    //public PlacesRepo(ApplicationDbContext context)
-    //{
-    //    _context = context;
-    //}
-    //public void Add(Place place)
-    //{
-    //   _context.Places.Add(place);
-    //}
-
-    //public void Delete(Place place)
-    //{
-    //    _context.Places.Remove(place);
-    //}
-
-    //public Place GetPlaceById(int id)
-    //{
-    //    return _context.Places.Find(id);
-    //}
-
-    //public IEnumerable<Place> GetAllPlaces()
-    //{
-    //    return _context.Places;
-    //}
-
-    //public int SaveChanges()
-    //{
-    //   return _context.SaveChanges();
-    //}
 
 }

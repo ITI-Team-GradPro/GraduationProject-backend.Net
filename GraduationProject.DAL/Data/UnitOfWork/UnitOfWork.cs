@@ -22,11 +22,12 @@ public class UnitOfWork : IUnitOfWork
 
     public IPlacesRepo Placesrepo {  get; }
 
-    public int SaveChanges()
+    
+
+    public void SaveChanges()
     {
-        return _context.SaveChanges();
+        _context.SaveChanges();
+
     }
-
-
     //ICategoryRepo IUnitOfWork.categoryRepo => throw new NotImplementedException();
 }

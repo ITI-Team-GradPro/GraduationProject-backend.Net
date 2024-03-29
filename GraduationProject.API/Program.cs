@@ -24,6 +24,9 @@ using GraduationProject.DAL.Repository.Generics;
 using GraduationProject.DAL.Data;
 using GraduationProject.DAL.Repository;
 using GraduationProject.BL.Managers;
+using GraduationProject.BL.Managers;
+using GraduationProject.DAL.Data;
+using GraduationProject.DAL.Repository;
 
 namespace GraduationProject.API
 {
