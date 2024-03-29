@@ -154,7 +154,19 @@ namespace GraduationProject.BL.Managers.Places
 
         public IQueryable<CategoryPlacesDto> GetCategoryPlaces()
         {
-            
+            IQueryable<Place> places = _placesRepo.GetPlacesInCategory();
+            var searchPlacesDto = places.Select(x => new CategoryPlacesDto
+            {
+                Id = x.PlaceId,
+                Rating = x.OverAllRating,
+                Price = x.Price,
+                Location = x.Location,
+                Name = x.Name,
+                Description = x.Description,
+                Images = x.Images.ToList(),
+                CategoryName = x.Category.CategoryName
+            });
+            return searchPlacesDto;
         }
     }
 }

@@ -9,6 +9,8 @@ using GraduationProject.BL;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.OData;
+using Microsoft.Extensions.Options;
+using Microsoft.OData.UriParser;
 namespace GraduationProject.API.Controllers.Place_Controller
 {
     [Route("api/[controller]")]
@@ -100,6 +102,17 @@ namespace GraduationProject.API.Controllers.Place_Controller
         {
             var places = _placesManager.SearchPlaces().AsQueryable();
             return Ok(places);
+        }
+        [HttpGet("category/{categoryName : string}")]
+        [EnableQuery(PageSize = 20)]
+        public ActionResult<IQueryable<CategoryPlacesDto>> GetCategoryPlaces(string categoryName, bool order, string orderby )
+        {
+
+            var places = _placesManager.GetCategoryPlaces().AsQueryable();
+            if (orderby is null) 
+            {
+
+            }
         }
 
 
