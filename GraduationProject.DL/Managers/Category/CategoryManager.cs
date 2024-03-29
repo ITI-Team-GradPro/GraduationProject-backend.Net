@@ -17,9 +17,9 @@ public class CategoryManager : ICategoryManager
     {
         _UnitOfWork = unitOfWork;
     }
-    IEnumerable<CategoryReadDto>ICategoryManager.GetAll()
+    IEnumerable<CategoryReadDto> ICategoryManager.GetAll()
     {
-        IEnumerable<Category> CategoryData =  _UnitOfWork.Categoryrepo.GetAll();
+        IEnumerable<Category> CategoryData = (IEnumerable<Category>)_UnitOfWork.Categoryrepo.GetAll();
 
         var categorydt = CategoryData.Select(x => new CategoryReadDto
         {
@@ -37,7 +37,7 @@ public class CategoryManager : ICategoryManager
     CategoryReadDto ICategoryManager.GetByName(string name)
     {
         string? categorybyname = _UnitOfWork.Categoryrepo.GetByName(name);
-        if(categorybyname is null)
+        if (categorybyname is null)
         {
             return null;
         }
@@ -52,24 +52,29 @@ public class CategoryManager : ICategoryManager
         {
             CategoryName = categoryAddDto.Name
         };
-        _UnitOfWork.Categoryrepo.Add(categoryadded);
+        _UnitOfWork.Categoryrepo.AddAsync(categoryadded);
         _UnitOfWork.SaveChanges();
         return categoryadded.CategoryId;
     }
 
-    bool ICategoryManager.Delete(int id)
+    public bool Delete(int id)
     {
-        Category categorydeleted = _UnitOfWork.Categoryrepo.GetById(id);
-        if(categorydeleted is null)
-        {
-            return false;
-        }
-        _UnitOfWork.Categoryrepo.Delete(categorydeleted);
-        _UnitOfWork.SaveChanges();
-        return true;
+        throw new NotImplementedException();
     }
 
-    
+    //bool ICategoryManager.Delete(int id)
+    //{
+    //    var categorydeleted = _UnitOfWork.Categoryrepo.GetById(id);
+    //    if (categorydeleted is null)
+    //    {
+    //        return false;
+    //    }
+    //    _UnitOfWork.Categoryrepo.Delete(categorydeleted);
+    //    _UnitOfWork.SaveChanges();
+    //    return true;
+    //}
 
-   
+
+
+
 }

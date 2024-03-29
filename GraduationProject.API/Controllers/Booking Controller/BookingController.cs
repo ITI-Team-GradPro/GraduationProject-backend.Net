@@ -1,4 +1,5 @@
-﻿using GraduationProject.BL.Dtos.BookingDTOs;
+﻿using AutoMapper;
+using GraduationProject.BL.Dtos.BookingDTOs;
 using GraduationProject.BL.Managers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,34 +12,46 @@ namespace GraduationProject.API.Controllers.Booking_Controller
     public class BookingController : ControllerBase
     {
         private readonly IBookingService _bookingService;
+        private readonly IMapper _mapper;
 
-        public BookingController(IBookingService bookingService)
+        public BookingController(IBookingService bookingService, IMapper Mapper)
         {
             _bookingService = bookingService;
+            _mapper = Mapper;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllBookings()
         {
-        
+            try
+            {
                 var allBookingsDTO = await _bookingService.GetAllBookings();
-                return Ok(allBookingsDTO); // Return DTOs on success
-            
-           
+                return Ok(allBookingsDTO);
+            }
+            catch (Exception ex)
+            {
+                // Implement more specific exception handling (e.g., database errors)
+                return StatusCode(500, "An error occurred while retrieving bookings.");
+            }
         }
 
-        [HttpGet]
+        [HttpGet("user/{userId}")]
         public async Task<IActionResult> GetUserBookings(string userId)
         {
-           
+            try
+            {
                 var userBookingsDTO = await _bookingService.GetBookingsByUser(userId);
-                if (userBookingsDTO == null || !userBookingsDTO.Any())
+                if (userBookingsDTO == null)
                 {
-                    return NotFound(); // User not found
+                    return NotFound("No bookings found for this user.");
                 }
-                return Ok(userBookingsDTO); // Return DTOs on success
-            
-           
+                return Ok(userBookingsDTO);
+            }
+            catch (Exception ex)
+            {
+                // Implement more specific exception handling (e.g., database errors)
+                return StatusCode(500, "An error occurred while retrieving user bookings.");
+            }
         }
 
         [HttpPost]
@@ -49,26 +62,38 @@ namespace GraduationProject.API.Controllers.Booking_Controller
                 return BadRequest(ModelState); // Return validation errors
             }
 
+            try
+            {
                 await _bookingService.AddNewBooking(newBooking);
-                return Ok(); // Success
-         
+                return Ok("booking added successfully");
+            }
+            catch (Exception ex)
+            {
+                // Implement more specific exception handling (e.g., validation errors)
+                return StatusCode(500, "An error occurred while creating the booking.");
+            }
         }
 
-        [HttpDelete]
+        [HttpDelete("booking/{bookingId}")]
         public async Task<IActionResult> DeleteBooking(int bookingId)
         {
             try
             {
+                var allBookings = await _bookingService.GetAllBookings();
+                var targetBooking = allBookings.Where(t=> t.BookingId == bookingId);
+
+                if (targetBooking == null)
+                {
+                    throw new KeyNotFoundException("Booking not found"); // Throw specific exception for better handling
+                }
+
                 await _bookingService.DeleteBooking(bookingId);
-                return Ok(); // Success
+                return Ok("Booking deleted successfully."); // Informative message on success
             }
             catch (Exception ex)
             {
-                if (ex is KeyNotFoundException) // Handle specific exception (booking not found)
-                {
-                    return NotFound();
-                }
-                else return BadRequest(ex);
+                // Implement more specific exception handling (e.g., database errors)
+                return StatusCode(500, "An error occurred while deleting the booking.");
             }
         }
     }

@@ -24,7 +24,7 @@ namespace GraduationProject.BL.Managers.Places
         private readonly IUnitOfWork _UnitOfWork;
         private readonly Cloudinary _Cloudinary;
 
-      
+
         public PlacesManager(IUnitOfWork unitOfWork, IOptions<CloudinarySettings> config)
         {
             _UnitOfWork = unitOfWork;
@@ -54,12 +54,12 @@ namespace GraduationProject.BL.Managers.Places
 
             };
 
-            _UnitOfWork.Placesrepo.Add(placedb);
-            _UnitOfWork.Placesrepo.SaveChanges();
+            _UnitOfWork.Placesrepo.AddAsync(placedb);
+            //_UnitOfWork.Placesrepo.SaveChanges();
             return (placedb.PlaceId);
         }
 
-        public async Task<ImageUploadResult> AddPhotoAsync(AddPlaceDto addPlaceDto,IFormFile file)
+        public async Task<ImageUploadResult> AddPhotoAsync(AddPlaceDto addPlaceDto, IFormFile file)
         {
             var uploadResult = new ImageUploadResult();
             if (file.Length > 0)
@@ -73,9 +73,9 @@ namespace GraduationProject.BL.Managers.Places
                 };
 
                 uploadResult = await _Cloudinary.UploadAsync(uploadParams);
-                _UnitOfWork.Placesrepo.SaveChanges();
+                //_UnitOfWork.Placesrepo.SaveChanges();
 
-               
+
             }
             return uploadResult;
 
@@ -83,25 +83,30 @@ namespace GraduationProject.BL.Managers.Places
 
         public bool Delete(int id)
         {
-
-            Place? placedb = _UnitOfWork.Placesrepo.GetById(id);
-            if (placedb == null)
-            {
-                return false;
-            }
-            try
-            {
-
-                _UnitOfWork.Placesrepo.Delete(placedb);
-                _UnitOfWork.Placesrepo.SaveChanges();
-                return true;
-
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
+            throw new NotImplementedException();
         }
+
+        //public bool Delete(int id)
+        //{
+
+        //    Place? placedb = _UnitOfWork.Placesrepo.GetById(id);
+        //    if (placedb == null)
+        //    {
+        //        return false;
+        //    }
+        //    try
+        //    {
+
+        //        _UnitOfWork.Placesrepo.Delete(placedb);
+        //        //_UnitOfWork.Placesrepo.SaveChanges();
+        //        return true;
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return false;
+        //    }
+        //}
 
         public async Task<DeletionResult> DeletePhotoAsync(string ImgsPlaceId)
         {
@@ -114,7 +119,7 @@ namespace GraduationProject.BL.Managers.Places
 
         public IEnumerable<GetPlacesDtos> GetAll()
         {
-            IEnumerable<Place> placesdb = _UnitOfWork.Placesrepo.GetAll();
+            IEnumerable<Place> placesdb = (IEnumerable<Place>)_UnitOfWork.Placesrepo.GetAll();
             var placedto = placesdb.Select(x => new GetPlacesDtos
             {
                 Name = x.Name,
@@ -130,23 +135,28 @@ namespace GraduationProject.BL.Managers.Places
 
         public GetPlacesDtos GetById(int id)
         {
-            Place? placesdb = _UnitOfWork.Placesrepo.GetById(id);
-            if (placesdb == null)
-            {
-                return null;
-            }
-            var placedto = new GetPlacesDtos
-            {
-                Name = placesdb.Name,
-                Description = placesdb.Description,
-                PlaceId = placesdb.PlaceId,
-                Price = placesdb.Price,
-                Location = placesdb.Location,
-                OverAllRating = placesdb.OverAllRating,
-                PeopleCapacity = placesdb.PeopleCapacity
-            };
-            return placedto;
+            throw new NotImplementedException();
         }
+
+        //public GetPlacesDtos GetById(int id)
+        //{
+        //    Place? placesdb = _UnitOfWork.Placesrepo.GetById(id);
+        //    if (placesdb == null)
+        //    {
+        //        return null;
+        //    }
+        //    var placedto = new GetPlacesDtos
+        //    {
+        //        Name = placesdb.Name,
+        //        Description = placesdb.Description,
+        //        PlaceId = placesdb.PlaceId,
+        //        Price = placesdb.Price,
+        //        Location = placesdb.Location,
+        //        OverAllRating = placesdb.OverAllRating,
+        //        PeopleCapacity = placesdb.PeopleCapacity
+        //    };
+        //    return placedto;
+        //}
 
 
 

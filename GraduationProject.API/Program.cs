@@ -68,15 +68,13 @@ namespace GraduationProject.API
             services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
             services.AddScoped<IPlacesRepo, PlacesRepo>();
             services.AddScoped<IPlacesManager, PlacesManager>();
-            services.AddScoped<IUnitOfWork,UnitOfWork>();
-            services.AddScoped<ICategoryRepo,CategoryRepo>();
-            services.AddScoped<ICategoryManager,CategoryManager>();
-
-
+            services.AddScoped<IBookingRepo, BookingRepo>();
+            services.AddScoped<IBookingService, BookingService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddScoped<ICategoryRepo, CategoryRepo>();
+            services.AddScoped<ICategoryRepo,CategoryRepo>();
             services.AddScoped<ICategoryManager, CategoryManager>();
 
+            services.AddAutoMapper(typeof(Program).Assembly);
 
             // Add Identity
             services.AddIdentity<User, IdentityRole>(options =>

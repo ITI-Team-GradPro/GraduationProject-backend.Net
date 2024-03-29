@@ -7,6 +7,8 @@ using GraduationProject.DAL.Repository.Generics;
 using GraduationProject.Data.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace GraduationProject.BL.Managers;
 public class BookingService : IBookingService
@@ -30,8 +32,14 @@ public class BookingService : IBookingService
 
     public async Task<IEnumerable<GetBookingsByUserDTO>> GetBookingsByUser(string UserId)
     {
-        var AllBookings = await _unitOfWork.Bookingrepo.GetAllById(UserId, b => b.UserId == UserId);
-        var UserBookingsDTO = _mapper.Map<IEnumerable<Booking>, IEnumerable<GetBookingsByUserDTO>>(AllBookings);
+        var userBookings = await _unitOfWork.Bookingrepo.GetAllById(UserId, b => b.UserId == UserId);
+
+        if (!userBookings.Any()) // Early return if no bookings found
+        {
+            return null;
+        }
+
+        var UserBookingsDTO = _mapper.Map<IEnumerable<Booking>, IEnumerable<GetBookingsByUserDTO>>(userBookings);
         return UserBookingsDTO;
     }
 
@@ -43,7 +51,13 @@ public class BookingService : IBookingService
 
     public async Task DeleteBooking(int bookingId)
     {
-        var targetBooking = await _unitOfWork.Bookingrepo.GetById(bookingId); // Await to get the Booking entity
+        var targetBooking = await _unitOfWork.Bookingrepo.GetById(bookingId);
+
+        if (targetBooking == null)
+        {
+            throw new KeyNotFoundException("Booking not found"); // Throw specific exception for better handling
+        }
+
         await _unitOfWork.Bookingrepo.Delete(targetBooking);
     }
 
