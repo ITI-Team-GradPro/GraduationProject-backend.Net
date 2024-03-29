@@ -60,7 +60,7 @@ namespace GraduationProject.API.Controllers.Category_Controller
         //[HttpDelete("{id:int}")]
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteByName(int id)
+        public async Task<ActionResult> Delete(int id)
         {
             var IsFound = await _categoryManager.Delete(id);
             if (!IsFound)
