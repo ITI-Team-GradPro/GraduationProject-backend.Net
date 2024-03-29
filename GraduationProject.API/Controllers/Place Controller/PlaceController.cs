@@ -106,7 +106,7 @@ namespace GraduationProject.API.Controllers.Place_Controller
         public async Task<IActionResult> Update([FromForm] UpdatePlaceDto NewPLace)
         {
            
-            _placesManager.Update(NewPLace);
+           await _placesManager.Update(NewPLace);
 
             return Ok("Place Updated ");
 

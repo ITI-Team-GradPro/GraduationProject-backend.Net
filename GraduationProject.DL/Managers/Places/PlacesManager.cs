@@ -59,7 +59,7 @@ namespace GraduationProject.BL.Managers.Places
             };
 
            await _UnitOfWork.Placesrepo.AddAsync(placedb);
-            _UnitOfWork.SaveChanges();
+          await  _UnitOfWork.SaveChangesAsync();
             return (placedb.PlaceId);
         }
 
@@ -78,7 +78,7 @@ namespace GraduationProject.BL.Managers.Places
                 };
 
                 uploadResult = await _Cloudinary.UploadAsync(uploadParams);
-                _UnitOfWork.SaveChanges();
+                await _UnitOfWork.SaveChangesAsync();
 
 
             }
@@ -99,7 +99,7 @@ namespace GraduationProject.BL.Managers.Places
             {
 
               await  _UnitOfWork.Placesrepo.Delete(placedb);
-                _UnitOfWork.SaveChanges();
+                await _UnitOfWork.SaveChangesAsync();
                 return true;
 
             }
@@ -161,7 +161,7 @@ namespace GraduationProject.BL.Managers.Places
 
 
           await  _UnitOfWork.Placesrepo.Update(place);
-            _UnitOfWork.SaveChanges();
+            await _UnitOfWork.SaveChangesAsync();
 
             return true;
         }

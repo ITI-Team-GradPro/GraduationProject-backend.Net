@@ -74,6 +74,8 @@ namespace GraduationProject.API
             services.AddScoped<IUnitOfWork,UnitOfWork>();
             services.AddScoped<ICategoryRepo,CategoryRepo>();
             services.AddScoped<ICategoryManager,CategoryManager>();
+            services.AddScoped<IWishlistRepo, WishlistRepo>();
+
 
 
             // Add Identity

@@ -98,7 +98,7 @@ public class CategoryManager : ICategoryManager
     //}
 
 
-   async  Task<int> ICategoryManager.AddAsync(CategoryAddDto categoryAddDto)
+   async  Task<int> ICategoryManager.Add(CategoryAddDto categoryAddDto)
     {
         Category categoryadded = new Category
         {
