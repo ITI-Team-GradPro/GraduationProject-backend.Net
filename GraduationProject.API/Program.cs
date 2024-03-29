@@ -24,6 +24,9 @@ using GraduationProject.DAL.Repository.Generics;
 using GraduationProject.DAL.Data;
 using GraduationProject.DAL.Repository;
 using GraduationProject.BL.Managers;
+using GraduationProject.BL.Managers;
+using GraduationProject.DAL.Data;
+using GraduationProject.DAL.Repository;
 
 namespace GraduationProject.API
 {
@@ -75,6 +78,10 @@ namespace GraduationProject.API
             services.AddScoped<ICategoryManager, CategoryManager>();
 
             services.AddAutoMapper(typeof(Program).Assembly);
+            services.AddScoped<ICategoryManager,CategoryManager>();
+            services.AddScoped<IWishlistRepo, WishlistRepo>();
+
+
 
             // Add Identity
             services.AddIdentity<User, IdentityRole>(options =>

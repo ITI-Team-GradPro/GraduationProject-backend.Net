@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 
 namespace GraduationProject.DAL.Repository;
 
-public interface ICategoryRepo : IGenericRepo<Category>
+public interface IWishlistRepo : IGenericRepo<WishList>
 {
-    Task<string>? GetByName(string name);
-
 }

@@ -17,16 +17,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace GraduationProject.BL.Managers.Places
 {
     public class PlacesManager : IPlacesManager
     {
         private readonly IUnitOfWork _UnitOfWork;
         private readonly Cloudinary _Cloudinary;
+        private readonly ApplicationDbContext _context;
 
 
-        public PlacesManager(IUnitOfWork unitOfWork, IOptions<CloudinarySettings> config)
+
+        public PlacesManager(IUnitOfWork unitOfWork, IOptions<CloudinarySettings> config, ApplicationDbContext context)
         {
+            _context = context;
             _UnitOfWork = unitOfWork;
             var acc = new Account
            (
@@ -39,7 +43,7 @@ namespace GraduationProject.BL.Managers.Places
             _Cloudinary = new Cloudinary(acc);
         }
 
-        public int Add(AddPlaceDto addPlaceDto)
+        public async Task< int> Add(AddPlaceDto addPlaceDto)
         {
 
             Place placedb = new Place()
@@ -50,15 +54,16 @@ namespace GraduationProject.BL.Managers.Places
                 Description = addPlaceDto.Description,
                 PeopleCapacity = addPlaceDto.PeopleCapacity,
                 OwnerId = addPlaceDto.OwnerId,
-                CategoryId = addPlaceDto.CategoryId
+                //CategoryId = addPlaceDto.CategoryId
 
             };
 
-            _UnitOfWork.Placesrepo.AddAsync(placedb);
-            //_UnitOfWork.Placesrepo.SaveChanges();
+           await _UnitOfWork.Placesrepo.AddAsync(placedb);
+          await  _UnitOfWork.SaveChangesAsync();
             return (placedb.PlaceId);
         }
 
+        //Adding place with photo
         public async Task<ImageUploadResult> AddPhotoAsync(AddPlaceDto addPlaceDto, IFormFile file)
         {
             var uploadResult = new ImageUploadResult();
@@ -73,7 +78,7 @@ namespace GraduationProject.BL.Managers.Places
                 };
 
                 uploadResult = await _Cloudinary.UploadAsync(uploadParams);
-                //_UnitOfWork.Placesrepo.SaveChanges();
+                await _UnitOfWork.SaveChangesAsync();
 
 
             }
@@ -81,13 +86,21 @@ namespace GraduationProject.BL.Managers.Places
 
         }
 
-        public bool Delete(int id)
-        {
-            throw new NotImplementedException();
-        }
 
-        //public bool Delete(int id)
-        //{
+        public async Task< bool> Delete(int id)
+        {
+
+            Place? placedb =await _UnitOfWork.Placesrepo.GetById(id);
+            if (placedb == null)
+            {
+                return false;
+            }
+            try
+            {
+
+              await  _UnitOfWork.Placesrepo.Delete(placedb);
+                await _UnitOfWork.SaveChangesAsync();
+                return true;
 
         //    Place? placedb = _UnitOfWork.Placesrepo.GetById(id);
         //    if (placedb == null)
@@ -108,18 +121,10 @@ namespace GraduationProject.BL.Managers.Places
         //    }
         //}
 
-        public async Task<DeletionResult> DeletePhotoAsync(string ImgsPlaceId)
+
+        public async Task< IEnumerable<GetPlacesDtos>> GetAll()
         {
-            var deleteParams = new DeletionParams(ImgsPlaceId);
-
-            var result = await _Cloudinary.DestroyAsync(deleteParams);
-
-            return result;
-        }
-
-        public IEnumerable<GetPlacesDtos> GetAll()
-        {
-            IEnumerable<Place> placesdb = (IEnumerable<Place>)_UnitOfWork.Placesrepo.GetAll();
+            IEnumerable<Place> placesdb = await _UnitOfWork.Placesrepo.GetAll();
             var placedto = placesdb.Select(x => new GetPlacesDtos
             {
                 Name = x.Name,
@@ -133,118 +138,72 @@ namespace GraduationProject.BL.Managers.Places
             return placedto;
         }
 
-        public GetPlacesDtos GetById(int id)
+        public async Task< GetPlacesDtos> GetById(int id)
         {
-            throw new NotImplementedException();
+            Place? placesdb =await _UnitOfWork.Placesrepo.GetById(id);
+            if (placesdb == null)
+            {
+                return null;
+            }
+            var placedto = new GetPlacesDtos
+            {
+                Name = placesdb.Name,
+                Description = placesdb.Description,
+                PlaceId = placesdb.PlaceId,
+                Price = placesdb.Price,
+                Location = placesdb.Location,
+                OverAllRating = placesdb.OverAllRating,
+                PeopleCapacity = placesdb.PeopleCapacity
+            };
+            return placedto;
         }
 
-        //public GetPlacesDtos GetById(int id)
-        //{
-        //    Place? placesdb = _UnitOfWork.Placesrepo.GetById(id);
-        //    if (placesdb == null)
-        //    {
-        //        return null;
-        //    }
-        //    var placedto = new GetPlacesDtos
-        //    {
-        //        Name = placesdb.Name,
-        //        Description = placesdb.Description,
-        //        PlaceId = placesdb.PlaceId,
-        //        Price = placesdb.Price,
-        //        Location = placesdb.Location,
-        //        OverAllRating = placesdb.OverAllRating,
-        //        PeopleCapacity = placesdb.PeopleCapacity
-        //    };
-        //    return placedto;
-        //}
+    //Update Place Only
+       public async Task< bool> Update(UpdatePlaceDto updatePlaceDto)
+        {
+            Place? place =await _UnitOfWork.Placesrepo.GetById(updatePlaceDto.PlaceId);
+
+            if (place == null) return false;
+          
+            place.Name = updatePlaceDto.Name;
+            place.Description = updatePlaceDto.Description;
+            place.Location = updatePlaceDto.Location;
+            place.Price = updatePlaceDto.Price;
+            place.PeopleCapacity = updatePlaceDto.PeopleCapacity;
+
+
+          await  _UnitOfWork.Placesrepo.Update(place);
+            await _UnitOfWork.SaveChangesAsync();
+
+            return true;
+        }
 
 
 
 
+            //Update Image Only
+        public async Task<ImageUploadResult> UpdateImageAsync(IFormFile file)
+        {
+            var uploadResult = new ImageUploadResult();
 
+            if (file.Length > 0)
+            {
+                using var stream = file.OpenReadStream();
+                var uploadParams = new ImageUploadParams
+                {
+                    File = new FileDescription(file.Name, stream),
+                     // Set the public ID to update the existing image
+                };
 
-        //private readonly IPlacesRepo _placesRepo;
+                uploadResult = await _Cloudinary.UploadAsync(uploadParams);
+            }
 
-        //public PlacesManager(IPlacesRepo placesRepo)
-        //{
-        //    _placesRepo = placesRepo;
-        //}
-        //public int Add(AddPlaceDto place)
-        //{
+            return uploadResult;
+        }
 
-        //    Place placedb = new Place()
-        //    {
-        //        Name = place.Name,
-        //        Price = place.Price,
-        //        Location = place.Location,
-        //        Description = place.Description,
-        //        PeopleCapacity = place.PeopleCapacity,
-        //        OwnerId = place.OwnerId,
-        //        CategoryId = place.CategoryId
-
-        //    };
-        //    _placesRepo.Add(placedb);
-        //    _placesRepo.SaveChanges();
-
-        //    return (placedb.PlaceId);
-        //}
-
-        //public bool Delete(int id)
-        //{
-        //    Place? placedb=_placesRepo.GetPlaceById(id);
-        //    if(placedb == null)
-        //    {
-        //        return false;
-        //    }
-        //    try
-        //    {
-
-        //    _placesRepo.Delete(placedb);
-        //    _placesRepo.SaveChanges();
-        //    return true;
-
-        //    }catch (Exception ex)
-        //    {
-        //      return false;
-        //    }
-        //}
-
-        //public IEnumerable<GetPlacesDtos> GetAll()
-        //{
-        //    IEnumerable<Place> placesdb = _placesRepo.GetAllPlaces();
-        //    var placedto = placesdb.Select(x => new GetPlacesDtos
-        //    {
-        //        Name = x.Name,
-        //        Description = x.Description,
-        //        PlaceId = x.PlaceId,
-        //        Price = x.Price,
-        //        Location = x.Location,
-        //        OverAllRating = x.OverAllRating,
-        //        PeopleCapacity = x.PeopleCapacity
-        //    });
-        //    return placedto;
-
-        //}
-
-        //public GetPlacesDtos GetPlacesById(int id)
-        //{
-        //    Place? placesdb=_placesRepo.GetPlaceById(id);
-        //    if (placesdb == null)
-        //    {
-        //        return null;
-        //    }
-        //    var placedto =  new GetPlacesDtos
-        //    {
-        //        Name = placesdb.Name,
-        //        Description = placesdb.Description,
-        //        PlaceId = placesdb.PlaceId,
-        //        Price = placesdb.Price,
-        //        Location = placesdb.Location,
-        //        OverAllRating = placesdb.OverAllRating,
-        //        PeopleCapacity = placesdb.PeopleCapacity
-        //    };
-        //    return placedto;
-
-        //}
     }
+
+
+
 }
+

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace GraduationProject.DAL.Data;
 
@@ -16,4 +18,8 @@ public interface IUnitOfWork
     
     public int SaveChanges ();
     public Task SaveChangesAsync();
+
+    public IWishlistRepo Wishlistrepo { get;}
+
+    Task<int> SaveChangesAsync();
 }
