@@ -9,7 +9,7 @@ namespace GraduationProject.BL.Dtos;
 
 public class GetWishListDto
 {
-    public int UserId { get; set; }
+    public string UserId { get; set; }
 
     public ICollection<GetPlacesDtos> Places { get; set; } = new List<GetPlacesDtos>();
 }
