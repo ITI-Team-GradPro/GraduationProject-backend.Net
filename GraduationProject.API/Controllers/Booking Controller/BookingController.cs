@@ -30,6 +30,7 @@ namespace GraduationProject.API.Controllers.Booking_Controller
             }
             catch (Exception ex)
             {
+                // Implement more specific exception handling (e.g., database errors)
                 return StatusCode(500, "An error occurred while retrieving bookings.");
             }
         }
@@ -48,6 +49,7 @@ namespace GraduationProject.API.Controllers.Booking_Controller
             }
             catch (Exception ex)
             {
+                // Implement more specific exception handling (e.g., database errors)
                 return StatusCode(500, "An error occurred while retrieving user bookings.");
             }
         }
@@ -57,7 +59,7 @@ namespace GraduationProject.API.Controllers.Booking_Controller
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(ModelState); // Return validation errors
             }
 
             try
@@ -67,7 +69,7 @@ namespace GraduationProject.API.Controllers.Booking_Controller
             }
             catch (Exception ex)
             {
-                //Console.WriteLine(ex.ToString());
+                // Implement more specific exception handling (e.g., validation errors)
                 return StatusCode(500, "An error occurred while creating the booking.");
             }
         }
@@ -82,18 +84,15 @@ namespace GraduationProject.API.Controllers.Booking_Controller
 
                 if (targetBooking == null)
                 {
-                    throw new KeyNotFoundException("Booking not found");
+                    throw new KeyNotFoundException("Booking not found"); // Throw specific exception for better handling
                 }
 
                 await _bookingService.DeleteBooking(bookingId);
-                return Ok("Booking deleted successfully.");
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(ex.Message);
+                return Ok("Booking deleted successfully."); // Informative message on success
             }
             catch (Exception ex)
             {
+                // Implement more specific exception handling (e.g., database errors)
                 return StatusCode(500, "An error occurred while deleting the booking.");
             }
         }
