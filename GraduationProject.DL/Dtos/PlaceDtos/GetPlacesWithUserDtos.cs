@@ -5,11 +5,15 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static GraduationProject.Data.Models.User;
+using Microsoft.EntityFrameworkCore;
+using GraduationProject.Data.Models;
 
 namespace GraduationProject.BL.Dtos.PlaceDtos
 {
-    public class GetPlacesDtos
+    public class GetPlacesWithUserDtos
     {
+
         public int PlaceId { get; set; }
         public string Name { get; set; }
 
@@ -31,6 +35,8 @@ namespace GraduationProject.BL.Dtos.PlaceDtos
         [Required]
         public int PeopleCapacity { get; set; }
         public string ImageUrl { get; set; }
+
+        public GetUserDto UserDto { get; set; }
 
     }
 }

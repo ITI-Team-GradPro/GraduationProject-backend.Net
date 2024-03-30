@@ -18,7 +18,25 @@ public class PlacesRepo : GenericRepo<Place>, IPlacesRepo
     {
         _context = context;
     }
-    
+    public IQueryable<Place> FilterPlaces()
+    {
+        var places = _context.Places.AsQueryable();
+        return places;
+    }
+
+    public IQueryable<Place> SearchPlaces()
+    {
+        var places = _context.Places.AsQueryable();
+        return places;
+    }
+
+    public IQueryable<Place> GetPlacesInCategory()
+    {
+        var places = _context.Places.AsQueryable();
+        return places;
+    }
+
+
 
 
 }

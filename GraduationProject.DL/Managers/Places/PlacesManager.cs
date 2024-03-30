@@ -43,28 +43,112 @@ namespace GraduationProject.BL.Managers.Places
             _Cloudinary = new Cloudinary(acc);
         }
 
-        public async Task<int> Add(AddPlaceDto addPlaceDto)
+
+        // Get Place with Image By Id 
+        public async Task<GetPlacesDtos> GetById(int id)
         {
+            Place place = await _context.Places.FindAsync(id);
+           
+            ImgsPlace imgs = await _context.ImagesPlaces.FirstOrDefaultAsync(c => c.PlaceId == place.PlaceId);
 
-            Place placedb = new Place()
+
+            GetPlacesDtos getPlacesDtos = new GetPlacesDtos
             {
-                Name = addPlaceDto.Name,
-                Price = addPlaceDto.Price,
-                Location = addPlaceDto.Location,
-                Description = addPlaceDto.Description,
-                PeopleCapacity = addPlaceDto.PeopleCapacity,
-                OwnerId = addPlaceDto.OwnerId,
-                //CategoryId = addPlaceDto.CategoryId
-
+                PlaceId = place.PlaceId,
+                Name = place.Name,
+                Price = place.Price,
+                OverAllRating = place.OverAllRating,
+                Location = place.Location,
+                Description = place.Description,
+                PeopleCapacity = place.PeopleCapacity,
+                // Check if an image is associated with the place
+                ImageUrl = imgs.ImageUrl
             };
-
-            await _UnitOfWork.Placesrepo.AddAsync(placedb);
-            await _UnitOfWork.SaveChangesAsync();
-            return (placedb.PlaceId);
+            return getPlacesDtos;
         }
 
-        //Adding place with photo
-        public async Task<ImageUploadResult> AddPhotoAsync(AddPlaceDto addPlaceDto, IFormFile file)
+        // Get Place with Image and User By ID 
+
+        public async Task<GetPlacesWithUserDtos> GetByIdWithUser(int id)
+        {
+
+            var place = await _context.Places
+                .Include(p => p.Owner)
+                .FirstOrDefaultAsync(p => p.PlaceId == id);
+
+            ImgsPlace imgs = await _context.ImagesPlaces.FirstOrDefaultAsync(c => c.PlaceId == place.PlaceId);
+
+            var placeDto = new GetPlacesWithUserDtos
+            {
+                PlaceId = place.PlaceId,
+                Name = place.Name,
+                Price = place.Price,
+                OverAllRating = place.OverAllRating,
+                Location = place.Location,
+                Description = place.Description,
+                PeopleCapacity = place.PeopleCapacity,
+                ImageUrl = imgs.ImageUrl,
+                UserDto = new GetUserDto
+                {
+                    id = place.OwnerId,
+                    FirstName = place.Owner.FirstName,
+                    LastName = place.Owner.LastName,
+                    Gender = place.Owner.Gender,
+                    DateOfBirth = place.Owner.DateOfBirth,
+                    Phone = place.Owner.Phone,
+                    Bio = place.Owner.Bio,
+                    Address = place.Owner.Address,
+                    ImageUrl = place.Owner.ImageUrl
+                }
+            };
+
+            return placeDto;
+        }
+
+
+        //  Update Place Only
+        public async Task<bool> Update(UpdatePlaceDto updatePlaceDto)
+        {
+            Place? place = await _UnitOfWork.Placesrepo.GetById(updatePlaceDto.PlaceId);
+
+            if (place == null) return false;
+
+            place.Name = updatePlaceDto.Name;
+            place.Description = updatePlaceDto.Description;
+            place.Location = updatePlaceDto.Location;
+            place.Price = updatePlaceDto.Price;
+            place.PeopleCapacity = updatePlaceDto.PeopleCapacity;
+
+
+            await _UnitOfWork.Placesrepo.Update(place);
+            await _UnitOfWork.SaveChangesAsync();
+
+            return true;
+        }
+
+
+        //Update Image Only
+        public async Task<ImageUploadResult> UpdateImageAsync(IFormFile file)
+        {
+            var uploadResult = new ImageUploadResult();
+
+            if (file.Length > 0)
+            {
+                using var stream = file.OpenReadStream();
+                var uploadParams = new ImageUploadParams
+                {
+                    File = new FileDescription(file.Name, stream),
+                    // Set the public ID to update the existing image
+                };
+
+                uploadResult = await _Cloudinary.UploadAsync(uploadParams);
+            }
+
+            return uploadResult;
+        }
+
+        // Add Place With Image
+        public async Task<ImageUploadResult> AddPlaceAsync(AddPlaceDto addPlaceDto, IFormFile file)
         {
             var uploadResult = new ImageUploadResult();
             if (file.Length > 0)
@@ -86,7 +170,7 @@ namespace GraduationProject.BL.Managers.Places
 
         }
 
-
+        // Delete Place With Image
         public async Task<bool> Delete(int id)
         {
 
@@ -124,87 +208,70 @@ namespace GraduationProject.BL.Managers.Places
             catch (Exception ex) { return  false; }
 
             }
+        public IQueryable<FilterSearchPlaceDto> FilterPlaces()
+        {
+            IQueryable<Place> filterPlacesDB = _UnitOfWork.Placesrepo.FilterPlaces();
+            var filterPlacesDto = filterPlacesDB.Select(x => new FilterSearchPlaceDto
+            {
+                Id = x.PlaceId,
+                CategoryId = x.CategoryId,
+                Rating = x.OverAllRating,
+                Price = x.Price,
+                PeopleCapacity = x.PeopleCapacity,
+                Location = x.Location,
+                ImagesUrls = x.Images.Select(i => i.ImageUrl).ToArray(),
+                description = x.Description,
+                Name = x.Name
+            });
+            return filterPlacesDto;
+        }
 
-                public async Task<IEnumerable<GetPlacesDtos>> GetAll()
-                {
-                    IEnumerable<Place> placesdb = await _UnitOfWork.Placesrepo.GetAll();
-                    var placedto = placesdb.Select(x => new GetPlacesDtos
-                    {
-                        Name = x.Name,
-                        Description = x.Description,
-                        PlaceId = x.PlaceId,
-                        Price = x.Price,
-                        Location = x.Location,
-                        OverAllRating = x.OverAllRating,
-                        PeopleCapacity = x.PeopleCapacity
-                    });
-                    return placedto;
-                }
+        public IQueryable<FilterSearchPlaceDto> SearchPlaces()
+        {
+            IQueryable<Place> searchPlacesDB = _UnitOfWork.Placesrepo.SearchPlaces();
+            var searchPlacesDto = searchPlacesDB.Select(x => new FilterSearchPlaceDto
+            {
+                Id = x.PlaceId,
+                CategoryId = x.CategoryId,
+                Rating = x.OverAllRating,
+                Price = x.Price,
+                PeopleCapacity = x.PeopleCapacity,
+                Location = x.Location,
+                ImagesUrls = x.Images.Select(i => i.ImageUrl).ToArray(),
+                description = x.Description,
+                Name = x.Name
+            });
+            return searchPlacesDto;
 
-                public async Task<GetPlacesDtos> GetById(int id)
-                {
-                    Place? placesdb = await _UnitOfWork.Placesrepo.GetById(id);
-                    if (placesdb == null)
-                    {
-                        return null;
-                    }
-                    var placedto = new GetPlacesDtos
-                    {
-                        Name = placesdb.Name,
-                        Description = placesdb.Description,
-                        PlaceId = placesdb.PlaceId,
-                        Price = placesdb.Price,
-                        Location = placesdb.Location,
-                        OverAllRating = placesdb.OverAllRating,
-                        PeopleCapacity = placesdb.PeopleCapacity
-                    };
-                    return placedto;
-                }
+        }
 
-                //Update Place Only
-                public async Task<bool> Update(UpdatePlaceDto updatePlaceDto)
-                {
-                    Place? place = await _UnitOfWork.Placesrepo.GetById(updatePlaceDto.PlaceId);
-
-                    if (place == null) return false;
-
-                    place.Name = updatePlaceDto.Name;
-                    place.Description = updatePlaceDto.Description;
-                    place.Location = updatePlaceDto.Location;
-                    place.Price = updatePlaceDto.Price;
-                    place.PeopleCapacity = updatePlaceDto.PeopleCapacity;
-
-
-                    await _UnitOfWork.Placesrepo.Update(place);
-                    await _UnitOfWork.SaveChangesAsync();
-
-                    return true;
-                }
+        public IQueryable<CategoryPlacesDto> GetCategoryPlaces()
+        {
+            IQueryable<Place> places = _UnitOfWork.Placesrepo.GetPlacesInCategory();
+            var searchPlacesDto = places.Select(x => new CategoryPlacesDto
+            {
+                Id = x.PlaceId,
+                Rating = x.OverAllRating,
+                Price = x.Price,
+                Location = x.Location,
+                Name = x.Name,
+                Description = x.Description,
+                ImagesUrls = x.Images.Select(i => i.ImageUrl).ToArray(),
+                CategoryName = x.Category.CategoryName
+            });
+            return searchPlacesDto;
+        }
 
 
 
 
-                //Update Image Only
-                public async Task<ImageUploadResult> UpdateImageAsync(IFormFile file)
-                {
-                    var uploadResult = new ImageUploadResult();
 
-                    if (file.Length > 0)
-                    {
-                        using var stream = file.OpenReadStream();
-                        var uploadParams = new ImageUploadParams
-                        {
-                            File = new FileDescription(file.Name, stream),
-                            // Set the public ID to update the existing image
-                        };
 
-                        uploadResult = await _Cloudinary.UploadAsync(uploadParams);
-                    }
 
-                    return uploadResult;
-                }
 
-            }
+
+
+    }
 
 
 
