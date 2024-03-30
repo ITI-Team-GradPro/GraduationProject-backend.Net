@@ -293,6 +293,10 @@ namespace GraduationProject.API.Controllers.Place_Controller
         //    ODataRouteOptions options = new ODataRouteOptions();
         //    return Ok();
         //}
+
+        /*
+         Api/Place/category?$filter=categoryname eq '{categoryName}'&$orderby={order} {AscOrDesc}
+         */
         [HttpGet("category")]
         [EnableQuery(PageSize = 20)]
         public ActionResult<IQueryable<CategoryPlacesDto>> GetCategoryPlaces(string query)
