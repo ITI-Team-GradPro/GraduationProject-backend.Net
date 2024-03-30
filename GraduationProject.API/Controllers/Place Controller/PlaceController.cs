@@ -261,6 +261,11 @@ namespace GraduationProject.API.Controllers.Place_Controller
          api/Place/search?$filter=contains(location, 'airo')
          api/Place/search?$filter=contains(name, 'Luxury Villa')&top=3
          */
+
+        /*
+         Guide Static Url:
+            Api/Place/search?$filter=contains(location, '{query}') or contains(name, '{query}')&$orderby={order} {AscOrDesc}
+         */
         [HttpGet("search")]
         [EnableQuery(PageSize = 20)]
         public ActionResult<IQueryable<FilterSearchPlaceDto>> SearchPlaces(string query)
@@ -295,7 +300,8 @@ namespace GraduationProject.API.Controllers.Place_Controller
         //}
 
         /*
-         Api/Place/category?$filter=categoryname eq '{categoryName}'&$orderby={order} {AscOrDesc}
+         Guide Static Url:
+            Api/Place/category?$filter=categoryname eq '{categoryName}'&$orderby={order} {AscOrDesc}
          */
         [HttpGet("category")]
         [EnableQuery(PageSize = 20)]
