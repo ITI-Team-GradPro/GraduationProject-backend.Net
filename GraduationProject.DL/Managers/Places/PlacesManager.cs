@@ -208,6 +208,59 @@ namespace GraduationProject.BL.Managers.Places
             catch (Exception ex) { return  false; }
 
             }
+        public IQueryable<FilterSearchPlaceDto> FilterPlaces()
+        {
+            IQueryable<Place> filterPlacesDB = _UnitOfWork.Placesrepo.FilterPlaces();
+            var filterPlacesDto = filterPlacesDB.Select(x => new FilterSearchPlaceDto
+            {
+                Id = x.PlaceId,
+                CategoryId = x.CategoryId,
+                Rating = x.OverAllRating,
+                Price = x.Price,
+                PeopleCapacity = x.PeopleCapacity,
+                Location = x.Location,
+                ImgUrl = "",
+                description = x.Description,
+                Name = x.Name
+            });
+            return filterPlacesDto;
+        }
+
+        public IQueryable<FilterSearchPlaceDto> SearchPlaces()
+        {
+            IQueryable<Place> searchPlacesDB = _UnitOfWork.Placesrepo.SearchPlaces();
+            var searchPlacesDto = searchPlacesDB.Select(x => new FilterSearchPlaceDto
+            {
+                Id = x.PlaceId,
+                CategoryId = x.CategoryId,
+                Rating = x.OverAllRating,
+                Price = x.Price,
+                PeopleCapacity = x.PeopleCapacity,
+                Location = x.Location,
+                ImgUrl = "",
+                description = x.Description,
+                Name = x.Name
+            });
+            return searchPlacesDto;
+
+        }
+
+        public IQueryable<CategoryPlacesDto> GetCategoryPlaces()
+        {
+            IQueryable<Place> places = _UnitOfWork.Placesrepo.GetPlacesInCategory();
+            var searchPlacesDto = places.Select(x => new CategoryPlacesDto
+            {
+                Id = x.PlaceId,
+                Rating = x.OverAllRating,
+                Price = x.Price,
+                Location = x.Location,
+                Name = x.Name,
+                Description = x.Description,
+                Images = x.Images.ToList(),
+                CategoryName = x.Category.CategoryName
+            });
+            return searchPlacesDto;
+        }
 
 
 

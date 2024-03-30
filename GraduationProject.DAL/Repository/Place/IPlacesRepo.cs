@@ -12,4 +12,7 @@ namespace GraduationProject.DAL;
 
 public interface IPlacesRepo : IGenericRepo<Place>
 {
+    IQueryable<Place> FilterPlaces();
+    IQueryable<Place> SearchPlaces();
+    IQueryable<Place> GetPlacesInCategory();
 }

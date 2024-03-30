@@ -14,6 +14,7 @@ using Microsoft.Extensions.Options;
 using static System.Net.Mime.MediaTypeNames;
 using System.Runtime.ConstrainedExecution;
 using System.Security.Claims;
+using Microsoft.AspNetCore.OData.Query;
 
 namespace GraduationProject.API.Controllers.Place_Controller
 
@@ -236,6 +237,46 @@ namespace GraduationProject.API.Controllers.Place_Controller
             }
 
             return Ok(PlacesById);
+        }
+
+        /*Query Examples:
+         api/Place/filter?$filter=location eq 'Alexandria'
+         api/Place/filter/?$orderby=Name&skip=5
+         api/Place/filter?$filter=location eq 'Alexandria'&orderby=Name desc
+         api/Place/filter?$filter=location eq 'Alexandria' and price le 220
+         api/Place/filter/?$select=Name
+         */
+
+
+        [HttpGet("filter")]
+        [EnableQuery(PageSize = 20)]
+        public ActionResult<IQueryable<FilterSearchPlaceDto>> FilterPlaces()
+        {
+            var places = _placesManager.FilterPlaces().AsQueryable();
+            return Ok(places);
+        }
+
+        /*
+         api/Place/search?$filter=contains(location, 'airo')
+         api/Place/search?$filter=contains(name, 'Luxury Villa')&top=3
+         */
+        [HttpGet("search")]
+        [EnableQuery(PageSize = 20)]
+        public ActionResult<IQueryable<FilterSearchPlaceDto>> SearchPlaces(string query)
+        {
+            var places = _placesManager.SearchPlaces().AsQueryable();
+            return Ok(places);
+        }
+        [HttpGet("category/{categoryName : string}")]
+        [EnableQuery(PageSize = 20)]
+        public ActionResult<IQueryable<CategoryPlacesDto>> GetCategoryPlaces(string categoryName, bool order, string orderby)
+        {
+
+            var places = _placesManager.GetCategoryPlaces().AsQueryable();
+            if (orderby is null)
+            {
+
+            }
         }
 
 
