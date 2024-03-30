@@ -268,30 +268,37 @@ namespace GraduationProject.API.Controllers.Place_Controller
             var places = _placesManager.SearchPlaces().AsQueryable();
             return Ok(places);
         }
-        [HttpGet("category/{categoryName:string}")]
-        [EnableQuery(PageSize = 20)]
-        public ActionResult<IQueryable<CategoryPlacesDto>> GetCategoryPlaces([FromRoute] string categoryName, bool order, string orderby)
-        {
-            string orderAsString;
-            var places = _placesManager.GetCategoryPlaces().AsQueryable();
-            if (!order == false)
-            {
-                orderAsString = "asc";
-            }
-            else
-            {
-                orderAsString = "desc";
-            }
-            if (orderby is null)
-            {
-                orderby = "id";
-            }
-            string baseUrl = "localhost:44300/api/Place/category/";
-            string query = $"?$filter=categoryname eq '{categoryName}'&$orderby={orderby} {orderAsString}";
+        //[HttpGet("category")]
+        //[EnableQuery(PageSize = 20)]
+        //public ActionResult<IQueryable<CategoryPlacesDto>> GetCategoryPlaces(string categoryName, bool order, string orderby)
+        //{
+        //    string orderAsString;
+        //    var places = _placesManager.GetCategoryPlaces().AsQueryable();
+        //    if (!order == false)
+        //    {
+        //        orderAsString = "asc";
+        //    }
+        //    else
+        //    {
+        //        orderAsString = "desc";
+        //    }
+        //    if (orderby is null)
+        //    {
+        //        orderby = "id";
+        //    }
+        //    string baseUrl = "localhost:44300/api/Place/category/";
+        //    string query = $"?$filter=categoryname eq '{categoryName}'&$orderby={orderby} {orderAsString}";
 
-            var uri = new Uri(baseUrl + query);
-            ODataRouteOptions options = new ODataRouteOptions();
-            return Ok();
+        //    var uri = new Uri(baseUrl + query);
+        //    ODataRouteOptions options = new ODataRouteOptions();
+        //    return Ok();
+        //}
+        [HttpGet("category")]
+        [EnableQuery(PageSize = 20)]
+        public ActionResult<IQueryable<CategoryPlacesDto>> GetCategoryPlaces(string query)
+        {
+            var places = _placesManager.GetCategoryPlaces().AsQueryable();
+            return Ok(places);
         }
 
 
