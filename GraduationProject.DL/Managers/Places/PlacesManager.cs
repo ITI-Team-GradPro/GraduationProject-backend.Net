@@ -219,7 +219,7 @@ namespace GraduationProject.BL.Managers.Places
                 Price = x.Price,
                 PeopleCapacity = x.PeopleCapacity,
                 Location = x.Location,
-                ImgUrl = "",
+                ImagesUrls = x.Images.Select(i => i.ImageUrl).ToArray(),
                 description = x.Description,
                 Name = x.Name
             });
@@ -237,7 +237,7 @@ namespace GraduationProject.BL.Managers.Places
                 Price = x.Price,
                 PeopleCapacity = x.PeopleCapacity,
                 Location = x.Location,
-                ImgUrl = "",
+                ImagesUrls = x.Images.Select(i => i.ImageUrl).ToArray(),
                 description = x.Description,
                 Name = x.Name
             });
@@ -256,7 +256,7 @@ namespace GraduationProject.BL.Managers.Places
                 Location = x.Location,
                 Name = x.Name,
                 Description = x.Description,
-                Images = x.Images.ToList(),
+                ImagesUrls = x.Images.Select(i => i.ImageUrl).ToArray(),
                 CategoryName = x.Category.CategoryName
             });
             return searchPlacesDto;

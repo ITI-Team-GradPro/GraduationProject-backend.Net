@@ -15,7 +15,7 @@ namespace GraduationProject.BL.Dtos.PlaceDtos
         public int? PeopleCapacity { get; set; }
         public string Location { get; set; }
         public string Name { get; set; }
-        public string ImgUrl { get; set; } = "";
+        public string[] ImagesUrls { get; set; }
         public string description { get; set; }
 
     }

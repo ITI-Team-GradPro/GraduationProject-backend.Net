@@ -15,7 +15,7 @@ namespace GraduationProject.BL.Dtos.PlaceDtos
         public string Location { get; set; }
         public decimal Price { get; set; }
         public string Description { get; set; }
-        public List<ImgsPlace> Images { get; set; }
+        public string[] ImagesUrls { get; set; }
         public double Rating { get; set; }
     }
 }
