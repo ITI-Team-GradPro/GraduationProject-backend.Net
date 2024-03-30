@@ -7,6 +7,11 @@ using GraduationProject.BL.Dtos.PlaceDtos;
 using GraduationProject.Bl.Dtos.PlaceDtos;
 using GraduationProject.BL;
 using System.Runtime.InteropServices;
+using CloudinaryDotNet;
+using GraduationProject.DAL.Data;
+using GraduationProject.BL.Managers.Places;
+using Microsoft.Extensions.Options;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace GraduationProject.API.Controllers.Place_Controller
 
@@ -25,15 +30,13 @@ namespace GraduationProject.API.Controllers.Place_Controller
         private readonly ApplicationDbContext _context;
 
 
+
         public PlaceController(IPlacesManager placesManager, ApplicationDbContext context)
-
         {
-
             _placesManager = placesManager;
 
             _context = context;
-
-
+          
         }
 
         [HttpGet]
@@ -48,29 +51,6 @@ namespace GraduationProject.API.Controllers.Place_Controller
 
         }
 
-        [HttpGet("{id:int}")]
-
-        public async Task<ActionResult<GetPlacesDtos>> GetById(int id)
-
-        {
-
-            GetPlacesDtos? PlacesById = await _placesManager.GetById(id);
-
-            if (PlacesById == null)
-
-            {
-
-                return NotFound();
-
-            }
-
-            return Ok(PlacesById);
-
-        }
-
-
-
-        //Delete Place with Photo
 
         [HttpDelete("{id:int}")]
 
@@ -86,61 +66,6 @@ namespace GraduationProject.API.Controllers.Place_Controller
 
         }
 
-
-
-        [HttpPost("Add Place with Photo")]
-
-        public async Task<IActionResult> AddNewPlace([FromForm] AddPlaceDto NewPLace, IFormFile file)
-
-        {
-
-            Place placedb = new Place
-
-            {
-
-                Name = NewPLace.Name,
-
-                Price = NewPLace.Price,
-
-                Location = NewPLace.Location,
-
-                Description = NewPLace.Description,
-
-                PeopleCapacity = NewPLace.PeopleCapacity,
-
-                OwnerId = NewPLace.OwnerId,
-
-                //CategoryId = NewPLace.CategoryId,
-
-            };
-
-            var result = await _placesManager.AddPhotoAsync(NewPLace, file);
-
-            if (result.Error != null) return BadRequest(result.Error.Message);
-
-            var ImgsPlace = new ImgsPlace
-
-            {
-
-                ImageUrl = result.SecureUrl.AbsoluteUri,
-
-                publicId = result.PublicId,
-
-                PlaceId = placedb.PlaceId,
-
-            };
-
-            _context.Places.Add(placedb);
-
-            placedb.Images.Add(ImgsPlace);
-
-            await _context.SaveChangesAsync();
-
-
-
-            return Ok("Place Added ");
-
-        }
 
 
         [HttpPut("Update Place without Photo")]
@@ -281,6 +206,28 @@ namespace GraduationProject.API.Controllers.Place_Controller
 
         }
 
-    }
 
+
+        // Get Place with Image By Id 
+
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<GetPlacesDtos>> GetById(int id)
+
+        {
+            GetPlacesDtos? PlacesById = await _placesManager.GetById(id);
+
+            if (PlacesById == null)
+
+            {
+
+                return NotFound();
+
+              }
+
+            return Ok(PlacesById);
+
+        }
+    }
 }
+
+

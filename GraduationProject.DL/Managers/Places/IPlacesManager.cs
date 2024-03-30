@@ -20,7 +20,6 @@ public interface IPlacesManager
 
    Task< GetPlacesDtos?> GetById(int id);
 
-    Task<int> Add(AddPlaceDto addPlaceDto);
 
     Task< bool> Delete(int id);
 

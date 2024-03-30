@@ -43,27 +43,71 @@ namespace GraduationProject.BL.Managers.Places
             _Cloudinary = new Cloudinary(acc);
         }
 
-        public async Task<int> Add(AddPlaceDto addPlaceDto)
+
+        // Get Place with Image By Id 
+        public async Task<GetPlacesDtos> GetById(int id)
         {
+            Place place = await _context.Places.FindAsync(id);
+           
+            ImgsPlace imgs = await _context.ImagesPlaces.FirstOrDefaultAsync(c => c.PlaceId == place.PlaceId);
 
-            Place placedb = new Place()
+
+            GetPlacesDtos getPlacesDtos = new GetPlacesDtos
             {
-                Name = addPlaceDto.Name,
-                Price = addPlaceDto.Price,
-                Location = addPlaceDto.Location,
-                Description = addPlaceDto.Description,
-                PeopleCapacity = addPlaceDto.PeopleCapacity,
-                OwnerId = addPlaceDto.OwnerId,
-                //CategoryId = addPlaceDto.CategoryId
-
+                PlaceId = place.PlaceId,
+                Name = place.Name,
+                Price = place.Price,
+                OverAllRating = place.OverAllRating,
+                Location = place.Location,
+                Description = place.Description,
+                PeopleCapacity = place.PeopleCapacity,
+                // Check if an image is associated with the place
+                ImageUrl = imgs.ImageUrl
             };
-
-            await _UnitOfWork.Placesrepo.AddAsync(placedb);
-            await _UnitOfWork.SaveChangesAsync();
-            return (placedb.PlaceId);
+            return getPlacesDtos;
         }
 
-        //Adding place with photo
+        //  Update Place Only
+        public async Task<bool> Update(UpdatePlaceDto updatePlaceDto)
+        {
+            Place? place = await _UnitOfWork.Placesrepo.GetById(updatePlaceDto.PlaceId);
+
+            if (place == null) return false;
+
+            place.Name = updatePlaceDto.Name;
+            place.Description = updatePlaceDto.Description;
+            place.Location = updatePlaceDto.Location;
+            place.Price = updatePlaceDto.Price;
+            place.PeopleCapacity = updatePlaceDto.PeopleCapacity;
+
+
+            await _UnitOfWork.Placesrepo.Update(place);
+            await _UnitOfWork.SaveChangesAsync();
+
+            return true;
+        }
+
+
+        //Update Image Only
+        public async Task<ImageUploadResult> UpdateImageAsync(IFormFile file)
+        {
+            var uploadResult = new ImageUploadResult();
+
+            if (file.Length > 0)
+            {
+                using var stream = file.OpenReadStream();
+                var uploadParams = new ImageUploadParams
+                {
+                    File = new FileDescription(file.Name, stream),
+                    // Set the public ID to update the existing image
+                };
+
+                uploadResult = await _Cloudinary.UploadAsync(uploadParams);
+            }
+
+            return uploadResult;
+        }
+
         public async Task<ImageUploadResult> AddPhotoAsync(AddPlaceDto addPlaceDto, IFormFile file)
         {
             var uploadResult = new ImageUploadResult();
@@ -125,7 +169,7 @@ namespace GraduationProject.BL.Managers.Places
 
             }
 
-                public async Task<IEnumerable<GetPlacesDtos>> GetAll()
+        public async Task<IEnumerable<GetPlacesDtos>> GetAll()
                 {
                     IEnumerable<Place> placesdb = await _UnitOfWork.Placesrepo.GetAll();
                     var placedto = placesdb.Select(x => new GetPlacesDtos
@@ -141,70 +185,14 @@ namespace GraduationProject.BL.Managers.Places
                     return placedto;
                 }
 
-                public async Task<GetPlacesDtos> GetById(int id)
-                {
-                    Place? placesdb = await _UnitOfWork.Placesrepo.GetById(id);
-                    if (placesdb == null)
-                    {
-                        return null;
-                    }
-                    var placedto = new GetPlacesDtos
-                    {
-                        Name = placesdb.Name,
-                        Description = placesdb.Description,
-                        PlaceId = placesdb.PlaceId,
-                        Price = placesdb.Price,
-                        Location = placesdb.Location,
-                        OverAllRating = placesdb.OverAllRating,
-                        PeopleCapacity = placesdb.PeopleCapacity
-                    };
-                    return placedto;
-                }
-
-                //Update Place Only
-                public async Task<bool> Update(UpdatePlaceDto updatePlaceDto)
-                {
-                    Place? place = await _UnitOfWork.Placesrepo.GetById(updatePlaceDto.PlaceId);
-
-                    if (place == null) return false;
-
-                    place.Name = updatePlaceDto.Name;
-                    place.Description = updatePlaceDto.Description;
-                    place.Location = updatePlaceDto.Location;
-                    place.Price = updatePlaceDto.Price;
-                    place.PeopleCapacity = updatePlaceDto.PeopleCapacity;
-
-
-                    await _UnitOfWork.Placesrepo.Update(place);
-                    await _UnitOfWork.SaveChangesAsync();
-
-                    return true;
-                }
 
 
 
 
-                //Update Image Only
-                public async Task<ImageUploadResult> UpdateImageAsync(IFormFile file)
-                {
-                    var uploadResult = new ImageUploadResult();
 
-                    if (file.Length > 0)
-                    {
-                        using var stream = file.OpenReadStream();
-                        var uploadParams = new ImageUploadParams
-                        {
-                            File = new FileDescription(file.Name, stream),
-                            // Set the public ID to update the existing image
-                        };
 
-                        uploadResult = await _Cloudinary.UploadAsync(uploadParams);
-                    }
 
-                    return uploadResult;
-                }
-
-            }
+    }
 
 
 
