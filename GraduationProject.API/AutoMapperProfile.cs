@@ -16,6 +16,10 @@ namespace GraduationProject.API
             CreateMap<Booking, GetAllBookingsDTO>();
             //include nav property place in the mapping result
             CreateMap<Booking, GetBookingsByUserDTO>().ForMember(dest => dest.Place, opt => opt.MapFrom(src => src.Place));
+            //CreateMap<Booking.BookingPeriod, int>();
+            //CreateMap<Booking.Status, int>();
+            //CreateMap<int, Booking.BookingPeriod>();
+            //CreateMap<int, Booking.BookingPeriod>();
 
             CreateMap<AddNewBookingDTO, Booking>();
             CreateMap<GetAllBookingsDTO, Booking>();
