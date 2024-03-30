@@ -48,6 +48,13 @@ namespace GraduationProject.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GraduationProject.API v1"));
             }
 
+            app.UseCors(options => options
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            );
+
+
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthentication();
