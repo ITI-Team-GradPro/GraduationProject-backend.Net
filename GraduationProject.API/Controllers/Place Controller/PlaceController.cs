@@ -131,76 +131,72 @@ namespace GraduationProject.API.Controllers.Place_Controller
 
 
 
-        [HttpPost("Add Place with Photo and Categegory Name")]
 
-        public async Task<IActionResult> AddPlacewithImage([FromForm] AddPlaceDto newPlaceDto, IFormFile file)
-
+        //Add Place With Collection Of Image and Category name
+        [HttpPost("AddPlaceWithImages")]
+        public async Task<IActionResult> AddPlaceWithImages([FromForm] AddPlaceDto newPlaceDto, List<IFormFile> files)
         {
-
             Category category = await _context.Categories.FirstOrDefaultAsync(c => c.CategoryName.ToLower() == newPlaceDto.CategoryName.ToLower());
-
             if (category == null)
-
             {
-
                 return BadRequest($"Category Name '{newPlaceDto.CategoryName}' not found.");
-
             }
 
-            Place place = new Place
-
+            try
             {
+                // List to store image URLs and public IDs
+                var imageUrls = new List<string>();
+                var publicIds = new List<string>();
 
-                Name = newPlaceDto.Name,
+                // Upload each image to Cloudinary and store the results
+                foreach (var file in files)
+                {
+                    var result = await _placesManager.AddPlaceAsync(newPlaceDto, file);
 
-                Price = newPlaceDto.Price,
+                    if (result.Error != null)
+                    {
+                        return BadRequest(result.Error.Message);
+                    }
 
-                Location = newPlaceDto.Location,
+                    imageUrls.Add(result.SecureUrl.AbsoluteUri);
+                    publicIds.Add(result.PublicId);
+                }
 
-                Description = newPlaceDto.Description,
+                var imgsPlaces = imageUrls.Select((url, index) => new ImgsPlace
+                {
+                    ImageUrl = url,
+                    publicId = publicIds[index]
+                }).ToList();
 
-                PeopleCapacity = newPlaceDto.PeopleCapacity,
+                var place = new Place
+                {
+                    Name = newPlaceDto.Name,
+                    Price = newPlaceDto.Price,
+                    Location = newPlaceDto.Location,
+                    Description = newPlaceDto.Description,
+                    PeopleCapacity = newPlaceDto.PeopleCapacity,
+                    OwnerId = newPlaceDto.OwnerId,
+                    CategoryId = category.CategoryId,
+                    Images = imgsPlaces
+                };
 
-                OwnerId = newPlaceDto.OwnerId,
+                _context.Places.Add(place);
+                await _context.SaveChangesAsync();
 
-                CategoryId = category.CategoryId
-
-            };
-
-
-            var result = await _placesManager.AddPlaceAsync(newPlaceDto, file);
-
-            if (result.Error != null) return BadRequest(result.Error.Message);
-
-            var ImgsPlace = new ImgsPlace
-
+                return Ok("Place Added Successfully.");
+            }
+            catch (Exception ex)
             {
-
-                ImageUrl = result.SecureUrl.AbsoluteUri,
-
-                publicId = result.PublicId,
-
-                PlaceId = place.PlaceId,
-
-            };
-
-            _context.Places.Add(place);
-
-            place.Images.Add(ImgsPlace);
-
-            await _context.SaveChangesAsync();
-
-
-            return Ok("Place Added ");
-
-
+                Console.WriteLine($"Error adding place: {ex.Message}");
+                return StatusCode(500, "An error occurred while adding the place.");
+            }
         }
 
 
 
-       // Get Place with Image By Id
+        // Get Place with Image By Id
 
-       [HttpGet("Get Place By Id/{id:int}")]
+        [HttpGet("Get Place By Id/{id:int}")]
         public async Task<ActionResult<GetPlacesDtos>> GetById(int id)
 
         {
@@ -239,6 +235,16 @@ namespace GraduationProject.API.Controllers.Place_Controller
         }
 
 
+
+
+
+
+
+        ////////////////////////////////////////////////////////////
+        ///
+
+
+     
     }
 }
 

@@ -34,8 +34,7 @@ namespace GraduationProject.BL.Dtos.PlaceDtos
 
         [Required]
         public int PeopleCapacity { get; set; }
-        public string ImageUrl { get; set; }
-
+        public List<string> ImageUrls { get; set; }
         public GetUserDto UserDto { get; set; }
 
     }

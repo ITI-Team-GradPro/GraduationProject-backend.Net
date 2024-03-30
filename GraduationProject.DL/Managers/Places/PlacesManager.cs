@@ -68,15 +68,34 @@ namespace GraduationProject.BL.Managers.Places
         }
 
         // Get Place with Image and User By ID 
-
         public async Task<GetPlacesWithUserDtos> GetByIdWithUser(int id)
         {
-
             var place = await _context.Places
                 .Include(p => p.Owner)
                 .FirstOrDefaultAsync(p => p.PlaceId == id);
 
-            ImgsPlace imgs = await _context.ImagesPlaces.FirstOrDefaultAsync(c => c.PlaceId == place.PlaceId);
+            if (place == null)
+            {
+                return null; 
+            }
+
+            var imgUrls = await _context.ImagesPlaces
+                .Where(i => i.PlaceId == place.PlaceId)
+                .Select(i => i.ImageUrl)
+                .ToListAsync();
+
+            var userDto = new GetUserDto
+            {
+                id = place.OwnerId,
+                FirstName = place.Owner.FirstName,
+                LastName = place.Owner.LastName,
+                Gender = place.Owner.Gender,
+                DateOfBirth = place.Owner.DateOfBirth,
+                Phone = place.Owner.Phone,
+                Bio = place.Owner.Bio,
+                Address = place.Owner.Address,
+                ImageUrl = place.Owner.ImageUrl
+            };
 
             var placeDto = new GetPlacesWithUserDtos
             {
@@ -87,26 +106,13 @@ namespace GraduationProject.BL.Managers.Places
                 Location = place.Location,
                 Description = place.Description,
                 PeopleCapacity = place.PeopleCapacity,
-                ImageUrl = imgs.ImageUrl,
-                UserDto = new GetUserDto
-                {
-                    id = place.OwnerId,
-                    FirstName = place.Owner.FirstName,
-                    LastName = place.Owner.LastName,
-                    Gender = place.Owner.Gender,
-                    DateOfBirth = place.Owner.DateOfBirth,
-                    Phone = place.Owner.Phone,
-                    Bio = place.Owner.Bio,
-                    Address = place.Owner.Address,
-                    ImageUrl = place.Owner.ImageUrl
-                }
+                ImageUrls = imgUrls,
+                UserDto = userDto
             };
 
             return placeDto;
         }
 
-
-        //  Update Place Only
         public async Task<bool> Update(UpdatePlaceDto updatePlaceDto)
         {
             Place? place = await _UnitOfWork.Placesrepo.GetById(updatePlaceDto.PlaceId);
@@ -212,9 +218,8 @@ namespace GraduationProject.BL.Managers.Places
 
 
 
-
-
-
+        /////////////////////////////////////////////////////
+        ///
 
 
 
