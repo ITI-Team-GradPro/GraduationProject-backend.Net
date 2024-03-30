@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static GraduationProject.Data.Models.Booking;
+using GraduationProject.BL.Dtos.PlaceDtos;
 
 namespace GraduationProject.BL.Dtos.BookingDTOs
 {
@@ -16,9 +17,7 @@ namespace GraduationProject.BL.Dtos.BookingDTOs
         public int PlaceId { get; set; }
         public int BookingId { get; set; }
         public decimal TotalPrice { get; set; }
-        public Status BookingStatus { get; set; }
-        public DateTime EventDate { get; set; }
-        //public DateTime BookingDate { get; set; }
-        //public BookingPeriod Period { get; set; }
+        public string BookingStatus { get; set; }
+        public string EventDate { get; set; }
     }
 }

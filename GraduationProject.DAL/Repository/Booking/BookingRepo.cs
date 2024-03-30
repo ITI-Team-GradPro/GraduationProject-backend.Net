@@ -30,5 +30,15 @@ namespace GraduationProject.DAL
             // Execute the query asynchronously and materialize results
             return await filteredQuery.ToListAsync();
         }
+
+        //public async Task<IEnumerable<Booking>> GetBookingsAsync(Expression<Func<Booking, object>> include = null)
+        //{
+        //    var allBookings =  _context.Set<Booking>();
+        //    var result = await allBookings.ToListAsync();
+        //    return allBookings;
+        //    //return result;
+        //}
+
+        
     }
 }

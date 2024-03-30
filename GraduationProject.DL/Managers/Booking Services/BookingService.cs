@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using GraduationProject.Bl.Dtos.PlaceDtos;
 using GraduationProject.BL.Dtos.BookingDTOs;
 using GraduationProject.DAL;
@@ -25,6 +25,11 @@ public class BookingService : IBookingService
     public async Task<IEnumerable<GetAllBookingsDTO>> GetAllBookings()
     {
         var allBookings = await _unitOfWork.Bookingrepo.GetAll();
+        foreach (var booking in allBookings)
+        {
+            booking.BookingDate = booking.BookingDate.Date;
+            booking.EventDate = booking.EventDate.Date;
+        }
         var allBookingsDTO = _mapper.Map<IEnumerable<Booking>, IEnumerable<GetAllBookingsDTO>>(allBookings);
         return allBookingsDTO;
     }
@@ -33,6 +38,13 @@ public class BookingService : IBookingService
     public async Task<IEnumerable<GetBookingsByUserDTO>> GetBookingsByUser(string UserId)
     {
         var userBookings = await _unitOfWork.Bookingrepo.GetAllById(UserId, b => b.UserId == UserId);
+
+        foreach(var booking in userBookings)
+        {
+            booking.Place = await _unitOfWork.Placesrepo.GetById(booking.PlaceId);
+            booking.BookingDate = booking.BookingDate.Date;
+            booking.EventDate = booking.EventDate.Date;
+        }
 
         if (!userBookings.Any()) // Early return if no bookings found
         {
@@ -45,6 +57,8 @@ public class BookingService : IBookingService
 
     public async Task AddNewBooking(AddNewBookingDTO bookingDTO)
     {
+        //bookingDTO.TotalPrice = (decimal) bookingDTO.TotalPrice;
+        
         var NewBooking = _mapper.Map<AddNewBookingDTO, Booking>(bookingDTO);
         await _unitOfWork.Bookingrepo.AddAsync(NewBooking);
     }
