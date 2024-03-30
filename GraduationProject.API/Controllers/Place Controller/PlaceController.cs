@@ -12,6 +12,8 @@ using GraduationProject.DAL.Data;
 using GraduationProject.BL.Managers.Places;
 using Microsoft.Extensions.Options;
 using static System.Net.Mime.MediaTypeNames;
+using System.Runtime.ConstrainedExecution;
+using System.Security.Claims;
 
 namespace GraduationProject.API.Controllers.Place_Controller
 
@@ -39,21 +41,9 @@ namespace GraduationProject.API.Controllers.Place_Controller
           
         }
 
-        [HttpGet]
-
-        public async Task<ActionResult<List<GetPlacesDtos>>> GetAll()
-
-        {
-
-            var allPlaces = await _placesManager.GetAll();
-
-            return Ok(allPlaces);
-
-        }
-
+        // Delete Place With Image
 
         [HttpDelete("{id:int}")]
-
         public async Task<IActionResult> Delete(int id)
 
         {
@@ -178,7 +168,7 @@ namespace GraduationProject.API.Controllers.Place_Controller
             };
 
 
-            var result = await _placesManager.AddPhotoAsync(newPlaceDto, file);
+            var result = await _placesManager.AddPlaceAsync(newPlaceDto, file);
 
             if (result.Error != null) return BadRequest(result.Error.Message);
 
@@ -208,9 +198,9 @@ namespace GraduationProject.API.Controllers.Place_Controller
 
 
 
-        // Get Place with Image By Id 
+       // Get Place with Image By Id
 
-        [HttpGet("{id:int}")]
+       [HttpGet("Get Place By Id/{id:int}")]
         public async Task<ActionResult<GetPlacesDtos>> GetById(int id)
 
         {
@@ -222,11 +212,33 @@ namespace GraduationProject.API.Controllers.Place_Controller
 
                 return NotFound();
 
-              }
+            }
 
             return Ok(PlacesById);
 
         }
+
+
+        // Get Place with Image and User By ID 
+
+
+        [HttpGet("Get Place By Id With User/{id}")]
+        public async Task<ActionResult<GetPlacesWithUserDtos>> GetByIdWithUser(int id)
+        {
+            GetPlacesWithUserDtos? PlacesById = await _placesManager.GetByIdWithUser(id);
+
+            if (PlacesById == null)
+
+            {
+
+                return NotFound();
+
+            }
+
+            return Ok(PlacesById);
+        }
+
+
     }
 }
 

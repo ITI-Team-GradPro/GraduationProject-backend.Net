@@ -67,6 +67,45 @@ namespace GraduationProject.BL.Managers.Places
             return getPlacesDtos;
         }
 
+        // Get Place with Image and User By ID 
+
+        public async Task<GetPlacesWithUserDtos> GetByIdWithUser(int id)
+        {
+
+            var place = await _context.Places
+                .Include(p => p.Owner)
+                .FirstOrDefaultAsync(p => p.PlaceId == id);
+
+            ImgsPlace imgs = await _context.ImagesPlaces.FirstOrDefaultAsync(c => c.PlaceId == place.PlaceId);
+
+            var placeDto = new GetPlacesWithUserDtos
+            {
+                PlaceId = place.PlaceId,
+                Name = place.Name,
+                Price = place.Price,
+                OverAllRating = place.OverAllRating,
+                Location = place.Location,
+                Description = place.Description,
+                PeopleCapacity = place.PeopleCapacity,
+                ImageUrl = imgs.ImageUrl,
+                UserDto = new GetUserDto
+                {
+                    id = place.OwnerId,
+                    FirstName = place.Owner.FirstName,
+                    LastName = place.Owner.LastName,
+                    Gender = place.Owner.Gender,
+                    DateOfBirth = place.Owner.DateOfBirth,
+                    Phone = place.Owner.Phone,
+                    Bio = place.Owner.Bio,
+                    Address = place.Owner.Address,
+                    ImageUrl = place.Owner.ImageUrl
+                }
+            };
+
+            return placeDto;
+        }
+
+
         //  Update Place Only
         public async Task<bool> Update(UpdatePlaceDto updatePlaceDto)
         {
@@ -108,7 +147,8 @@ namespace GraduationProject.BL.Managers.Places
             return uploadResult;
         }
 
-        public async Task<ImageUploadResult> AddPhotoAsync(AddPlaceDto addPlaceDto, IFormFile file)
+        // Add Place With Image
+        public async Task<ImageUploadResult> AddPlaceAsync(AddPlaceDto addPlaceDto, IFormFile file)
         {
             var uploadResult = new ImageUploadResult();
             if (file.Length > 0)
@@ -130,7 +170,7 @@ namespace GraduationProject.BL.Managers.Places
 
         }
 
-
+        // Delete Place With Image
         public async Task<bool> Delete(int id)
         {
 
@@ -169,21 +209,7 @@ namespace GraduationProject.BL.Managers.Places
 
             }
 
-        public async Task<IEnumerable<GetPlacesDtos>> GetAll()
-                {
-                    IEnumerable<Place> placesdb = await _UnitOfWork.Placesrepo.GetAll();
-                    var placedto = placesdb.Select(x => new GetPlacesDtos
-                    {
-                        Name = x.Name,
-                        Description = x.Description,
-                        PlaceId = x.PlaceId,
-                        Price = x.Price,
-                        Location = x.Location,
-                        OverAllRating = x.OverAllRating,
-                        PeopleCapacity = x.PeopleCapacity
-                    });
-                    return placedto;
-                }
+
 
 
 
