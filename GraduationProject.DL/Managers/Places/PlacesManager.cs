@@ -68,36 +68,74 @@ namespace GraduationProject.BL.Managers.Places
         }
 
         // Get Place with Image and User By ID 
-        public async Task<GetPlacesWithUserDtos> GetByIdWithUser(int id)
+        public async Task<PlaceDetailsDto> GetByIdWithUser(int id)
         {
             var place = await _context.Places
-                .Include(p => p.Owner)
+                .Include(p => p.Owner).Include(p => p.Category)
                 .FirstOrDefaultAsync(p => p.PlaceId == id);
 
             if (place == null)
             {
-                return null; 
+                return null;
             }
+
 
             var imgUrls = await _context.ImagesPlaces
                 .Where(i => i.PlaceId == place.PlaceId)
                 .Select(i => i.ImageUrl)
                 .ToListAsync();
 
-            var userDto = new GetUserDto
+            var ownerDto = new OwnerDetailsDto
             {
                 id = place.OwnerId,
                 FirstName = place.Owner.FirstName,
                 LastName = place.Owner.LastName,
-                Gender = place.Owner.Gender,
-                DateOfBirth = place.Owner.DateOfBirth,
-                Phone = place.Owner.Phone,
                 Bio = place.Owner.Bio,
-                Address = place.Owner.Address,
                 ImageUrl = place.Owner.ImageUrl
             };
 
-            var placeDto = new GetPlacesWithUserDtos
+
+
+            var commentsDto = await _context.Comments
+                .Where(c => c.PlaceId == place.PlaceId)
+                .Select(c => new CommentDetailsDto
+                {
+                    CommentId = c.CommentID,
+                    Comment = c.CommentText,
+                    UserId = c.UserId,
+                    User = new UserDetailsDto
+                    {
+                        Name = c.User.UserName,
+                        Image = c.User.ImageUrl,
+                        CommentDateTime = c.CommentDateTime
+                    }
+
+                })
+                .ToListAsync();
+
+            var reviewsDto = await _context.Reviews
+               .Where(r => r.PlaceId == place.PlaceId)
+               .Select(r => new ReviewDetailsDto
+               {
+                   ReviewId = r.ReviewID,
+                   Review = r.ReviewText,
+                   Rating = r.Rating,
+                   UserId = r.UserId,
+                   User = new UserDetailsDto
+                   {
+                       Name = r.User.UserName,
+                       Image = r.User.ImageUrl,
+                   }
+               })
+               .ToListAsync();
+
+            var categoryDto = new CategoryDetailsDto
+            {
+                CategoryName = place.Category.CategoryName
+            };
+
+
+            var placeDto = new PlaceDetailsDto
             {
                 PlaceId = place.PlaceId,
                 Name = place.Name,
@@ -107,11 +145,16 @@ namespace GraduationProject.BL.Managers.Places
                 Description = place.Description,
                 PeopleCapacity = place.PeopleCapacity,
                 ImageUrls = imgUrls,
-                UserDto = userDto
+                ownerDetailsDto = ownerDto,
+                CommentDetailsDto = commentsDto,
+                categoryDetailsDto = categoryDto,
+                reviewDetailsDto = reviewsDto
+
             };
 
             return placeDto;
         }
+
 
         public async Task<bool> Update(UpdatePlaceDto updatePlaceDto)
         {
@@ -216,10 +259,6 @@ namespace GraduationProject.BL.Managers.Places
             }
 
 
-
-
-        /////////////////////////////////////////////////////
-        ///
 
 
 

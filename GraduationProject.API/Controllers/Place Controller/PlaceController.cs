@@ -144,11 +144,9 @@ namespace GraduationProject.API.Controllers.Place_Controller
 
             try
             {
-                // List to store image URLs and public IDs
                 var imageUrls = new List<string>();
                 var publicIds = new List<string>();
 
-                // Upload each image to Cloudinary and store the results
                 foreach (var file in files)
                 {
                     var result = await _placesManager.AddPlaceAsync(newPlaceDto, file);
@@ -219,9 +217,9 @@ namespace GraduationProject.API.Controllers.Place_Controller
 
 
         [HttpGet("Get Place By Id With User/{id}")]
-        public async Task<ActionResult<GetPlacesWithUserDtos>> GetByIdWithUser(int id)
+        public async Task<ActionResult<PlaceDetailsDto>> GetByIdWithUser(int id)
         {
-            GetPlacesWithUserDtos? PlacesById = await _placesManager.GetByIdWithUser(id);
+            PlaceDetailsDto? PlacesById = await _placesManager.GetByIdWithUser(id);
 
             if (PlacesById == null)
 
@@ -233,16 +231,6 @@ namespace GraduationProject.API.Controllers.Place_Controller
 
             return Ok(PlacesById);
         }
-
-
-
-
-
-
-
-        ////////////////////////////////////////////////////////////
-        ///
-
 
      
     }

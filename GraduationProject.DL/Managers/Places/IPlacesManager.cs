@@ -21,7 +21,7 @@ public interface IPlacesManager
 
 
     Task< bool> Delete(int id);
-    public Task<GetPlacesWithUserDtos> GetByIdWithUser(int id);
+    public Task<PlaceDetailsDto> GetByIdWithUser(int id);
     public Task<ImageUploadResult> UpdateImageAsync(IFormFile file);
 
      public Task <bool> Update(UpdatePlaceDto updatePlaceDto);

@@ -11,7 +11,7 @@ using GraduationProject.Data.Models;
 
 namespace GraduationProject.BL.Dtos.PlaceDtos
 {
-    public class GetPlacesWithUserDtos
+    public class PlaceDetailsDto
     {
 
         public int PlaceId { get; set; }
@@ -34,8 +34,16 @@ namespace GraduationProject.BL.Dtos.PlaceDtos
 
         [Required]
         public int PeopleCapacity { get; set; }
+        public bool ConfirmReq { get; set; } = false;
+     
         public List<string> ImageUrls { get; set; }
-        public GetUserDto UserDto { get; set; }
+        public OwnerDetailsDto ownerDetailsDto { get; set; }
+
+        public List <CommentDetailsDto> CommentDetailsDto { get; set; }    
+        public CategoryDetailsDto categoryDetailsDto { get; set; }
+
+        public List< ReviewDetailsDto >reviewDetailsDto { get; set; }
+
 
     }
 }
