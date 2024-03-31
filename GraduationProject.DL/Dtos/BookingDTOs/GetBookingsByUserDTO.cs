@@ -1,4 +1,5 @@
-﻿using GraduationProject.Data.Models;
+﻿using GraduationProject.BL.Dtos.PlaceDtos;
+using GraduationProject.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,13 @@ namespace GraduationProject.BL.Dtos.BookingDTOs
     public class GetBookingsByUserDTO
     {
         public int BookingId { get; set; }
+
+        public GetPlacesDtos Place { get; set; }
         public decimal TotalPrice { get; set; }
-        public Status BookingStatus { get; set; }
-        public DateTime EventDate { get; set; }
+        public string BookingStatus { get; set; }
+        public string EventDate { get; set; }
+        public string BookingDate { get; set; }
+
+        public string Period { get; set; }
     }
 }

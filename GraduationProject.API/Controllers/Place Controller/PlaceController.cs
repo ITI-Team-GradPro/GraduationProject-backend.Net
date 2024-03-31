@@ -14,6 +14,8 @@ using Microsoft.Extensions.Options;
 using static System.Net.Mime.MediaTypeNames;
 using System.Runtime.ConstrainedExecution;
 using System.Security.Claims;
+using Microsoft.AspNetCore.OData.Query;
+using Microsoft.AspNetCore.OData.Routing;
 
 namespace GraduationProject.API.Controllers.Place_Controller
 
@@ -232,7 +234,78 @@ namespace GraduationProject.API.Controllers.Place_Controller
             return Ok(PlacesById);
         }
 
-     
+        /*Query Examples:
+         api/Place/filter?$filter=location eq 'Alexandria'
+         api/Place/filter/?$orderby=Name&skip=5
+         api/Place/filter?$filter=location eq 'Alexandria'&orderby=Name desc
+         api/Place/filter?$filter=location eq 'Alexandria' and price le 220
+         api/Place/filter/?$select=Name
+         */
+
+
+        [HttpGet("filter")]
+        [EnableQuery(PageSize = 20)]
+        public ActionResult<IQueryable<FilterSearchPlaceDto>> FilterPlaces()
+        {
+            var places = _placesManager.FilterPlaces().AsQueryable();
+            return Ok(places);
+        }
+
+        /*
+         api/Place/search?$filter=contains(location, 'airo')
+         api/Place/search?$filter=contains(name, 'Luxury Villa')&top=3
+         */
+
+        /*
+         Guide Static Url:
+            Api/Place/search?$filter=contains(location, '{query}') or contains(name, '{query}')&$orderby={order} {AscOrDesc}
+         */
+        [HttpGet("search")]
+        [EnableQuery(PageSize = 20)]
+        public ActionResult<IQueryable<FilterSearchPlaceDto>> SearchPlaces(string query)
+        {
+            var places = _placesManager.SearchPlaces().AsQueryable();
+            return Ok(places);
+        }
+        //[HttpGet("category")]
+        //[EnableQuery(PageSize = 20)]
+        //public ActionResult<IQueryable<CategoryPlacesDto>> GetCategoryPlaces(string categoryName, bool order, string orderby)
+        //{
+        //    string orderAsString;
+        //    var places = _placesManager.GetCategoryPlaces().AsQueryable();
+        //    if (!order == false)
+        //    {
+        //        orderAsString = "asc";
+        //    }
+        //    else
+        //    {
+        //        orderAsString = "desc";
+        //    }
+        //    if (orderby is null)
+        //    {
+        //        orderby = "id";
+        //    }
+        //    string baseUrl = "localhost:44300/api/Place/category/";
+        //    string query = $"?$filter=categoryname eq '{categoryName}'&$orderby={orderby} {orderAsString}";
+
+        //    var uri = new Uri(baseUrl + query);
+        //    ODataRouteOptions options = new ODataRouteOptions();
+        //    return Ok();
+        //}
+
+        /*
+         Guide Static Url:
+            Api/Place/category?$filter=categoryname eq '{categoryName}'&$orderby={order} {AscOrDesc}
+         */
+        [HttpGet("category")]
+        [EnableQuery(PageSize = 20)]
+        public ActionResult<IQueryable<CategoryPlacesDto>> GetCategoryPlaces(string query)
+        {
+            var places = _placesManager.GetCategoryPlaces().AsQueryable();
+            return Ok(places);
+        }
+
+
     }
 }
 

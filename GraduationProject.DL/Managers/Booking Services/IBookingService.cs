@@ -1,4 +1,5 @@
 ﻿using GraduationProject.BL.Dtos.BookingDTOs;
+using GraduationProject.Data.Models;
 
 namespace GraduationProject.BL.Managers;
 public interface IBookingService
@@ -7,5 +8,6 @@ public interface IBookingService
     Task<IEnumerable<GetBookingsByUserDTO>> GetBookingsByUser(string UserId);
     Task AddNewBooking(AddNewBookingDTO bookingDTO);
     Task DeleteBooking(int id);
+
 }
 

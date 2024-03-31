@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using GraduationProject.BL.Dtos;
 using GraduationProject.BL.Dtos.BookingDTOs;
+using GraduationProject.BL.Dtos.PlaceDtos;
 using GraduationProject.Data.Models;
 
 namespace GraduationProject.API
@@ -9,11 +11,24 @@ namespace GraduationProject.API
         public AutoMapperProfile()
         {
             CreateMap<Booking, AddNewBookingDTO>();
+
+            //include nav property place in the mapping result
             CreateMap<Booking, GetAllBookingsDTO>();
-            CreateMap<Booking, GetBookingsByUserDTO>();
+            //include nav property place in the mapping result
+            CreateMap<Booking, GetBookingsByUserDTO>().ForMember(dest => dest.Place, opt => opt.MapFrom(src => src.Place));
+            //CreateMap<Booking.BookingPeriod, int>();
+            //CreateMap<Booking.Status, int>();
+            //CreateMap<int, Booking.BookingPeriod>();
+            //CreateMap<int, Booking.BookingPeriod>();
+
             CreateMap<AddNewBookingDTO, Booking>();
             CreateMap<GetAllBookingsDTO, Booking>();
             CreateMap<GetBookingsByUserDTO, Booking>();
+            CreateMap<Place, GetPlacesDtos>();
+            CreateMap<GetPlacesDtos, Place>();
+            CreateMap<Category, CategoryReadDto>();
+            CreateMap<CategoryReadDto, Category>();
+
         }
     }
 }
