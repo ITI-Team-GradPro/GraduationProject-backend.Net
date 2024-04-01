@@ -218,21 +218,21 @@ namespace GraduationProject.API.Controllers.Place_Controller
         // Get Place with Image and User By ID 
 
 
-        [HttpGet("Get Place By Id With User/{id}")]
-        public async Task<ActionResult<PlaceDetailsDto>> GetByIdWithUser(int id)
-        {
-            PlaceDetailsDto? PlacesById = await _placesManager.GetByIdWithUser(id);
+        //[HttpGet("Get Place By Id With User/{id}")]
+        //public async Task<ActionResult<PlaceDetailsDto>> GetByIdWithUser(int id)
+        //{
+        //    PlaceDetailsDto? PlacesById = await _placesManager.GetByIdWithUser(id);
 
-            if (PlacesById == null)
+        //    if (PlacesById == null)
 
-            {
+        //    {
 
-                return NotFound();
+        //        return NotFound();
 
-            }
+        //    }
 
-            return Ok(PlacesById);
-        }
+        //    return Ok(PlacesById);
+        //}
 
         /*Query Examples:
          api/Place/filter?$filter=location eq 'Alexandria'
@@ -302,6 +302,21 @@ namespace GraduationProject.API.Controllers.Place_Controller
         public ActionResult<IQueryable<CategoryPlacesDto>> GetCategoryPlaces(string query)
         {
             var places = _placesManager.GetCategoryPlaces().AsQueryable();
+            return Ok(places);
+        }
+        [HttpGet("Owner")]
+        public async Task<ActionResult<IEnumerable<GetOwnerPlacesDto>>> GetOwnerPlacesAsync(string ownerId)
+        {
+            //check if owner is logged in or not
+            if (ownerId == null)
+            {
+                return BadRequest("Owner is not logged in");
+            }
+            var places = await _placesManager.GetOwnerPlacesAsync(ownerId);
+            if (places == null)
+            {
+                return NotFound();
+            }
             return Ok(places);
         }
 
