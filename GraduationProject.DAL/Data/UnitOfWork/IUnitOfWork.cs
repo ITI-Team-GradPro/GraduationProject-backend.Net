@@ -21,5 +21,7 @@ public interface IUnitOfWork
 
     public IWishlistRepo Wishlistrepo { get;}
 
+    public IUserRepo Userrepo { get; }
+
     Task<int> SaveChangesAsync();
 }
