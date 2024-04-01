@@ -31,7 +31,7 @@ public class WishlistRepo : GenericRepo<WishList> , IWishlistRepo
 
         var userwishlist = userplace.SelectMany(a => a.OwnedPlaces).ToList();
         return userwishlist;
-
+        
     }
 
 

@@ -41,6 +41,8 @@ public class WishlistManager : IWishlistManager
     {
         IEnumerable<Place> wishLists = await _UnitOfWork.Placesrepo.GetAll();
 
+      
+
         var placeDtos = wishLists.Select(p => new GetPlaceWishlistDto
         {
             PlaceId = p.PlaceId,

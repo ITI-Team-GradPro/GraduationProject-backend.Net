@@ -11,5 +11,5 @@ public class GetWishListDto
 {
     public string UserId { get; set; }
 
-    public List<GetPlaceWishlistDto> Places { get; set; } 
+    public List<GetPlacesDtos> Places { get; set; } 
 }
