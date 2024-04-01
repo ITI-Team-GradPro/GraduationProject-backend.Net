@@ -1,4 +1,5 @@
 ﻿using GraduationProject.BL.Dtos;
+using GraduationProject.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,9 @@ namespace GraduationProject.BL.Managers;
 
 public interface IWishlistManager
 {
-   Task<IEnumerable<GetWishListDto>> GetAll(string userid);
+    Task<IEnumerable<GetPlaceWishlistDto>> GetAll(string userid);
 
-   Task<int> Add(AddWishlistDto addWishlistDto);
-   Task<bool>Delete(string userid);
+    Task<int> Add(AddWishlistDto addWishlistDto);
+    Task<WishList> DeletePlaceFromWishlist(string userid, int placeid);
 
 }

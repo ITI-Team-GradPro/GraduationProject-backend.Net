@@ -11,5 +11,5 @@ public class GetWishListDto
 {
     public string UserId { get; set; }
 
-    public ICollection<GetPlacesDtos> Places { get; set; } = new List<GetPlacesDtos>();
+    public List<GetPlaceWishlistDto> Places { get; set; } 
 }

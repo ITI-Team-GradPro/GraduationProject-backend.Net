@@ -22,50 +22,68 @@ namespace GraduationProject.API.Controllers.Category_Controller
         {
             if (!ModelState.IsValid)
                 return BadRequest();
-            var NewCategory = await _categoryManager.Add(category);
-            return Ok(NewCategory);
-                  
+            try
+            {
+                var NewCategory = await _categoryManager.Add(category);
+                return Ok("Category added successfully");
+            }
+            catch (Exception)
+            {
+                return StatusCode(500 , "Can't add a category");
+            }
         }
 
         [HttpGet]
         public async Task <ActionResult<List<CategoryReadDto>>> GetAll()
         {
-            var categories = await _categoryManager.GetAll()/*.ToList()*/;
-            return Ok(categories);
-        }
+            try
+            {
+                var categories = await _categoryManager.GetAll()/*.ToList()*/;
+                return Ok(categories);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Can't get all categories");
+            }
 
-        //[HttpGet("{name:string}")]
-        //public async Task< ActionResult<CategoryReadDto>> GetByName(string name)
-        //{
-        //    CategoryReadDto? category = _categoryManager.GetByName(name);
-        //    if (category is null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return Ok(category);
-        //}
+        }
 
         [HttpGet("{name}")]
         public async Task<ActionResult<CategoryReadDto>> GetByName(string name)
         {
             CategoryReadDto? category = await _categoryManager.GetByName(name);
-            if (category is null)
+            try
             {
-                return NotFound();
+                if (category is null)
+                {
+                    return NotFound(" no category found with this name");
+                }
+                return Ok(category);
             }
-            return Ok(category);
+            catch (Exception)
+            {
+                return StatusCode(500, "Can't find category");
+            }
+
         }
 
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> Delete(int id)
         {
             var IsFound = await _categoryManager.Delete(id);
+            try { 
             if (!IsFound)
             {
                 return NotFound();
             }
+            
+                return Ok("Category Removed Successfully");
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Can't delete category");
+            }
 
-            return Ok("Category Removed Successfully");
         }
 
 

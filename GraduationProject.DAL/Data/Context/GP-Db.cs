@@ -50,7 +50,7 @@ namespace GraduationProject.Data.Context
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<WishList>()
-                .HasOne(wl => wl.Place)
+                .HasOne(wl => wl.Places)
                 .WithMany(p => p.WishListPlaceUsers)
                 .OnDelete(DeleteBehavior.Restrict);
 

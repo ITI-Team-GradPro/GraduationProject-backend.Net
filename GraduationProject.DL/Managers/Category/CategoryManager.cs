@@ -82,21 +82,6 @@ public class CategoryManager : ICategoryManager
     }
 
 
-    //public async Task<CategoryReadDto> GetByNameAsync(string name)
-    //{
-    //    string? categoryByName = await Task.Run(() => _UnitOfWork.Categoryrepo.GetByName(name));
-
-    //    if (categoryByName is null)
-    //    {
-    //        throw new InvalidOperationException("Category not found."); // Throwing an exception if category is not found
-    //    }
-
-    //    return new CategoryReadDto
-    //    {
-    //        Name = categoryByName
-    //    };
-    //}
-
 
    async  Task<int> ICategoryManager.Add(CategoryAddDto categoryAddDto)
     {

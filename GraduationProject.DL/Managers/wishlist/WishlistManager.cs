@@ -1,6 +1,10 @@
 ﻿using GraduationProject.BL.Dtos;
+using GraduationProject.BL.Dtos.PlaceDtos;
 using GraduationProject.DAL.Data;
+using GraduationProject.Data.Context;
 using GraduationProject.Data.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +16,14 @@ namespace GraduationProject.BL.Managers;
 public class WishlistManager : IWishlistManager
 {
     private readonly IUnitOfWork _UnitOfWork;
+    private readonly ApplicationDbContext _context;
 
-    public WishlistManager(IUnitOfWork unitOfWork)
+    public WishlistManager(IUnitOfWork unitOfWork , ApplicationDbContext context)
     {
         _UnitOfWork = unitOfWork;
+        _context = context;
     }
-      async Task<int> IWishlistManager.Add(AddWishlistDto addWishlistDto)
+    async Task<int> IWishlistManager.Add(AddWishlistDto addWishlistDto)
     {
         WishList wishList = new WishList
         {
@@ -31,13 +37,68 @@ public class WishlistManager : IWishlistManager
 
     }
 
-    Task<bool> IWishlistManager.Delete(string userid)
+    async Task<IEnumerable<GetPlaceWishlistDto>> IWishlistManager.GetAll(string userid)
     {
-        throw new NotImplementedException();
+        IEnumerable<Place> wishLists = await _UnitOfWork.Placesrepo.GetAll();
+
+        var placeDtos = wishLists.Select(p => new GetPlaceWishlistDto
+        {
+            PlaceId = p.PlaceId,
+            Name = p.Name,
+            Price = p.Price,
+            OverAllRating = p.OverAllRating,
+            Description = p.Description,
+            ImgsPlaces = p.Images.Select(i => new GetImagePlaceWishlistDto
+            {
+                ImgsPlaceId = i.ImgsPlaceId,
+                ImageUrl = i.ImageUrl,
+                publicId = i.publicId
+            }).ToList()
+        }).ToList();
+
+        return placeDtos;
     }
 
-    Task<IEnumerable<GetWishListDto>> IWishlistManager.GetAll(string userid)
+    //async Task<bool> IWishlistManager.Delete(string userid, int placeid)
+    //{
+    //    IEnumerable<WishList> wishlist = await _UnitOfWork.Wishlistrepo.GetAll();
+    //    IEnumerable<Place> userplaces = await _UnitOfWork.Wishlistrepo.UserplaceList(userid);
+    //    WishList? placetoberemoved = wishlist.FirstOrDefault(d => d.PlaceId == placeid);
+
+    //    if (placetoberemoved is null)
+    //    {
+    //        return false;
+    //    }
+    //    await _UnitOfWork.Wishlistrepo.Delete(placetoberemoved);
+    //    await _UnitOfWork.SaveChangesAsync();
+    //    return true;
+
+
+    //}
+
+    public async Task<WishList> DeletePlaceFromWishlist(string userid, int placeid)
     {
-        throw new NotImplementedException();
+        var user = await _context.Users
+            .Include(u => u.OwnedPlaces)
+            .ThenInclude(d => d.WishListPlaceUsers)
+            .FirstOrDefaultAsync(u => u.Id == userid);
+
+        if (user != null)
+        {
+            var placeToDelete = user.WishListUserPlaces.FirstOrDefault(p => p.PlaceId == placeid);
+
+            if (placeToDelete != null)
+            {
+                user.WishListUserPlaces.Remove(placeToDelete);
+                await _context.SaveChangesAsync();
+                return placeToDelete;
+            }
+        }
+
+        return null;
     }
 }
+
+
+
+
