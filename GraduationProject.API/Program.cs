@@ -24,6 +24,10 @@ using GraduationProject.DAL.Repository.Generics;
 using GraduationProject.DAL.Data;
 using GraduationProject.DAL.Repository;
 using GraduationProject.BL.Managers;
+using Microsoft.AspNetCore.OData;
+using Microsoft.OData.Edm;
+using Microsoft.OData.ModelBuilder;
+using GraduationProject.BL;
 
 
 namespace GraduationProject.API
@@ -36,9 +40,19 @@ namespace GraduationProject.API
 
             CultureInfo.DefaultThreadCurrentCulture = culture;
             CultureInfo.DefaultThreadCurrentUICulture = culture;
-
+            //Add OData Service
             var builder = WebApplication.CreateBuilder(args);
             ConfigureServices(builder.Services, builder.Configuration);
+            builder.Services.AddControllers()
+                            .AddOData(options => options
+                            .AddRouteComponents("odata", GetEdmModel())
+                            .Select()
+                            .Filter()
+                            .OrderBy()
+                            .SetMaxTop(20)
+                            .Count()
+                            .Expand()
+    );
             var app = builder.Build();
 
             if (app.Environment.IsDevelopment())
@@ -48,12 +62,26 @@ namespace GraduationProject.API
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GraduationProject.API v1"));
             }
 
+            app.UseCors(options => options
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            );
+
+
             app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
             app.Run();
+            //OData Entity Data Model Configuration
+            static IEdmModel GetEdmModel()
+            {
+                ODataConventionModelBuilder builder = new();
+                builder.EntitySet<Place>("Places");
+                return builder.GetEdmModel();
+            }
         }
 
         private static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
@@ -74,6 +102,8 @@ namespace GraduationProject.API
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ICategoryRepo,CategoryRepo>();
             services.AddScoped<ICategoryManager, CategoryManager>();
+            services.AddScoped<IUserRepo, UserRepo>();
+            services.AddScoped<IUserManager, UserManager>();
 
             services.AddAutoMapper(typeof(Program).Assembly);
             services.AddScoped<IWishlistRepo, WishlistRepo>();

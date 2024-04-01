@@ -2,32 +2,35 @@
 using GraduationProject.Bl.Dtos.PlaceDtos;
 using GraduationProject.BL.Dtos;
 using GraduationProject.BL.Dtos.PlaceDtos;
+using GraduationProject.Data.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc;
 
 
 namespace GraduationProject.BL;
 
 public interface IPlacesManager
 {
-   Task< IEnumerable<GetPlacesDtos>> GetAll();
 
-   Task< GetPlacesDtos?> GetById(int id);
+    Task<GetPlacesDtos?> GetById(int id);
 
-    Task<int> Add(AddPlaceDto addPlaceDto);
 
     Task< bool> Delete(int id);
+    public Task<PlaceDetailsDto> GetByIdWithUser(int id);
+    public Task<ImageUploadResult> UpdateImageAsync(IFormFile file);
 
-    public  Task<ImageUploadResult> UpdateImageAsync(IFormFile file);
+    public Task<bool> Update(UpdatePlaceDto updatePlaceDto);
 
-     public Task <bool> Update(UpdatePlaceDto updatePlaceDto);
+    Task<ImageUploadResult> AddPlaceAsync(AddPlaceDto addPlaceDto, IFormFile file);
+    IQueryable<FilterSearchPlaceDto> FilterPlaces();
+    IQueryable<FilterSearchPlaceDto> SearchPlaces();
+    IQueryable<CategoryPlacesDto> GetCategoryPlaces();
+    Task<IEnumerable<GetOwnerPlacesDto>> GetOwnerPlacesAsync(string ownerId);
 
-    Task<ImageUploadResult>AddPhotoAsync(AddPlaceDto addPlaceDto, IFormFile file);
-  
 }

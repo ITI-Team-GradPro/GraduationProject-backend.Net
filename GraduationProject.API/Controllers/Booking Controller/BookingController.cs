@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using GraduationProject.BL.Dtos.BookingDTOs;
 using GraduationProject.BL.Managers;
+using GraduationProject.Data.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -12,16 +13,16 @@ namespace GraduationProject.API.Controllers.Booking_Controller
     public class BookingController : ControllerBase
     {
         private readonly IBookingService _bookingService;
-        private readonly IMapper _mapper;
+        //private readonly IMapper _mapper;
 
-        public BookingController(IBookingService bookingService, IMapper Mapper)
+        public BookingController(IBookingService bookingService/*, IMapper Mapper*/)
         {
             _bookingService = bookingService;
-            _mapper = Mapper;
+            //_mapper = Mapper;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllBookings()
+        public async Task<IActionResult> GetAll()
         {
             try
             {
@@ -30,7 +31,6 @@ namespace GraduationProject.API.Controllers.Booking_Controller
             }
             catch (Exception ex)
             {
-                // Implement more specific exception handling (e.g., database errors)
                 return StatusCode(500, "An error occurred while retrieving bookings.");
             }
         }
@@ -49,7 +49,6 @@ namespace GraduationProject.API.Controllers.Booking_Controller
             }
             catch (Exception ex)
             {
-                // Implement more specific exception handling (e.g., database errors)
                 return StatusCode(500, "An error occurred while retrieving user bookings.");
             }
         }
@@ -69,7 +68,6 @@ namespace GraduationProject.API.Controllers.Booking_Controller
             }
             catch (Exception ex)
             {
-                // Implement more specific exception handling (e.g., validation errors)
                 return StatusCode(500, "An error occurred while creating the booking.");
             }
         }
@@ -88,11 +86,10 @@ namespace GraduationProject.API.Controllers.Booking_Controller
                 }
 
                 await _bookingService.DeleteBooking(bookingId);
-                return Ok("Booking deleted successfully."); // Informative message on success
+                return Ok("Booking deleted successfully.");
             }
             catch (Exception ex)
             {
-                // Implement more specific exception handling (e.g., database errors)
                 return StatusCode(500, "An error occurred while deleting the booking.");
             }
         }

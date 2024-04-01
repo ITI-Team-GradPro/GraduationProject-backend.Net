@@ -1,6 +1,6 @@
 ﻿using GraduationProject.API.Services;
-using GraduationProject.Data.Models;
 using GraduationProject.BL.Dtos.SignDtos;
+using GraduationProject.Data.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -32,7 +32,7 @@ namespace GraduationProject.API.Controllers.Register_Login_controllers.Login
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)
-                return NotFound(new Response { Status = "Error", Message = "User not found!" });
+                return NotFound(new Response { Status = "Error", Message = "Invalid email or password." });
 
             // Retrieve the user's plain-text password from the database
             string userPassword = user.Password;
@@ -42,24 +42,46 @@ namespace GraduationProject.API.Controllers.Register_Login_controllers.Login
             // Compare the provided password with the hashed password stored in the database
             if (userPassword == Password)
             {
+
+                // Create claims for user data (excluding password)
+                var claims = new List<Claim>
+        {
+            new Claim("Id", user.Id),
+            new Claim("Email", user.Email),
+            new Claim("FirstName", user.FirstName),
+            new Claim("LastName", user.LastName),
+            new Claim("RoleName", user.RoleName)
+            // Add more claims as needed
+        };
+
                 var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
                 var token = new JwtSecurityToken(
                     issuer: _configuration["JWT:ValidIssuer"],
                     audience: _configuration["JWT:ValidAudience"],
                     expires: DateTime.Now.AddHours(3),
+                    claims: claims, // Include claims in the token payload
                     signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                 );
+
                 return Ok(new
                 {
                     Status = "Success",
-                    Message = "User Login successfully!" , 
-                    token = new JwtSecurityTokenHandler().WriteToken(token),
-                    expiration = token.ValidTo
+                    Message = "User logged in successfully!",
+                    UserData = new
+                    {
+                        Email = user.Email,
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        RoleName = user.RoleName
+                        // Add more properties as needed
+                    },
+                    Token = new JwtSecurityTokenHandler().WriteToken(token),
+                    Expiration = token.ValidTo
                 });
-
             }
+
             // Passwords don't match, return Unauthorized
-            return Unauthorized();
+            return Unauthorized(new Response { Status = "Error", Message = "Invalid email or password." });
         }
         #endregion
 
@@ -92,12 +114,5 @@ namespace GraduationProject.API.Controllers.Register_Login_controllers.Login
             }
         }
         #endregion
-
-
-
     }
 }
-
-
-
-

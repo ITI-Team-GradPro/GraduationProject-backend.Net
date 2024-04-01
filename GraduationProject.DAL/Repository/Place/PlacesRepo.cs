@@ -18,7 +18,30 @@ public class PlacesRepo : GenericRepo<Place>, IPlacesRepo
     {
         _context = context;
     }
-    
+    public IQueryable<Place> FilterPlaces()
+    {
+        var places = _context.Places.AsQueryable();
+        return places;
+    }
+
+    public IQueryable<Place> SearchPlaces()
+    {
+        var places = _context.Places.AsQueryable();
+        return places;
+    }
+
+    public IQueryable<Place> GetPlacesInCategory()
+    {
+        var places = _context.Places.AsQueryable();
+        return places;
+    }
+    public async Task<IEnumerable<Place>> GetOwnerPlacesAsync(string ownerId)
+    {
+        var places = _context.Places.Where(p => p.OwnerId == ownerId).Include(p => p.Category).Include(p => p.Images).ToListAsync();
+        return await places;
+    }
+
+
 
 
 }
