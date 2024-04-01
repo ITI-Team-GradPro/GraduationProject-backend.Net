@@ -243,7 +243,7 @@ namespace GraduationProject.BL.Managers.Places
             var filterPlacesDto = filterPlacesDB.Select(x => new FilterSearchPlaceDto
             {
                 Id = x.PlaceId,
-                CategoryId = x.CategoryId,
+                CategoryName = x.Category.CategoryName,
                 Rating = x.OverAllRating,
                 Price = x.Price,
                 PeopleCapacity = x.PeopleCapacity,
@@ -261,7 +261,7 @@ namespace GraduationProject.BL.Managers.Places
             var searchPlacesDto = searchPlacesDB.Select(x => new FilterSearchPlaceDto
             {
                 Id = x.PlaceId,
-                CategoryId = x.CategoryId,
+                CategoryName = x.Category.CategoryName,
                 Rating = x.OverAllRating,
                 Price = x.Price,
                 PeopleCapacity = x.PeopleCapacity,

@@ -202,7 +202,14 @@ namespace GraduationProject.API.Controllers.Place_Controller
          api/Place/filter/?$select=Name
          */
 
-
+        /**
+        Static Guide Url:
+        if (categoryName == null)
+        categoryCheck = "ne"
+        if (location == null)
+        locationCheck = "ne"
+         Api/Place/filter?$filter=CategoryName {categoryCheck} '{categoryName}' and price le {price} and rating ge {rating} and PeopleCapacity ge {capacity} and location {locationCheck} '{location}'&$orderby={order} {ascORdesc}&skip={skippedItems}
+         */
         [HttpGet("filter")]
         [EnableQuery(PageSize = 20)]
         public ActionResult<IQueryable<FilterSearchPlaceDto>> FilterPlaces()
@@ -217,7 +224,7 @@ namespace GraduationProject.API.Controllers.Place_Controller
          */
 
         /*
-         Guide Static Url:
+         Static Guide Url:
             Api/Place/search?$filter=contains(location, '{query}') or contains(name, '{query}')&$orderby={order} {AscOrDesc}
          */
         [HttpGet("search")]
@@ -227,34 +234,9 @@ namespace GraduationProject.API.Controllers.Place_Controller
             var places = _placesManager.SearchPlaces().AsQueryable();
             return Ok(places);
         }
-        //[HttpGet("category")]
-        //[EnableQuery(PageSize = 20)]
-        //public ActionResult<IQueryable<CategoryPlacesDto>> GetCategoryPlaces(string categoryName, bool order, string orderby)
-        //{
-        //    string orderAsString;
-        //    var places = _placesManager.GetCategoryPlaces().AsQueryable();
-        //    if (!order == false)
-        //    {
-        //        orderAsString = "asc";
-        //    }
-        //    else
-        //    {
-        //        orderAsString = "desc";
-        //    }
-        //    if (orderby is null)
-        //    {
-        //        orderby = "id";
-        //    }
-        //    string baseUrl = "localhost:44300/api/Place/category/";
-        //    string query = $"?$filter=categoryname eq '{categoryName}'&$orderby={orderby} {orderAsString}";
-
-        //    var uri = new Uri(baseUrl + query);
-        //    ODataRouteOptions options = new ODataRouteOptions();
-        //    return Ok();
-        //}
 
         /*
-         Guide Static Url:
+         Static Guide Url:
             Api/Place/category?$filter=categoryname eq '{categoryName}'&$orderby={order} {AscOrDesc}
          */
         [HttpGet("category")]
