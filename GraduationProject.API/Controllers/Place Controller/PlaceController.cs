@@ -16,6 +16,7 @@ using System.Runtime.ConstrainedExecution;
 using System.Security.Claims;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace GraduationProject.API.Controllers.Place_Controller
 
@@ -26,50 +27,43 @@ namespace GraduationProject.API.Controllers.Place_Controller
     [ApiController]
 
     public class PlaceController : ControllerBase
-
     {
-
         private readonly IPlacesManager _placesManager;
 
         private readonly ApplicationDbContext _context;
-
-
-
         public PlaceController(IPlacesManager placesManager, ApplicationDbContext context)
         {
             _placesManager = placesManager;
-
             _context = context;
-          
         }
 
         // Delete Place With Image
 
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete(int id)
-
         {
+            try
+            {
+                var isFound = await _placesManager.Delete(id);
+                if (!isFound) return NotFound();
+                //return Ok("Place Remove Sucsses");
+                return StatusCode(200, "Place Removed successfully");
+            }
 
-            var isFound = await _placesManager.Delete(id);
-
-            if (!isFound) return NotFound();
-
-            return Ok("Place Remove Sucsses");
-
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while deleting the place: " + ex.Message);
+            }
         }
-
 
 
         [HttpPut("Update Place without Photo")]
 
         public async Task<IActionResult> Update([FromForm] UpdatePlaceDto NewPLace)
-
         {
-
             await _placesManager.Update(NewPLace);
-
-            return Ok("Place Updated ");
-
+            //return Ok("Place Updated ");
+            return StatusCode(200, "Place Updated successfully");
         }
 
 
@@ -79,55 +73,30 @@ namespace GraduationProject.API.Controllers.Place_Controller
         [HttpPut("update image/{imageId}")]
 
         public async Task<IActionResult> UpdateImage(int imageId, [FromForm] UpdateImageDto updateImageDto)
-
         {
-
-            // Retrieve the image entity from the database
-
             var image = _context.ImagesPlaces.Find(imageId);
 
             if (image == null)
-
             {
-
                 return NotFound();
-
             }
-
-            // Check if a file was provided
 
             if (updateImageDto.ImageFile == null || updateImageDto.ImageFile.Length == 0)
-
             {
-
                 return BadRequest("No file uploaded");
-
             }
-
-            // Upload the new image to Cloudinary
 
             var uploadResult = await _placesManager.UpdateImageAsync(updateImageDto.ImageFile);
 
             if (uploadResult.Error != null)
-
             {
-
                 return BadRequest(uploadResult.Error.Message);
-
             }
 
-            // Update the image URL in the database entity
-
             image.ImageUrl = uploadResult.SecureUrl.AbsoluteUri;
-
-            //image.PublicId = uploadResult.PublicId;
-
-            // Save changes to the database
-
             await _context.SaveChangesAsync();
-
-            return Ok("Image updated successfully");
-
+            //return Ok("Image updated successfully");
+            return StatusCode(200, " Image updated successfully");
         }
 
 
@@ -183,7 +152,9 @@ namespace GraduationProject.API.Controllers.Place_Controller
                 _context.Places.Add(place);
                 await _context.SaveChangesAsync();
 
-                return Ok("Place Added Successfully.");
+                //return Ok("Place Added Successfully.");
+                return StatusCode(200, "Place Added Successfully.");
+
             }
             catch (Exception ex)
             {
@@ -198,18 +169,12 @@ namespace GraduationProject.API.Controllers.Place_Controller
 
         [HttpGet("Get Place By Id/{id:int}")]
         public async Task<ActionResult<GetPlacesDtos>> GetById(int id)
-
         {
             GetPlacesDtos? PlacesById = await _placesManager.GetById(id);
-
             if (PlacesById == null)
-
             {
-
                 return NotFound();
-
             }
-
             return Ok(PlacesById);
 
         }
@@ -218,21 +183,16 @@ namespace GraduationProject.API.Controllers.Place_Controller
         // Get Place with Image and User By ID 
 
 
-        //[HttpGet("Get Place By Id With User/{id}")]
-        //public async Task<ActionResult<PlaceDetailsDto>> GetByIdWithUser(int id)
-        //{
-        //    PlaceDetailsDto? PlacesById = await _placesManager.GetByIdWithUser(id);
-
-        //    if (PlacesById == null)
-
-        //    {
-
-        //        return NotFound();
-
-        //    }
-
-        //    return Ok(PlacesById);
-        //}
+        [HttpGet("Get Place By Id With User/{id}")]
+        public async Task<ActionResult<PlaceDetailsDto>> GetByIdWithUser(int id)
+        {
+            PlaceDetailsDto? PlacesById = await _placesManager.GetByIdWithUser(id);
+            if (PlacesById == null)
+            {
+                return NotFound();
+            }
+            return Ok(PlacesById);
+        }
 
         /*Query Examples:
          api/Place/filter?$filter=location eq 'Alexandria'

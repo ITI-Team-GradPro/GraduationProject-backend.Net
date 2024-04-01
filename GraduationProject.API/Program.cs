@@ -27,6 +27,7 @@ using GraduationProject.BL.Managers;
 using Microsoft.AspNetCore.OData;
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder;
+using GraduationProject.BL;
 
 
 namespace GraduationProject.API
@@ -101,6 +102,8 @@ namespace GraduationProject.API
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ICategoryRepo,CategoryRepo>();
             services.AddScoped<ICategoryManager, CategoryManager>();
+            services.AddScoped<IUserRepo, UserRepo>();
+            services.AddScoped<IUserManager, UserManager>();
 
             services.AddAutoMapper(typeof(Program).Assembly);
             services.AddScoped<IWishlistRepo, WishlistRepo>();

@@ -222,7 +222,6 @@ namespace GraduationProject.BL.Managers.Places
         // Delete Place With Image
         public async Task<bool> Delete(int id)
         {
-
             Place? placedb = await _UnitOfWork.Placesrepo.GetById(id);
             if (placedb == null)
             {
@@ -234,25 +233,6 @@ namespace GraduationProject.BL.Managers.Places
                 await _UnitOfWork.Placesrepo.Delete(placedb);
                 await _UnitOfWork.SaveChangesAsync();
                 return true;
-
-                //    Place? placedb = _UnitOfWork.Placesrepo.GetById(id);
-                //    if (placedb == null)
-                //    {
-                //        return false;
-                //    }
-                //    try
-                //    {
-
-                //        _UnitOfWork.Placesrepo.Delete(placedb);
-                //        //_UnitOfWork.Placesrepo.SaveChanges();
-                //        return true;
-
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //        return false;
-                //    }
-                //}
             }
             catch (Exception ex) { return  false; }
 
