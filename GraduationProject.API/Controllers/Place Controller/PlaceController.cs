@@ -17,6 +17,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using static GraduationProject.Data.Models.User;
 
 namespace GraduationProject.API.Controllers.Place_Controller
 
@@ -263,7 +264,13 @@ namespace GraduationProject.API.Controllers.Place_Controller
         }
 
 
+
+
+
+        
+
+
+        }
     }
-}
 
 
