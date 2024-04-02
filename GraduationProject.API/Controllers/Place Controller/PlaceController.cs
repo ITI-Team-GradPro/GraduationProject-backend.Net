@@ -17,6 +17,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using System;
 
 namespace GraduationProject.API.Controllers.Place_Controller
 
@@ -266,7 +267,26 @@ namespace GraduationProject.API.Controllers.Place_Controller
         }
 
 
+
+
+
+
+        [HttpPost("{placeId}/Reviews and OverallRating/{userId}")]
+        public async Task<IActionResult> AddReviewAndCalculateOverallRating(int placeId, string userId, ReviewDto reviewDto)
+        {
+            var isSuccess = await _placesManager.AddReviewAndCalculateOverallRating(placeId, userId, reviewDto);
+            if (isSuccess)
+            {
+                return StatusCode(200, "Review added successfully, and updated overall rating");
+            }
+            else
+            {
+                return StatusCode(404, "Place not found");
+            }
+        }
     }
 }
+
+
 
 

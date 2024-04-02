@@ -292,12 +292,55 @@ namespace GraduationProject.BL.Managers.Places
         }
 
 
+        public async Task<bool> AddReviewAndCalculateOverallRating(int placeId, string userId, ReviewDto reviewDto)
+        {
+            try
+            {
+                var place = await _context.Places.FindAsync(placeId);
+                if (place == null)
+                {
+                    return false;
+                }
 
+                var review = new Review
+                {
+                    ReviewDate = DateTime.UtcNow,
+                    ReviewText = reviewDto.ReviewText,
+                    Rating = reviewDto.Rating,
+                    UserId = userId, 
+                    PlaceId = placeId
+                };
 
+                _context.Reviews.Add(review);
+                await _context.SaveChangesAsync();
 
+                var reviews = await _context.Reviews.Where(r => r.PlaceId == placeId).ToListAsync();
+
+                if (reviews.Count == 0)
+                {
+                    place.OverAllRating = 0;
+                }
+                else
+                {
+                    double totalRating = reviews.Sum(r => r.Rating);
+                    double overallRating = totalRating / reviews.Count;
+                    place.OverAllRating = overallRating;
+                }
+
+                _context.Places.Update(place);
+                await _context.SaveChangesAsync();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+    }
     }
 
 
 
-} 
+
 

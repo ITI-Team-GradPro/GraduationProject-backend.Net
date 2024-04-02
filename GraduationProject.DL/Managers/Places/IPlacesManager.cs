@@ -32,4 +32,7 @@ public interface IPlacesManager
 
     IQueryable<CategoryPlacesDto> GetCategoryPlaces();
 
+    public  Task<bool> AddReviewAndCalculateOverallRating(int placeId, string userId, ReviewDto reviewDto);
+
+
 }
