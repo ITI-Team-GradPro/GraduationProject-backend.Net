@@ -18,6 +18,9 @@ using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using System;
+using static GraduationProject.Data.Models.User;
+using Microsoft.AspNetCore.Identity;
+using GraduationProject.BL.Dtos;
 
 namespace GraduationProject.API.Controllers.Place_Controller
 
@@ -281,6 +284,12 @@ namespace GraduationProject.API.Controllers.Place_Controller
                 return StatusCode(404, "Place not found");
             }
         }
+
+
+
+
+
+
     }
 }
 
