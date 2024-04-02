@@ -11,6 +11,7 @@ using GraduationProject.BL;
 using System;
 using GraduationProject.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GraduationProject.API.Controllers
 {
@@ -49,6 +50,23 @@ namespace GraduationProject.API.Controllers
 
             return StatusCode(200, "User image uploaded successfully");
         }
-
+        //[Authorize]
+        [HttpGet("{id}")]
+        public async Task<ActionResult> GetUserProfile(string id)
+        {
+            //var currentUserId = User.Identity.Name;
+            //if (id != currentUserId)
+            //{
+            //    return Forbid("You can only access your own data.");
+            //}
+            var user = await _userManger.GetUserProfile(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            var userProfile = await _userManger.GetUserProfile(id);
+            return Ok(userProfile);
+        }
+        
     }
 }
