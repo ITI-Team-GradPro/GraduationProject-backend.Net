@@ -11,10 +11,7 @@ using GraduationProject.BL;
 using System;
 using GraduationProject.Data.Models;
 using Microsoft.EntityFrameworkCore;
-using GraduationProject.BL.Dtos.SignDtos;
-using static GraduationProject.Data.Models.User;
-using GraduationProject.BL.Dtos.User;
-using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GraduationProject.API.Controllers
 {
@@ -53,40 +50,23 @@ namespace GraduationProject.API.Controllers
 
             return StatusCode(200, "User image uploaded successfully");
         }
-
-        //[HttpGet("{UserRoleName}")]
-
-        //public async Task<ActionResult<IEnumerable<AdminRoleDto>>> GetByUserRole(string UserRoleName)
-        //{
-
-        //    //if (!Enum.TryParse<UserRole>(UserRoleName, true, out var role))
-        //    //    return BadRequest();var var user = await _context.Users.Where(a => a.RoleName == UserRoleName.ToLower())var user = await _context.Users.Where(a => a.RoleName == UserRoleName.ToLower())var user = await _context.Users.Where(a => a.RoleName == UserRoleName.ToLower()) = await _context.Users.Where(a => a.RoleName == UserRoleName.ToLower())
-
-        //var user = await _context.Users.Where(a => a.RoleName == UserRoleName.ToLower())var user = await _context.Users.Where(a => a.RoleName == UserRoleName.ToLower())var user = await _context.Users.Where(a => a.RoleName == UserRoleName.ToLower())var user = await _context.Users.Where(a => a.RoleName == UserRoleName.ToLower())var user = await _context.Users.Where(a => a.RoleName == UserRoleName.ToLower())var user = await _context.Users.Where(a => a.RoleName == UserRoleName.ToLower())var user = await _context.Users.Where(a => a.RoleName == UserRoleName.ToLower())var user = await _context.Users.Where(a => a.RoleName == UserRoleName.ToLower())var user = await _context.Users.Where(a => a.RoleName == UserRoleName.ToLower())var user = await _context.Users.Where(a => a.RoleName == UserRoleName.ToLower())var user = await _context.Users.Where(a => a.RoleName == UserRoleName.ToLower())var user = await _context.Users.Where(a => a.RoleName == UserRoleName.ToLower())var user = await _context.Users.Where(a => a.RoleName == UserRoleName.ToLower())var user = await _context.Users.Where(a => a.RoleName == UserRoleName.ToLower())var user = await _context.Users.Where(a => a.RoleName == UserRoleName.ToLower())var user = await _context.Users.Where(a => a.RoleName == UserRoleName.ToLower())var user = await _context.Users.Where(a => a.RoleName == UserRoleName.ToLower())
-
-        //    var user = await _context.Users.Where(a => a.RoleName == UserRoleName.ToLower())
-        //        .Select(a => new AdminRoleDto
-        //        {
-
-        //            UserRoleId = a.Id,
-        //            FirstName = a.FirstName,
-        //            LastName = a.LastName,
-        //            UserEmail = a.Email,
-        //            Address = a.Address,
-        //            RoleName = a.RoleName,
-
-        //        }).ToListAsync();
-
-        //    return Ok(user);
-
-
-        //}
-
-
-
-
-
-
-
+        //[Authorize]
+        [HttpGet("{id}")]
+        public async Task<ActionResult> GetUserProfile(string id)
+        {
+            //var currentUserId = User.Identity.Name;
+            //if (id != currentUserId)
+            //{
+            //    return Forbid("You can only access your own data.");
+            //}
+            var user = await _userManger.GetUserProfile(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            var userProfile = await _userManger.GetUserProfile(id);
+            return Ok(userProfile);
+        }
+        
     }
 }

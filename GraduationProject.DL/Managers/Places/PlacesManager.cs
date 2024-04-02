@@ -48,7 +48,7 @@ namespace GraduationProject.BL.Managers.Places
         public async Task<GetPlacesDtos> GetById(int id)
         {
             Place place = await _context.Places.FindAsync(id);
-           
+
             ImgsPlace imgs = await _context.ImagesPlaces.FirstOrDefaultAsync(c => c.PlaceId == place.PlaceId);
 
 
@@ -234,9 +234,9 @@ namespace GraduationProject.BL.Managers.Places
                 await _UnitOfWork.SaveChangesAsync();
                 return true;
             }
-            catch (Exception ex) { return  false; }
+            catch (Exception ex) { return false; }
 
-            }
+        }
         public IQueryable<FilterSearchPlaceDto> FilterPlaces()
         {
             IQueryable<Place> filterPlacesDB = _UnitOfWork.Placesrepo.FilterPlaces();
@@ -295,20 +295,67 @@ namespace GraduationProject.BL.Managers.Places
         {
             var places = _UnitOfWork.Placesrepo.GetOwnerPlacesAsync(ownerId);
             var placesdto = places.Result.Select(x => new GetOwnerPlacesDto
-             {
-                 id = x.PlaceId,
-                 OverAllRating = x.OverAllRating,
-                 Price = x.Price,
-                 Location = x.Location,
-                 Name = x.Name,
-                 Images = x.Images.Select(x => x.ImageUrl).ToArray(),
-                 CategoryName = x.Category.CategoryName
-             });
+            {
+                id = x.PlaceId,
+                OverAllRating = x.OverAllRating,
+                Price = x.Price,
+                Location = x.Location,
+                Name = x.Name,
+                Images = x.Images.Select(x => x.ImageUrl).ToArray(),
+                CategoryName = x.Category.CategoryName
+            });
             return await Task.FromResult(placesdto);
         }
+
+        public async Task<bool> AddReviewAndCalculateOverallRating(int placeId, string userId, ReviewDto reviewDto)
+        {
+            try
+            {
+                var place = await _context.Places.FindAsync(placeId);
+                if (place == null)
+                {
+                    return false;
+                }
+
+                var review = new Review
+                {
+                    ReviewDate = DateTime.UtcNow,
+                    ReviewText = reviewDto.ReviewText,
+                    Rating = reviewDto.Rating,
+                    UserId = userId,
+                    PlaceId = placeId
+                };
+
+                _context.Reviews.Add(review);
+                await _context.SaveChangesAsync();
+
+                var reviews = await _context.Reviews.Where(r => r.PlaceId == placeId).ToListAsync();
+
+                if (reviews.Count == 0)
+                {
+                    place.OverAllRating = 0;
+                }
+                else
+                {
+                    double totalRating = reviews.Sum(r => r.Rating);
+                    double overallRating = totalRating / reviews.Count;
+                    place.OverAllRating = overallRating;
+                }
+
+                _context.Places.Update(place);
+                await _context.SaveChangesAsync();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
+}
 
 
 
-} 
+
 
