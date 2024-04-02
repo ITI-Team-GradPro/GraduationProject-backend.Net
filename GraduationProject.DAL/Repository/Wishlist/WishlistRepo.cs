@@ -23,19 +23,33 @@ public class WishlistRepo : GenericRepo<WishList> , IWishlistRepo
     public async Task<IEnumerable<Place>> UserplaceList(string userid)
     {
 
-        var userplace = await _context.Users
-              .Where(d => d.Id == userid)
-             .Include(a => a.OwnedPlaces)
-             .ThenInclude(c => c.Images)
-             .ToListAsync();
+        //var userplace = await _context.WishList
+        //      .Where(d => d.UserId == userid)
+        //      .Include(d => d.User)
+        //     .ThenInclude(a => a.OwnedPlaces)
+        //     .ThenInclude(d => d.Images)
+        //     .ToListAsync();
 
-        var userwishlist = userplace.SelectMany(a => a.OwnedPlaces).ToList();
+        //var userwishlist = userplace.Select(a => a.User).SelectMany(d => d.OwnedPlaces).ToList();
+        //return userwishlist;
+
+        //var userPlaces = await _context.Users
+        //  .Where(u => u.Id == userid)
+        //.Include(u => u.OwnedPlaces)
+        //.ThenInclude(d => d.Images)
+        //.SelectMany(u => u.OwnedPlaces)
+        //.ToListAsync();
+
+        var wishList = await _context.WishList
+            .Where(w => w.UserId == userid)
+            .Include(w => w.Places)
+            .ToListAsync();
+
+        var userwishlist = wishList.Select(a => a.User).SelectMany(d => d.OwnedPlaces).ToList();
         return userwishlist;
-
-
     }
 
- 
+
 
     public async Task<WishList> placedeleted(string userid, int placeid)
     {

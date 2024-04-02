@@ -306,7 +306,6 @@ namespace GraduationProject.BL.Managers.Places
              });
             return await Task.FromResult(placesdto);
         }
-    }
 
         public async Task<bool> AddReviewAndCalculateOverallRating(int placeId, string userId, ReviewDto reviewDto)
         {
@@ -323,7 +322,7 @@ namespace GraduationProject.BL.Managers.Places
                     ReviewDate = DateTime.UtcNow,
                     ReviewText = reviewDto.ReviewText,
                     Rating = reviewDto.Rating,
-                    UserId = userId, 
+                    UserId = userId,
                     PlaceId = placeId
                 };
 
@@ -354,7 +353,10 @@ namespace GraduationProject.BL.Managers.Places
             }
         }
     }
-    }
+
+   
+}
+    
 
 
 
