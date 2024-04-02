@@ -35,7 +35,7 @@ namespace GraduationProject.DAL
         public async Task<IEnumerable<DateOnly>> GetUnavailableDates(int placeId, string period)
         {
             var dates = await _context.Bookings
-                .Where(b => b.PlaceId == placeId && b.Period == (BookingPeriod)Enum.Parse(typeof(BookingPeriod), period))
+                .Where(b => b.PlaceId == placeId && b.BookingStatus == Status.Confirmed && b.Period == (BookingPeriod)Enum.Parse(typeof(BookingPeriod), period))
                 .Select(b => DateOnly.FromDateTime(b.EventDate))
                 .ToListAsync();
             return dates;
