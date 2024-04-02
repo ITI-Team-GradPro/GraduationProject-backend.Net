@@ -10,7 +10,7 @@ namespace GraduationProject.BL.Dtos;
 
 public class AddWishlistDto
 {
-    public int UserId { get; set; }
+    public string UserId { get; set; }
    
     public int PlaceId { get; set; }
 }

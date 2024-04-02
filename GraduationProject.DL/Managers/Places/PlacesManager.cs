@@ -243,7 +243,7 @@ namespace GraduationProject.BL.Managers.Places
             var filterPlacesDto = filterPlacesDB.Select(x => new FilterSearchPlaceDto
             {
                 Id = x.PlaceId,
-                CategoryId = x.CategoryId,
+                CategoryName = x.Category.CategoryName,
                 Rating = x.OverAllRating,
                 Price = x.Price,
                 PeopleCapacity = x.PeopleCapacity,
@@ -261,7 +261,7 @@ namespace GraduationProject.BL.Managers.Places
             var searchPlacesDto = searchPlacesDB.Select(x => new FilterSearchPlaceDto
             {
                 Id = x.PlaceId,
-                CategoryId = x.CategoryId,
+                CategoryName = x.Category.CategoryName,
                 Rating = x.OverAllRating,
                 Price = x.Price,
                 PeopleCapacity = x.PeopleCapacity,
@@ -291,6 +291,22 @@ namespace GraduationProject.BL.Managers.Places
             return searchPlacesDto;
         }
 
+        public async Task<IEnumerable<GetOwnerPlacesDto>> GetOwnerPlacesAsync(string ownerId)
+        {
+            var places = _UnitOfWork.Placesrepo.GetOwnerPlacesAsync(ownerId);
+            var placesdto = places.Result.Select(x => new GetOwnerPlacesDto
+             {
+                 id = x.PlaceId,
+                 OverAllRating = x.OverAllRating,
+                 Price = x.Price,
+                 Location = x.Location,
+                 Name = x.Name,
+                 Images = x.Images.Select(x => x.ImageUrl).ToArray(),
+                 CategoryName = x.Category.CategoryName
+             });
+            return await Task.FromResult(placesdto);
+        }
+    }
 
         public async Task<bool> AddReviewAndCalculateOverallRating(int placeId, string userId, ReviewDto reviewDto)
         {

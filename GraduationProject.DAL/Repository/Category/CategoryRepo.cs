@@ -21,6 +21,11 @@ public class CategoryRepo : GenericRepo<Category> , ICategoryRepo
     public async Task<string> GetByName(string name)
     {
         var category = await _context.Categories.FirstOrDefaultAsync(d=>d.CategoryName == name);
+        if(category is null)
+        {
+            return "Category not found";
+        }
+
         return category.CategoryName;
     }
 

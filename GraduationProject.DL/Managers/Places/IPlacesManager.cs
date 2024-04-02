@@ -2,6 +2,7 @@
 using GraduationProject.Bl.Dtos.PlaceDtos;
 using GraduationProject.BL.Dtos;
 using GraduationProject.BL.Dtos.PlaceDtos;
+using GraduationProject.Data.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -29,8 +30,8 @@ public interface IPlacesManager
     Task<ImageUploadResult> AddPlaceAsync(AddPlaceDto addPlaceDto, IFormFile file);
     IQueryable<FilterSearchPlaceDto> FilterPlaces();
     IQueryable<FilterSearchPlaceDto> SearchPlaces();
-
     IQueryable<CategoryPlacesDto> GetCategoryPlaces();
+    Task<IEnumerable<GetOwnerPlacesDto>> GetOwnerPlacesAsync(string ownerId);
 
     public  Task<bool> AddReviewAndCalculateOverallRating(int placeId, string userId, ReviewDto reviewDto);
 

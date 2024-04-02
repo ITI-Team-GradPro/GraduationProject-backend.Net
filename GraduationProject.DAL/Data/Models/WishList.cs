@@ -13,9 +13,10 @@ namespace GraduationProject.Data.Models
         public string UserId { get; set; }
         public User User { get; set; }
 
-        [ForeignKey("Place")]
+        [ForeignKey("Places")]
         public int PlaceId { get; set; }
-        public Place Place { get; set; }
+        public Place Places { get; set; }
+
 
     }
 }

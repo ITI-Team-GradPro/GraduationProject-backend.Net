@@ -9,7 +9,7 @@ namespace GraduationProject.BL.Dtos.PlaceDtos
     public class FilterSearchPlaceDto
     {
         public int? Id { get; set; }
-        public int? CategoryId { get; set; }
+        public string CategoryName { get; set; }
         public double? Rating { get; set; }
         public decimal? Price { get; set; }
         public int? PeopleCapacity { get; set; }
