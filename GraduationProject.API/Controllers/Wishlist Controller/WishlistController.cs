@@ -79,18 +79,58 @@ public class WishlistController : ControllerBase
     //    }
     //}
 
+    //[HttpGet("{userid}")]
+    //public async Task<ActionResult<IEnumerable<GetPlaceWishlistDto>>> UserplaceList(string userid)
+    //{
+    //    IEnumerable<Place> wishlist = await _UnitOfWork.Placesrepo.GetAll();
+
+    //    var userPlaces = await _context.Users
+    //          .Where(u => u.Id == userid)
+    //        .Include(u => u.OwnedPlaces)
+    //        .ThenInclude(p => p.Images)
+    //        .SelectMany(u => u.OwnedPlaces)
+    //        .ToListAsync();
+
+    //    var placeDtos = wishlist.Select(p => new GetPlaceWishlistDto
+    //    {
+    //        PlaceId = p.PlaceId,
+    //        Name = p.Name,
+    //        Price = p.Price,
+    //        OverAllRating = p.OverAllRating,
+    //        Description = p.Description,
+    //        ImgsPlaces = p.Images.Select(i => new GetImagePlaceWishlistDto
+    //        {
+
+    //            ImageUrl = i.ImageUrl
+
+    //        }).ToList()
+    //    }).ToList();
+
+    //    return placeDtos;
+    //}
+
     [HttpGet("{userid}")]
     public async Task<ActionResult<IEnumerable<GetPlaceWishlistDto>>> UserplaceList(string userid)
     {
-        IEnumerable<Place> wishlist = await _UnitOfWork.Placesrepo.GetAll();
-        var userPlaces = await _context.Users
-              .Where(u => u.Id == userid)
+        IEnumerable<WishList> wishLists1 = await _UnitOfWork.Wishlistrepo.GetAll();
+        IEnumerable<Place> wishLists = await _UnitOfWork.Wishlistrepo.UserplaceList(userid);
+        // Retrieve the user with their owned places and associated images
+        var user = await _context.Users
+            .Where(u => u.Id == userid)
             .Include(u => u.OwnedPlaces)
-            .ThenInclude(p => p.Images)
-            .SelectMany(u => u.OwnedPlaces)
-            .ToListAsync();
+                .ThenInclude(p => p.Images)
+            .FirstOrDefaultAsync();
 
-        var placeDtos = wishlist.Select(p => new GetPlaceWishlistDto
+        if (user == null)
+        {
+            return NotFound(); // User not found
+        }
+
+        // Extract the user's owned places
+        var userPlaces = user.OwnedPlaces;
+
+        // Map the user's owned places to DTOs
+        var placeDtos = userPlaces.Select(p => new GetPlaceWishlistDto
         {
             PlaceId = p.PlaceId,
             Name = p.Name,
@@ -99,15 +139,12 @@ public class WishlistController : ControllerBase
             Description = p.Description,
             ImgsPlaces = p.Images.Select(i => new GetImagePlaceWishlistDto
             {
-                ImgsPlaceId = i.ImgsPlaceId,
-                ImageUrl = i.ImageUrl,
-                publicId = i.publicId
+                ImageUrl = i.ImageUrl
             }).ToList()
         }).ToList();
 
         return placeDtos;
     }
-
 
 
 

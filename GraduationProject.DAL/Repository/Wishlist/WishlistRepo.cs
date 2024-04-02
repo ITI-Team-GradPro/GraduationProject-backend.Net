@@ -31,10 +31,11 @@ public class WishlistRepo : GenericRepo<WishList> , IWishlistRepo
 
         var userwishlist = userplace.SelectMany(a => a.OwnedPlaces).ToList();
         return userwishlist;
-        
+
+
     }
 
-
+ 
 
     public async Task<WishList> placedeleted(string userid, int placeid)
     {
