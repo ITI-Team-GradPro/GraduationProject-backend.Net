@@ -37,13 +37,39 @@ public class WishlistManager : IWishlistManager
 
     }
 
-    async Task<IEnumerable<GetPlaceWishlistDto>> IWishlistManager.GetAll(string userid)
+    //async Task<IEnumerable<GetPlaceWishlistDto>> IWishlistManager.GetAll(string userid)
+    //{
+    //    IEnumerable<Place> wishLists = await _UnitOfWork.Placesrepo.GetAll();
+
+    //    var placeDtos = wishLists.Select(p => new GetPlaceWishlistDto
+    //    {
+    //        PlaceId = p.PlaceId,
+    //        Name = p.Name,
+    //        Price = p.Price,
+    //        OverAllRating = p.OverAllRating,
+    //        Description = p.Description,
+    //        ImgsPlaces = p.Images.Select(i => new GetImagePlaceWishlistDto
+    //        {
+
+    //            ImageUrl = i.ImageUrl
+
+    //        }).ToList()
+    //    }).ToList();
+
+    //    return placeDtos;
+    //}
+
+    [HttpGet("{userid}")]
+    public async Task<ActionResult<IEnumerable<GetPlaceWishlistDto>>> UserplaceList(string userid)
     {
-        IEnumerable<Place> wishLists = await _UnitOfWork.Placesrepo.GetAll();
+        var userPlaces = await _context.Users
+            .Where(u => u.Id == userid)
+            .Include(u => u.OwnedPlaces)
+            .ThenInclude(p => p.Images)
+            .SelectMany(u => u.OwnedPlaces)
+            .ToListAsync();
 
-      
-
-        var placeDtos = wishLists.Select(p => new GetPlaceWishlistDto
+        var placeDtos = userPlaces.Select(p => new GetPlaceWishlistDto
         {
             PlaceId = p.PlaceId,
             Name = p.Name,
@@ -52,14 +78,15 @@ public class WishlistManager : IWishlistManager
             Description = p.Description,
             ImgsPlaces = p.Images.Select(i => new GetImagePlaceWishlistDto
             {
-                ImgsPlaceId = i.ImgsPlaceId,
-                ImageUrl = i.ImageUrl,
-                publicId = i.publicId
+              
+                ImageUrl = i.ImageUrl
+              
             }).ToList()
         }).ToList();
 
         return placeDtos;
     }
+
 
     //async Task<bool> IWishlistManager.Delete(string userid, int placeid)
     //{
