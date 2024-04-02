@@ -48,7 +48,7 @@ namespace GraduationProject.BL.Managers.Places
         public async Task<GetPlacesDtos> GetById(int id)
         {
             Place place = await _context.Places.FindAsync(id);
-           
+
             ImgsPlace imgs = await _context.ImagesPlaces.FirstOrDefaultAsync(c => c.PlaceId == place.PlaceId);
 
 
@@ -234,9 +234,9 @@ namespace GraduationProject.BL.Managers.Places
                 await _UnitOfWork.SaveChangesAsync();
                 return true;
             }
-            catch (Exception ex) { return  false; }
+            catch (Exception ex) { return false; }
 
-            }
+        }
         public IQueryable<FilterSearchPlaceDto> FilterPlaces()
         {
             IQueryable<Place> filterPlacesDB = _UnitOfWork.Placesrepo.FilterPlaces();
@@ -295,15 +295,15 @@ namespace GraduationProject.BL.Managers.Places
         {
             var places = _UnitOfWork.Placesrepo.GetOwnerPlacesAsync(ownerId);
             var placesdto = places.Result.Select(x => new GetOwnerPlacesDto
-             {
-                 id = x.PlaceId,
-                 OverAllRating = x.OverAllRating,
-                 Price = x.Price,
-                 Location = x.Location,
-                 Name = x.Name,
-                 Images = x.Images.Select(x => x.ImageUrl).ToArray(),
-                 CategoryName = x.Category.CategoryName
-             });
+            {
+                id = x.PlaceId,
+                OverAllRating = x.OverAllRating,
+                Price = x.Price,
+                Location = x.Location,
+                Name = x.Name,
+                Images = x.Images.Select(x => x.ImageUrl).ToArray(),
+                CategoryName = x.Category.CategoryName
+            });
             return await Task.FromResult(placesdto);
         }
 
@@ -353,10 +353,8 @@ namespace GraduationProject.BL.Managers.Places
             }
         }
     }
-
-   
 }
-    
+
 
 
 
