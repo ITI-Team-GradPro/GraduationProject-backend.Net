@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static GraduationProject.Data.Models.User;
 
 
 namespace GraduationProject.BL;
@@ -32,8 +33,13 @@ public interface IPlacesManager
     IQueryable<FilterSearchPlaceDto> SearchPlaces();
     IQueryable<CategoryPlacesDto> GetCategoryPlaces();
     Task<IEnumerable<GetOwnerPlacesDto>> GetOwnerPlacesAsync(string ownerId);
-    Task<int> GetPlaceCountInCategory(int categoryId);
-    public  Task<bool> AddReviewAndCalculateOverallRating(int placeId, string userId, ReviewDto reviewDto);
+
+    public Task<bool> AddReviewAndCalculateOverallRating(int placeId, string userId, ReviewDto reviewDto);
+
+
+
+
+    public Task<bool> AddComment(int placeId, string userId, CommentDto commentDto);
 
 
 }

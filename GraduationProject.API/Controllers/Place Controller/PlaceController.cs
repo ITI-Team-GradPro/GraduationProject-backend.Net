@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Routing;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using System;
+using GraduationProject.BL.Dtos.SignDtos;
 
 namespace GraduationProject.API.Controllers.Place_Controller
 
@@ -281,9 +282,22 @@ namespace GraduationProject.API.Controllers.Place_Controller
                 return StatusCode(404, "Place not found");
             }
         }
+
+        [HttpPost("{placeId}/post comment /{userId}")]
+        public async Task<IActionResult> AddComment(int placeId, string userId, CommentDto commentDto)
+        {
+            var comment = await _placesManager.AddComment(placeId, userId, commentDto);
+            if (comment)
+            {
+                return Ok(new Response { Status = "Success", Message = "Comment added successfully" });
+            }
+            else
+            {
+                return BadRequest(new Response { Status = "Error", Message = "Place not found" });
+            }
+        }
     }
 }
-
 
 
 
