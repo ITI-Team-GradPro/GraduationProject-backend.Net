@@ -287,12 +287,10 @@ namespace GraduationProject.API.Controllers.Place_Controller
 
 
 
-
-
+       
 
     }
 }
-
 
 
 

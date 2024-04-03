@@ -109,42 +109,46 @@ public class WishlistController : ControllerBase
     //    return placeDtos;
     //}
 
-    [HttpGet("{userid}")]
-    public async Task<ActionResult<IEnumerable<GetPlaceWishlistDto>>> UserplaceList(string userid)
-    {
-        IEnumerable<WishList> wishLists1 = await _UnitOfWork.Wishlistrepo.GetAll();
-        IEnumerable<Place> wishLists = await _UnitOfWork.Wishlistrepo.UserplaceList(userid);
-        // Retrieve the user with their owned places and associated images
-        var user = await _context.Users
-            .Where(u => u.Id == userid)
-            .Include(u => u.OwnedPlaces)
-                .ThenInclude(p => p.Images)
-            .FirstOrDefaultAsync();
 
-        if (user == null)
-        {
-            return NotFound(); // User not found
-        }
+    /// <summary>
+    /// ////////////////////////////////////////////////////////////////////////////////////////
+  
+    //[HttpGet("{userid}")]
+    //public async Task<ActionResult<IEnumerable<GetPlaceWishlistDto>>> UserplaceList(string userid)
+    //{
+    //    IEnumerable<WishList> wishLists1 = await _UnitOfWork.Wishlistrepo.GetAll();
+    //    IEnumerable<Place> wishLists = await _UnitOfWork.Wishlistrepo.UserplaceList(userid);
+    //    // Retrieve the user with their owned places and associated images
+    //    var user = await _context.Users
+    //        .Where(u => u.Id == userid)
+    //        .Include(u => u.OwnedPlaces)
+    //            .ThenInclude(p => p.Images)
+    //        .FirstOrDefaultAsync();
 
-        // Extract the user's owned places
-        var userPlaces = user.OwnedPlaces;
+    //    if (user == null)
+    //    {
+    //        return NotFound(); // User not found
+    //    }
 
-        // Map the user's owned places to DTOs
-        var placeDtos = userPlaces.Select(p => new GetPlaceWishlistDto
-        {
-            PlaceId = p.PlaceId,
-            Name = p.Name,
-            Price = p.Price,
-            OverAllRating = p.OverAllRating,
-            Description = p.Description,
-            ImgsPlaces = p.Images.Select(i => new GetImagePlaceWishlistDto
-            {
-                ImageUrl = i.ImageUrl
-            }).ToList()
-        }).ToList();
+    //    // Extract the user's owned places
+    //    var userPlaces = user.OwnedPlaces;
 
-        return placeDtos;
-    }
+    //    // Map the user's owned places to DTOs
+    //    var placeDtos = userPlaces.Select(p => new GetPlaceWishlistDto
+    //    {
+    //        PlaceId = p.PlaceId,
+    //        Name = p.Name,
+    //        Price = p.Price,
+    //        OverAllRating = p.OverAllRating,
+    //        Description = p.Description,
+    //        ImgsPlaces = p.Images.Select(i => new GetImagePlaceWishlistDto
+    //        {
+    //            ImageUrl = i.ImageUrl
+    //        }).ToList()
+    //    }).ToList();
+
+    //    return placeDtos;
+    //}
 
 
 
@@ -196,6 +200,11 @@ public class WishlistController : ControllerBase
             return StatusCode(500, "An error occurred while deleting the place from the wishlist.");
         }
     }
+
+
+
+
+
 
 }
 
