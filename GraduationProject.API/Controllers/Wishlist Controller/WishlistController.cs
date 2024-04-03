@@ -79,94 +79,23 @@ public class WishlistController : ControllerBase
     //    }
     //}
 
-    [HttpGet("{userid}")]
-    public async Task<ActionResult<IEnumerable<GetPlaceWishlistDto>>> UserplaceList(string userid)
-    {
-        //IEnumerable<WishList> wishLists = await _UnitOfWork.Wishlistrepo.GetAll();
-        IEnumerable<Place> wishlist = await _UnitOfWork.Wishlistrepo.UserplaceList(userid);
-
-        var userPlaces = await _context.Users
-              .Where(u => u.Id == userid)
-            .Include(u => u.OwnedPlaces)
-            .ThenInclude(d=>d.Images)
-            .SelectMany(u => u.OwnedPlaces)
-            .ToListAsync();
-
-        var placeDtos = wishlist.Select(p => new GetPlaceWishlistDto
-        {
-            PlaceId = p.PlaceId,
-            Name = p.Name,
-            Price = p.Price,
-            OverAllRating = p.OverAllRating,
-            Description = p.Description,
-            ImgsPlaces = p.Images.Select(i => new GetImagePlaceWishlistDto
-            {
-
-                ImageUrl = i.ImageUrl
-
-            }).ToList()
-        }).ToList();
-
-        return placeDtos;
-    }
-
-    [HttpGet("{userid}")]
-    public async Task<ActionResult<IEnumerable<GetPlaceWishlistDto>>> UserWishlist(string userid)
-    {
-        // Retrieve the wishlist items associated with the specified user
-        var wishList = await _context.WishList
-            .Where(w => w.UserId == userid)
-            .Include(w => w.Places)
-            .ToListAsync();
-
-        // Extract all places from the wishlist items
-        var userwishlist = wishList
-            .Select(a => a.User)
-            .SelectMany(w => w.OwnedPlaces)
-            .ToList();
-
-        // Convert places to DTOs
-        var placeDtos = userwishlist.Select(p => new GetPlaceWishlistDto
-        {
-            PlaceId = p.PlaceId,
-            Name = p.Name,
-            Price = p.Price,
-            OverAllRating = p.OverAllRating,
-            Description = p.Description,
-            ImgsPlaces = p.Images.Select(i => new GetImagePlaceWishlistDto
-            {
-              
-                ImageUrl = i.ImageUrl
-               
-            }).ToList()
-        });
-
-        return Ok(placeDtos);
-    }
-
-
     //[HttpGet("{userid}")]
     //public async Task<ActionResult<IEnumerable<GetPlaceWishlistDto>>> UserplaceList(string userid)
     //{
-    //    IEnumerable<WishList> wishLists1 = await _UnitOfWork.Wishlistrepo.GetAll();
-    //    IEnumerable<Place> wishLists = await _UnitOfWork.Wishlistrepo.UserplaceList(userid);
-    //    // Retrieve the user with their owned places and associated images
-    //    var user = await _context.Users
-    //        .Where(u => u.Id == userid)
+    //    //IEnumerable<WishList> wishLists = await _UnitOfWork.Wishlistrepo.GetAll();
+    //    IEnumerable<Place> wishlist = await _UnitOfWork.Wishlistrepo.UserplaceList(userid);
+
+    //    var userPlaces = await _context.Users
+    //          .Where(u => u.Id == userid)
     //        .Include(u => u.OwnedPlaces)
-    //            .ThenInclude(p => p.Images)
-    //        .FirstOrDefaultAsync();
+    //        .ThenInclude(d => d.Images)
+    //        .SelectMany(u => u.OwnedPlaces)
+    //        .ToListAsync();
 
-    //    if (user == null)
-    //    {
-    //        return NotFound(); // User not found
-    //    }
 
-    //    // Extract the user's owned places
-    //    var userPlaces = user.OwnedPlaces;
 
-    //    // Map the user's owned places to DTOs
-    //    var placeDtos = userPlaces.Select(p => new GetPlaceWishlistDto
+
+    //    var placeDtos = wishlist.Select(p => new GetPlaceWishlistDto
     //    {
     //        PlaceId = p.PlaceId,
     //        Name = p.Name,
@@ -175,12 +104,57 @@ public class WishlistController : ControllerBase
     //        Description = p.Description,
     //        ImgsPlaces = p.Images.Select(i => new GetImagePlaceWishlistDto
     //        {
+
     //            ImageUrl = i.ImageUrl
+
     //        }).ToList()
     //    }).ToList();
 
     //    return placeDtos;
     //}
+    [HttpGet("{userId}")]
+    public async Task<ActionResult<IEnumerable<GetPlaceWishlistDto>>> userwishlist(string userId)
+    {
+        try
+        {
+            var wishlist = await _context.WishList
+               .Include(a => a.User)
+               .Where(d => d.UserId == userId)
+               .Include(s => s.Places)
+               .ThenInclude(e => e.Images)
+               .ToListAsync();
+
+
+            var wishlistDtoList = wishlist
+                .Select(item => item.Places)
+                .Select(place => new GetPlaceWishlistDto
+                {
+                    PlaceId = place.PlaceId,
+                    Name = place.Name,
+                    Price = place.Price,
+                    OverAllRating = place.OverAllRating,
+                    Description = place.Description,
+                    ImgsPlaces = place.Images.Select(i => new GetImagePlaceWishlistDto
+                    {
+
+                        ImageUrl = i.ImageUrl
+
+                    }).ToList()
+                })
+                .ToList();
+
+
+            return Ok(wishlistDtoList);
+        }
+             catch (Exception ex)
+              {
+
+              return StatusCode(500, "Can't get user's wishlist.");
+              }
+    }
+
+
+
 
 
 
