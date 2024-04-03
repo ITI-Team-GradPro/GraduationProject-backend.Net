@@ -22,7 +22,7 @@ namespace GraduationProject.API.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IUserManager _userManger;
 
-        public UserController(IUserManager userManager , ApplicationDbContext context)
+        public UserController(IUserManager userManager, ApplicationDbContext context)
         {
             _context = context;
             _userManger = userManager;
@@ -41,7 +41,7 @@ namespace GraduationProject.API.Controllers
             var user = await _context.Users.FindAsync(userId);
             if (user == null)
             {
-                return NotFound(); 
+                return NotFound();
             }
 
             user.ImageUrl = result.SecureUrl.AbsoluteUri;

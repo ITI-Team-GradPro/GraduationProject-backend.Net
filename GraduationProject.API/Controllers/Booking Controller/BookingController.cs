@@ -78,7 +78,7 @@ namespace GraduationProject.API.Controllers.Booking_Controller
             try
             {
                 var allBookings = await _bookingService.GetAllBookings();
-                var targetBooking = allBookings.Where(t=> t.BookingId == bookingId);
+                var targetBooking = allBookings.Where(t => t.BookingId == bookingId);
 
                 if (targetBooking == null)
                 {
@@ -91,6 +91,40 @@ namespace GraduationProject.API.Controllers.Booking_Controller
             catch (Exception ex)
             {
                 return StatusCode(500, "An error occurred while deleting the booking.");
+            }
+        }
+        [HttpGet("{placeId:int}")]
+        public async Task<IActionResult> GetUnavailableDates([FromRoute]int placeId, [FromHeader]string period)
+        {
+            if (string.IsNullOrEmpty(period))
+            {
+                return BadRequest("Period is required.");
+            }
+            if (placeId <= 0)
+            {
+                return BadRequest("Place ID is required.");
+            }
+            if (period != "Day" && period != "Night" && period != "AllDay")
+            {
+                return BadRequest("Invalid period.");
+            }
+            try
+            {
+                List<DateOnly> dates;
+                dates = _bookingService.GetUnavailableDates(placeId, "AllDay").Result.ToList();
+                if (period == "Day" || period == "AllDay")
+                {
+                    dates.AddRange(await _bookingService.GetUnavailableDates(placeId, "Day"));
+                }
+                if (period == "Night" || period == "AllDay")
+                {
+                    dates.AddRange(await _bookingService.GetUnavailableDates(placeId, "Night"));
+                }
+                return Ok(dates);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while retrieving unavailable dates.");
             }
         }
     }

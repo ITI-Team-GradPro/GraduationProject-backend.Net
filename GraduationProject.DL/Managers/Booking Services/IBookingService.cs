@@ -8,6 +8,7 @@ public interface IBookingService
     Task<IEnumerable<GetBookingsByUserDTO>> GetBookingsByUser(string UserId);
     Task AddNewBooking(AddNewBookingDTO bookingDTO);
     Task DeleteBooking(int id);
+    Task<IEnumerable<DateOnly>> GetUnavailableDates(int placeId, string period);
 
 }
 
