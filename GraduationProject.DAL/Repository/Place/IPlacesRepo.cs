@@ -16,4 +16,6 @@ public interface IPlacesRepo : IGenericRepo<Place>
     IQueryable<Place> SearchPlaces();
     IQueryable<Place> GetPlacesInCategory();
     Task<IEnumerable<Place>> GetOwnerPlacesAsync(string ownerId);
+
+    Task<int> GetPlaceCountInCategory(int categoryId);
 }

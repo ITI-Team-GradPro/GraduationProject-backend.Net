@@ -16,4 +16,6 @@ public interface IWishlistManager
     Task<int> Add(AddWishlistDto addWishlistDto);
     Task<WishList> DeletePlaceFromWishlist(string userid, int placeid);
 
+    Task<WishList> GetByUserIdAndPlaceId(string userid, int placeid);
+
 }

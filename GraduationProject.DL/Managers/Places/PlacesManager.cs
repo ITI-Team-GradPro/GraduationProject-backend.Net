@@ -307,6 +307,11 @@ namespace GraduationProject.BL.Managers.Places
             return await Task.FromResult(placesdto);
         }
 
+        public async Task<int> GetPlaceCountInCategory(int categoryId)
+        {
+            return await _UnitOfWork.Placesrepo.GetPlaceCountInCategory(categoryId);
+        }
+
         public async Task<bool> AddReviewAndCalculateOverallRating(int placeId, string userId, ReviewDto reviewDto)
         {
             try

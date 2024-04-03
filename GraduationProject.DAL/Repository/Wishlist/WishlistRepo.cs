@@ -46,6 +46,18 @@ public class WishlistRepo : GenericRepo<WishList> , IWishlistRepo
         return null;
     }
 
+   public async Task<WishList> Wishlistbyuseridandplaceid(string userid , int placeid)
+    {
+
+        var userwishlist = await _context.WishList
+       .Include(d => d.User)
+       .Include(w => w.Places)
+       .FirstOrDefaultAsync(a => a.UserId == userid && a.PlaceId == placeid);
+
+        return userwishlist;
+
+    }
+
     async Task<IEnumerable<WishList>> IWishlistRepo.userwishlist(string userId)
     {
         var wishlist = await _context.WishList

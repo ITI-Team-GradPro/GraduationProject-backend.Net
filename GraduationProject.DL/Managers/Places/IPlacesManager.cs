@@ -32,7 +32,7 @@ public interface IPlacesManager
     IQueryable<FilterSearchPlaceDto> SearchPlaces();
     IQueryable<CategoryPlacesDto> GetCategoryPlaces();
     Task<IEnumerable<GetOwnerPlacesDto>> GetOwnerPlacesAsync(string ownerId);
-
+    Task<int> GetPlaceCountInCategory(int categoryId);
     public  Task<bool> AddReviewAndCalculateOverallRating(int placeId, string userId, ReviewDto reviewDto);
 
 
