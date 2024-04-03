@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace GraduationProject.BL.Managers;
 public class BookingService : IBookingService
 {
@@ -75,4 +74,9 @@ public class BookingService : IBookingService
         await _unitOfWork.Bookingrepo.Delete(targetBooking);
     }
 
+    public async Task<IEnumerable<DateOnly>> GetUnavailableDates(int placeId, string period)
+    {
+        var dates = await _unitOfWork.Bookingrepo.GetUnavailableDates(placeId, period);
+        return dates;
+    }
 }

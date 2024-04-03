@@ -20,22 +20,8 @@ public class WishlistRepo : GenericRepo<WishList> , IWishlistRepo
         _context = context;
     }
 
-    public async Task<IEnumerable<Place>> UserplaceList(string userid)
-    {
+  
 
-        var userplace = await _context.Users
-              .Where(d => d.Id == userid)
-             .Include(a => a.OwnedPlaces)
-             .ThenInclude(c => c.Images)
-             .ToListAsync();
-
-        var userwishlist = userplace.SelectMany(a => a.OwnedPlaces).ToList();
-        return userwishlist;
-
-
-    }
-
- 
 
     public async Task<WishList> placedeleted(string userid, int placeid)
     {
@@ -60,6 +46,19 @@ public class WishlistRepo : GenericRepo<WishList> , IWishlistRepo
         return null;
     }
 
+    async Task<IEnumerable<WishList>> IWishlistRepo.userwishlist(string userId)
+    {
+        var wishlist = await _context.WishList
+            .Include(a => a.User)
+            .Where(d => d.UserId == userId)
+            .Include(s => s.Places)
+            .ThenInclude(e => e.Images)
+            .ToListAsync();
+
+        return wishlist;
+            
+   }
+
 
     //public async Task<bool> placedeleted(string userid, int placeid)
     //{
@@ -82,6 +81,6 @@ public class WishlistRepo : GenericRepo<WishList> , IWishlistRepo
 
     //    return false; 
     //}
- 
+
 
 }

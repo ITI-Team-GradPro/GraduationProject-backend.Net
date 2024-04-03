@@ -74,7 +74,7 @@ namespace GraduationProject.API.Controllers.Category_Controller
             try { 
             if (!IsFound)
             {
-                return NotFound();
+                return NotFound("Category not found");
             }
             
                 return Ok("Category Removed Successfully");

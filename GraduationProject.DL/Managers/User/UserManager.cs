@@ -1,6 +1,7 @@
 ﻿using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using GraduationProject.Bl.Dtos.PlaceDtos;
+using GraduationProject.BL.Dtos.UserDto;
 using GraduationProject.BL.Managers.Places;
 using GraduationProject.DAL.Data;
 using GraduationProject.Data.Context;
@@ -59,8 +60,36 @@ public class UserManager : IUserManager
             }
             return uploadResult;
 
+       }
+    public async Task<GetUserProfileDto> GetUserProfile(string id)
+    {
+        var user = await _UnitOfWork.Userrepo.GetUserProfile(id);
+        if (user == null)
+        {
+            return null;
         }
-
-
-    
+        return new GetUserProfileDto
+        {
+            Email = user.Email,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            Phone = user.Phone,
+            Bio = user.Bio,
+            Address = user.Address,
+            ImageUrl = user.ImageUrl,
+            OwnedPlaces = user.OwnedPlaces.Select(i => new UserProfilePlace
+            {
+                PlaceId = i.PlaceId,
+                Name = i.Name,
+                Price = i.Price,
+                OverAllRating = i.OverAllRating,
+                Description = i.Description,
+                CategoryId = i.CategoryId,
+                Images = i.Images.Select(i => i.ImageUrl).ToList()
+            }).ToList()
+        };
     }
+
+
+
+}

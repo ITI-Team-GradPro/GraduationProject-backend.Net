@@ -39,5 +39,7 @@ public interface IPlacesManager
 
 
 
+    public Task<bool> AddComment(int placeId, string userId, CommentDto commentDto);
+
 
 }

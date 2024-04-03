@@ -14,5 +14,6 @@ namespace GraduationProject.DAL
         //retrieve data based on an expression or something other than Id
         Task<IEnumerable<Booking>> GetAllById(string Id, Expression<Func<Booking, bool>> predicate);
         //Task<IEnumerable<Booking>> GetBookingsAsync(Expression<Func<Booking, object>> include = null);
+        Task<IEnumerable<DateOnly>> GetUnavailableDates(int placeId, string period);
     }
 }

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using static GraduationProject.Data.Models.Booking;
 
 namespace GraduationProject.DAL
 {
@@ -31,6 +32,15 @@ namespace GraduationProject.DAL
             return await filteredQuery.ToListAsync();
         }
 
+        public async Task<IEnumerable<DateOnly>> GetUnavailableDates(int placeId, string period)
+        {
+            var dates = await _context.Bookings
+                .Where(b => b.PlaceId == placeId && b.BookingStatus == Status.Confirmed && b.Period == (BookingPeriod)Enum.Parse(typeof(BookingPeriod), period))
+                .Select(b => DateOnly.FromDateTime(b.EventDate))
+                .ToListAsync();
+            return dates;
+        }
+
         //public async Task<IEnumerable<Booking>> GetBookingsAsync(Expression<Func<Booking, object>> include = null)
         //{
         //    var allBookings =  _context.Set<Booking>();
@@ -39,6 +49,6 @@ namespace GraduationProject.DAL
         //    //return result;
         //}
 
-        
+
     }
 }
