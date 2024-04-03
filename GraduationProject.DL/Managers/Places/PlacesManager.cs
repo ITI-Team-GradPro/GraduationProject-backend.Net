@@ -352,6 +352,34 @@ namespace GraduationProject.BL.Managers.Places
                 return false;
             }
         }
+
+        public async Task<bool> AddComment(int placeId, string userId, CommentDto commentDto)
+        {
+            try
+            {
+                var place = await _context.Places.FindAsync(placeId);
+                if (place == null)
+                {
+                    return false;
+                }
+
+                var comment = new Comment
+                {
+                    CommentText = commentDto.CommentText,
+                    UserId = userId,
+                    PlaceId = placeId
+                };
+
+                _context.Comments.Add(comment);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 }
 

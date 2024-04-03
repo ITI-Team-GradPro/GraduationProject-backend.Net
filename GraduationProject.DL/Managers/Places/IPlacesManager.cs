@@ -35,5 +35,7 @@ public interface IPlacesManager
 
     public  Task<bool> AddReviewAndCalculateOverallRating(int placeId, string userId, ReviewDto reviewDto);
 
+    public Task<bool> AddComment(int placeId, string userId, CommentDto commentDto);
+
 
 }
