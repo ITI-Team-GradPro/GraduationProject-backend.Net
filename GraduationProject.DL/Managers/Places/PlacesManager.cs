@@ -122,6 +122,7 @@ namespace GraduationProject.BL.Managers.Places
                    Review = r.ReviewText,
                    Rating = r.Rating,
                    UserId = r.UserId,
+                   ReviewDate=r.ReviewDate,
                    User = new UserDetailsDto
                    {
                        Name = r.User.UserName,
