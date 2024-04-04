@@ -7,6 +7,7 @@ using GraduationProject.BL.Dtos.SignDtos.ForgotPassword;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using GraduationProject.BL.Dtos.SignDtos;
 using GraduationProject.BL.Dtos.UserDto;
+using System.Security.Claims;
 
 
 namespace GraduationProject.API.Controllers.Register_Login_controllers.ForgotPass
@@ -95,17 +96,20 @@ namespace GraduationProject.API.Controllers.Register_Login_controllers.ForgotPas
             return verificationCode.ToString();
         }
 
+        
+
         [HttpPost("ChangePassword")]
         public async Task<IActionResult> ChangePassword(ChangePasswordDto changePasswordDto)
         {
             try
             {
-                var user = await _userManager.FindByEmailAsync(changePasswordDto.Email);
+                var user = await _userManager.FindByIdAsync(changePasswordDto.UserId);
                 if (user == null)
                 {
                     return NotFound("User not found.");
                 }
-                string hashedPasswordFromDb = user.Password; 
+
+                string hashedPasswordFromDb = user.Password;
 
                 string oldPasswordHash = PasswordHasherService.HashPassword(changePasswordDto.OldPassword);
 
@@ -131,8 +135,6 @@ namespace GraduationProject.API.Controllers.Register_Login_controllers.ForgotPas
                 return StatusCode(500, $" Error: {ex.Message}");
             }
         }
-
-
 
 
     }

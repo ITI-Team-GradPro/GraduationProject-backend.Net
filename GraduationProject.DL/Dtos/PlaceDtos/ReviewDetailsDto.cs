@@ -12,6 +12,8 @@ namespace GraduationProject.BL.Dtos.PlaceDtos
         public string Review { get; set; }
         public double Rating { get; set; }
         public string UserId { get; set; }
+        public DateTime ReviewDate { get; set; }
+
         public UserDetailsDto User { get; set; }
     }
 }

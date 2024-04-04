@@ -106,9 +106,9 @@ namespace GraduationProject.BL.Managers.Places
                     UserId = c.UserId,
                     User = new UserDetailsDto
                     {
-                        Name = c.User.UserName,
+                        UserName = c.User.UserName,
                         Image = c.User.ImageUrl,
-                        CommentDateTime = c.CommentDateTime
+                        CommentDateTime = c.CommentDateTime.LocalDateTime
                     }
 
                 })
@@ -122,10 +122,15 @@ namespace GraduationProject.BL.Managers.Places
                    Review = r.ReviewText,
                    Rating = r.Rating,
                    UserId = r.UserId,
+                   ReviewDate=r.ReviewDate,
                    User = new UserDetailsDto
                    {
-                       Name = r.User.UserName,
-                       Image = r.User.ImageUrl,
+                       UserName = r.User.UserName,
+                       FirstName= r.User.FirstName,
+                       LastName= r.User.LastName,
+                       Email= r.User.Email,
+                       Image = r.User.ImageUrl
+                     
                    }
                })
                .ToListAsync();
