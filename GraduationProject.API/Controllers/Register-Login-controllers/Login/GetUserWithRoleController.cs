@@ -15,13 +15,13 @@ namespace GraduationProject.API.Controllers.Register_Login_controllers.Login
         private readonly ApplicationDbContext _context;
         private readonly UserManager<User> _userManager;
 
-        public GetUserWithRoleController(ApplicationDbContext context , UserManager<User> userManager)
+        public GetUserWithRoleController(ApplicationDbContext context, UserManager<User> userManager)
         {
             _context = context;
-            _userManager=userManager;
+            _userManager = userManager;
         }
 
-    [HttpGet("{UserRoleName}")]
+        [HttpGet("{UserRoleName}")]
 
         public async Task<ActionResult<IEnumerable<UserRoleDto>>> GetByUserRole(string UserRoleName)
         {
@@ -45,50 +45,39 @@ namespace GraduationProject.API.Controllers.Register_Login_controllers.Login
 
         }
 
- 
 
-    [HttpDelete("{id}")]
+
+        [HttpDelete("{id}")]
 
 
         public async Task<ActionResult<IEnumerable<User>>> DeleteUser(string id)
         {
-
-            var user = await _context.Users.Include(a => a.ClientBookings)
+            try
+            {
+                var user = await _context.Users.Include(a => a.ClientBookings)
                 .Include(a => a.WishListUserPlaces)
                 .Include(a => a.OwnedPlaces)
                 .Include(a => a.Reviews)
                 .Include(a => a.Comments)
                 .FirstOrDefaultAsync(a => a.Id == id);
 
-            if (user == null)
-                return NotFound();
+                if (user == null)
+                    return NotFound();
 
-            else
-            {
-                _context.Bookings.RemoveRange(user.ClientBookings);
-                _context.Places.RemoveRange(user.OwnedPlaces);
-                _context.WishList.RemoveRange(user.WishListUserPlaces);
-                _context.Reviews.RemoveRange(user.Reviews);
-                _context.Comments.RemoveRange(user.Comments);
-                _context.Users.Remove(user);
-                await _context.SaveChangesAsync();
+                else
+                {
+                    _context.Bookings.RemoveRange(user.ClientBookings);
+                    _context.Places.RemoveRange(user.OwnedPlaces);
+                    _context.WishList.RemoveRange(user.WishListUserPlaces);
+                    _context.Reviews.RemoveRange(user.Reviews);
+                    _context.Comments.RemoveRange(user.Comments);
+                    _context.Users.Remove(user);
+                    await _context.SaveChangesAsync();
 
-                return Ok("User deleted successfully");
+                    return Ok("User deleted successfully");
+                }
             }
-
-        }
-
-
-
-
-
-
-
-
-
-
-                return Ok("User deleted successfully.");
-            }
+            
             catch (DbUpdateException ex)
             {
                 // Log the exception for troubleshooting
@@ -102,8 +91,5 @@ namespace GraduationProject.API.Controllers.Register_Login_controllers.Login
                 return StatusCode(500, "An unexpected error occurred while deleting the user.");
             }
         }
-
-
-
     }
 }
