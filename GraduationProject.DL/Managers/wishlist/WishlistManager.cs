@@ -126,6 +126,11 @@ public class WishlistManager : IWishlistManager
 
         return null;
     }
+
+    public async Task<WishList> GetByUserIdAndPlaceId(string userid , int placeid)
+    {
+        return await _UnitOfWork.Wishlistrepo.Wishlistbyuseridandplaceid(userid, placeid);
+    }
 }
 
 

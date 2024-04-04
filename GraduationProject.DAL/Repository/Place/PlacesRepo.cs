@@ -41,7 +41,11 @@ public class PlacesRepo : GenericRepo<Place>, IPlacesRepo
         return await places;
     }
 
-
+    public async Task<int> GetPlaceCountInCategory(int categoryId)
+    {
+        var PlacePerCategory = await _context.Places.Where(d => d.CategoryId == categoryId).CountAsync();
+        return PlacePerCategory;
+    }
 
 
 }

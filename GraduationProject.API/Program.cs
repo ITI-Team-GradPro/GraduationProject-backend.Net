@@ -107,7 +107,8 @@ namespace GraduationProject.API
             services.AddScoped<IWishlistManager, WishlistManager>();
             services.AddAutoMapper(typeof(Program).Assembly);
             services.AddScoped<IWishlistRepo, WishlistRepo>();
-
+            services.AddScoped<IWishlistManager, WishlistManager>();
+            services.AddScoped<ICountManager, CountManager>();
 
 
 

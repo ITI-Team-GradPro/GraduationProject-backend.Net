@@ -33,8 +33,16 @@ public class WishlistController : ControllerBase
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
+        var wishlist = await _UnitOfWork.Wishlistrepo.GetAll();
+        var wishlistadded = await _UnitOfWork.Wishlistrepo.Wishlistbyuseridandplaceid(addWishlistDto.UserId, addWishlistDto.PlaceId);
+
+        if(wishlistadded is not null && wishlist.Any(w => w.UserId == addWishlistDto.UserId && w.PlaceId == addWishlistDto.PlaceId))
+        {
+            return Conflict("Place already exists in your wishlist");
+        }
+
         var newwishlist = await _wishlistManager.Add(addWishlistDto);
-        return Ok("Wishlist Added Successfully");
+        return Ok("Place added to your Wishlist Successfully");
     }
 
 

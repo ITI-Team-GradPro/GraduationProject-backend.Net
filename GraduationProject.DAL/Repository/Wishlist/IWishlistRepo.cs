@@ -12,7 +12,9 @@ public interface IWishlistRepo : IGenericRepo<WishList>
 {
     //Task<IEnumerable<Place>> UserplaceList(string userid);
 
-    Task <WishList> placedeleted(string userid, int placeid);
+    Task<WishList> placedeleted(string userid, int placeid);
+
+    Task<WishList> Wishlistbyuseridandplaceid(string userid, int placeid);
 
     Task<IEnumerable<WishList>> userwishlist(string userid);
 }
