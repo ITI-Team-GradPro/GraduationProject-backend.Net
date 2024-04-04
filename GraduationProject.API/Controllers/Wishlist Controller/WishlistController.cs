@@ -38,11 +38,11 @@ public class WishlistController : ControllerBase
 
         if(wishlistadded is not null && wishlist.Any(w => w.UserId == addWishlistDto.UserId && w.PlaceId == addWishlistDto.PlaceId))
         {
-            return Conflict("Place already exists in your wishlist");
+            return Conflict(new GeneralResponse { StatusCode="Error" , Message="Place already exists in your wishlist"});
         }
 
         var newwishlist = await _wishlistManager.Add(addWishlistDto);
-        return Ok("Place added to your Wishlist Successfully");
+        return Ok(new GeneralResponse { StatusCode="Success" , Message= "Place added to your Wishlist Successfully" });
     }
 
 
@@ -157,7 +157,7 @@ public class WishlistController : ControllerBase
              catch (Exception ex)
               {
 
-              return StatusCode(500, "Can't get user's wishlist.");
+              return Conflict(new GeneralResponse { StatusCode="Error" , Message= "Can't get user's wishlist." });
               }
     }
 
@@ -201,17 +201,17 @@ public class WishlistController : ControllerBase
 
             if (deletedPlace != null)
             {
-                return Ok("place deleted from wishlist successfully"); 
+                return Ok(new GeneralResponse { StatusCode="Success" , Message= "place deleted from your wishlist successfully" }); 
             }
             else
             {
-                return NotFound("no place found"); 
+                return NotFound(new GeneralResponse { StatusCode="Error" , Message="Place not found"}); 
             }
         }
         catch (Exception ex)
         {
            
-            return StatusCode(500, "An error occurred while deleting the place from the wishlist.");
+            return NotFound(new GeneralResponse { StatusCode="Error" , Message= "An error occurred while deleting the place from your wishlist" });
         }
     }
 
