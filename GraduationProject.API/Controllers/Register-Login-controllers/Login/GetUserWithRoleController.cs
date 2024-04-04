@@ -42,19 +42,31 @@ namespace GraduationProject.API.Controllers.Register_Login_controllers.Login
 
         }
 
+ 
+
     [HttpDelete("{id}")]
 
 
-        public async Task<ActionResult<IEnumerable<User>>> DeleteUser (string id)
+        public async Task<ActionResult<IEnumerable<User>>> DeleteUser(string id)
         {
-           
-            var user = await _context.Users.FirstOrDefaultAsync(a => a.Id == id);
+
+            var user = await _context.Users.Include(a => a.ClientBookings)
+                .Include(a => a.WishListUserPlaces)
+                .Include(a => a.OwnedPlaces)
+                .Include(a => a.Reviews)
+                .Include(a => a.Comments)
+                .FirstOrDefaultAsync(a => a.Id == id);
 
             if (user == null)
                 return NotFound();
 
             else
             {
+                _context.Bookings.RemoveRange(user.ClientBookings);
+                _context.Places.RemoveRange(user.OwnedPlaces);
+                _context.WishList.RemoveRange(user.WishListUserPlaces);
+                _context.Reviews.RemoveRange(user.Reviews);
+                _context.Comments.RemoveRange(user.Comments);
                 _context.Users.Remove(user);
                 await _context.SaveChangesAsync();
 
@@ -62,7 +74,7 @@ namespace GraduationProject.API.Controllers.Register_Login_controllers.Login
             }
 
         }
-    
+
 
 
 
