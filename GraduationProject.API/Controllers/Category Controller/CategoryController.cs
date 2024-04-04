@@ -21,9 +21,17 @@ namespace GraduationProject.API.Controllers.Category_Controller
         public async Task<ActionResult> Add(CategoryAddDto category)
         {
             if (!ModelState.IsValid)
-                return BadRequest();
+                return BadRequest(ModelState);
             try
             {
+                var exixstingcategory = await _categoryManager.GetByName(category.Name);
+                var categories = await _categoryManager.GetAll();
+
+                if(exixstingcategory is not null && categories.Any(d=>d.Name == category.Name))
+                {
+                    return Conflict("Category already exists ");
+                }
+
                 var NewCategory = await _categoryManager.Add(category);
                 return Ok("Category added successfully");
             }
@@ -74,7 +82,7 @@ namespace GraduationProject.API.Controllers.Category_Controller
             try { 
             if (!IsFound)
             {
-                return NotFound();
+                return NotFound("Category not found");
             }
             
                 return Ok("Category Removed Successfully");

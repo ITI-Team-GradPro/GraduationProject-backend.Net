@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static GraduationProject.Data.Models.User;
 
 
 namespace GraduationProject.BL.Managers.Places
@@ -307,6 +308,11 @@ namespace GraduationProject.BL.Managers.Places
             return await Task.FromResult(placesdto);
         }
 
+        public async Task<int> GetPlaceCountInCategory(int categoryId)
+        {
+            return await _UnitOfWork.Placesrepo.GetPlaceCountInCategory(categoryId);
+        }
+
         public async Task<bool> AddReviewAndCalculateOverallRating(int placeId, string userId, ReviewDto reviewDto)
         {
             try
@@ -352,8 +358,37 @@ namespace GraduationProject.BL.Managers.Places
                 return false;
             }
         }
+
+        public async Task<bool> AddComment(int placeId, string userId, CommentDto commentDto)
+        {
+            try
+            {
+                var place = await _context.Places.FindAsync(placeId);
+                if (place == null)
+                {
+                    return false;
+                }
+
+                var comment = new Comment
+                {
+                    CommentText = commentDto.CommentText,
+                    UserId = userId,
+                    PlaceId = placeId
+                };
+
+                _context.Comments.Add(comment);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
     }
 }
+
 
 
 
