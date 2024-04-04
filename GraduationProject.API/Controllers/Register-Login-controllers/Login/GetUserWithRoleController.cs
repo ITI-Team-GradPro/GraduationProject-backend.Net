@@ -18,7 +18,7 @@ namespace GraduationProject.API.Controllers.Register_Login_controllers.Login
             
         }
 
-     [HttpGet("{UserRoleName}")]
+    [HttpGet("{UserRoleName}")]
 
         public async Task<ActionResult<IEnumerable<UserRoleDto>>> GetByUserRole(string UserRoleName)
         {
@@ -41,8 +41,31 @@ namespace GraduationProject.API.Controllers.Register_Login_controllers.Login
 
 
         }
-        
-       
+
+    [HttpDelete("{id}")]
+
+
+        public async Task<ActionResult<IEnumerable<User>>> DeleteUser (string id)
+        {
+           
+            var user = await _context.Users.FirstOrDefaultAsync(a => a.Id == id);
+
+            if (user == null)
+                return NotFound();
+
+            else
+            {
+                _context.Users.Remove(user);
+                await _context.SaveChangesAsync();
+
+                return Ok("User deleted successfully");
+            }
+
+        }
+    
+
+
+
 
 
 
