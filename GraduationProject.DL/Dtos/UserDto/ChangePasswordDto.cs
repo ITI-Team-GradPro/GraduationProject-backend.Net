@@ -17,6 +17,8 @@ namespace GraduationProject.BL.Dtos.UserDto
         [MinLength(8)]
         public string NewPassword { get; set; }
 
-        public string Email { get; set; }
+
+        public string UserId { get; set; } 
+
     }
 }
