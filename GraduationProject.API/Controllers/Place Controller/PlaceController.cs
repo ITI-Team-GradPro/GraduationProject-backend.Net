@@ -47,14 +47,17 @@ namespace GraduationProject.API.Controllers.Place_Controller
             try
             {
                 var isFound = await _placesManager.Delete(id);
-                if (!isFound) return NotFound();
-                //return Ok("Place Remove Sucsses");
-                return StatusCode(200, "Place Removed successfully");
+                if (!isFound)
+                return NotFound(new Response { Status = "Error", Message = "User not found!" });
+
+                return Ok(new Response { Status = "Success", Message = "Place Removed successfully" });
+
             }
 
             catch (Exception ex)
             {
-                return StatusCode(500, "An error occurred while deleting the place: " + ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "An error occurred while deleting the place: " + ex.Message });
+
             }
         }
 
@@ -64,8 +67,9 @@ namespace GraduationProject.API.Controllers.Place_Controller
         public async Task<IActionResult> Update([FromForm] UpdatePlaceDto NewPLace)
         {
             await _placesManager.Update(NewPLace);
-            //return Ok("Place Updated ");
-            return StatusCode(200, "Place Updated successfully");
+
+            return Ok(new Response { Status = "Success", Message = "Place Updated successfully" });
+
         }
 
 
@@ -80,25 +84,27 @@ namespace GraduationProject.API.Controllers.Place_Controller
 
             if (image == null)
             {
-                return NotFound();
+                return NotFound(new Response { Status = "Error", Message = "Image not found!" });
             }
 
             if (updateImageDto.ImageFile == null || updateImageDto.ImageFile.Length == 0)
             {
-                return BadRequest("No file uploaded");
+                return BadRequest(new Response { Status = "Error", Message = "No file uploaded"});
+
             }
 
             var uploadResult = await _placesManager.UpdateImageAsync(updateImageDto.ImageFile);
 
             if (uploadResult.Error != null)
             {
-                return BadRequest(uploadResult.Error.Message);
+                return BadRequest(new Response { Status = "Error", Message = $"Error in : {uploadResult.Error.Message}" });
+
             }
 
             image.ImageUrl = uploadResult.SecureUrl.AbsoluteUri;
             await _context.SaveChangesAsync();
-            //return Ok("Image updated successfully");
-            return StatusCode(200, " Image updated successfully");
+            return Ok(new Response { Status = "Success", Message = " Image updated successfully" });
+
         }
 
 
@@ -112,7 +118,8 @@ namespace GraduationProject.API.Controllers.Place_Controller
             Category category = await _context.Categories.FirstOrDefaultAsync(c => c.CategoryName.ToLower() == newPlaceDto.CategoryName.ToLower());
             if (category == null)
             {
-                return BadRequest($"Category Name '{newPlaceDto.CategoryName}' not found.");
+                return BadRequest(new Response { Status = "Error", Message = $"Category Name '{newPlaceDto.CategoryName}' not found." });
+
             }
 
             try
@@ -126,7 +133,8 @@ namespace GraduationProject.API.Controllers.Place_Controller
 
                     if (result.Error != null)
                     {
-                        return BadRequest(result.Error.Message);
+                        return BadRequest(new Response { Status = "Error", Message = result.Error.Message });
+
                     }
 
                     imageUrls.Add(result.SecureUrl.AbsoluteUri);
@@ -153,15 +161,15 @@ namespace GraduationProject.API.Controllers.Place_Controller
 
                 _context.Places.Add(place);
                 await _context.SaveChangesAsync();
+                return Ok(new Response { Status = "Success", Message = "Place Added Successfully." });
 
-                //return Ok("Place Added Successfully.");
-                return StatusCode(200, "Place Added Successfully.");
 
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error adding place: {ex.Message}");
-                return StatusCode(500, "An error occurred while adding the place.");
+               
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = $"An error occurred while adding the place : {ex.Message}" });
+
             }
         }
 
@@ -275,11 +283,13 @@ namespace GraduationProject.API.Controllers.Place_Controller
             var isSuccess = await _placesManager.AddReviewAndCalculateOverallRating(placeId, userId, reviewDto);
             if (isSuccess)
             {
-                return StatusCode(200, "Review added successfully, and updated overall rating");
+                return Ok(new Response { Status = "Success", Message = "Review added successfully, and updated overall rating" });
+
             }
             else
             {
-                return StatusCode(404, "Place not found");
+                return NotFound(new Response { Status = "Error", Message = "Place not found" });
+
             }
         }
 

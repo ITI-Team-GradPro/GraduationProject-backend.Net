@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using GraduationProject.BL.Dtos.SignDtos;
+
 
 namespace GraduationProject.API.Controllers.Register_Login_controllers.Login
 {
@@ -74,7 +76,8 @@ namespace GraduationProject.API.Controllers.Register_Login_controllers.Login
                     _context.Users.Remove(user);
                     await _context.SaveChangesAsync();
 
-                    return Ok("User deleted successfully");
+                    return Ok(new Response { Status = "Success", Message = "User deleted successfully" });
+
                 }
             }
             
@@ -82,13 +85,15 @@ namespace GraduationProject.API.Controllers.Register_Login_controllers.Login
             {
                 // Log the exception for troubleshooting
                 Console.WriteLine($"Database error occurred while deleting user: {ex.Message}");
-                return StatusCode(500, "An error occurred while deleting the user.");
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "An error occurred while deleting the user." });
+
             }
             catch (Exception ex)
             {
                 // Log the exception for troubleshooting
                 Console.WriteLine($"Error occurred while deleting user: {ex.Message}");
-                return StatusCode(500, "An unexpected error occurred while deleting the user.");
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "An unexpected error occurred while deleting the user." });
+
             }
         }
     }

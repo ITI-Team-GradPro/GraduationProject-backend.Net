@@ -161,7 +161,33 @@ public class WishlistController : ControllerBase
 
               return Conflict(new GeneralResponse { StatusCode="Error" , Message= "Can't get user's wishlist." });
               }
+
+
+
+    [HttpDelete("{userid}/wishlist/{placeid}")]
+    public async Task<ActionResult> DeletePlaceFromWishlist(string userid, int placeid)
+    {
+        IEnumerable<WishList> wishlist = await _UnitOfWork.Wishlistrepo.GetAll();
+        try
+        {
+            var deletedPlace = await _wishlistManager.DeletePlaceFromWishlist(userid, placeid);
+
+            if (deletedPlace != null)
+            {
+                return Ok(new GeneralResponse { StatusCode = "Success", Message = "place deleted from your wishlist successfully" });
+            }
+            else
+            {
+                return NotFound(new GeneralResponse { StatusCode = "Error", Message = "Place not found" });
+            }
+        }
+        catch (Exception ex)
+        {
+
+            return NotFound(new GeneralResponse { StatusCode = "Error", Message = "An error occurred while deleting the place from your wishlist" });
+        }
     }
+}
 
 
 
@@ -193,35 +219,13 @@ public class WishlistController : ControllerBase
     //}
 
 
-    [HttpDelete("{userid}/wishlist/{placeid}")]
-    public async Task<ActionResult> DeletePlaceFromWishlist(string userid, int placeid)
-    {
-        IEnumerable<WishList> wishlist = await _UnitOfWork.Wishlistrepo.GetAll();
-        try
-        {
-            var deletedPlace = await _wishlistManager.DeletePlaceFromWishlist(userid, placeid);
-
-            if (deletedPlace != null)
-            {
-                return Ok(new GeneralResponse { StatusCode="Success" , Message= "place deleted from your wishlist successfully" }); 
-            }
-            else
-            {
-                return NotFound(new GeneralResponse { StatusCode="Error" , Message="Place not found"}); 
-            }
-        }
-        catch (Exception ex)
-        {
-           
-            return NotFound(new GeneralResponse { StatusCode="Error" , Message= "An error occurred while deleting the place from your wishlist" });
-        }
-    }
+ 
 
 
 
 
 
 
-}
+
 
 
