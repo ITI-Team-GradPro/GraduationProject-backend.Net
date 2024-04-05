@@ -11,4 +11,6 @@ namespace GraduationProject.DAL;
 public interface IUserRepo : IGenericRepo<User>
 {
     Task<User> GetUserProfile(string id);
+
+  
 }

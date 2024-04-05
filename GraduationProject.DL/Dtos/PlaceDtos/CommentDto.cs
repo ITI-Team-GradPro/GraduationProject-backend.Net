@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace GraduationProject.BL.Dtos.PlaceDtos
 {
-    public class ReviewDto
+    public class CommentDto
     {
-        public string ReviewText { get; set; } 
-        public double Rating { get; set; }
-
-        //public string UserId { get; set; }
+        public string CommentText { get; set; }
     }
 }

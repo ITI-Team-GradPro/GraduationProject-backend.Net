@@ -21,15 +21,23 @@ namespace GraduationProject.API.Controllers.Category_Controller
         public async Task<ActionResult> Add(CategoryAddDto category)
         {
             if (!ModelState.IsValid)
-                return BadRequest();
+                return BadRequest(ModelState);
             try
             {
+                var exixstingcategory = await _categoryManager.GetByName(category.Name);
+                var categories = await _categoryManager.GetAll();
+
+                if(exixstingcategory is not null && categories.Any(d=>d.Name == category.Name))
+                {
+                    return Conflict(new GeneralResponse {StatusCode = "Conflict" , Message ="Category already exists!"});
+                }
+
                 var NewCategory = await _categoryManager.Add(category);
-                return Ok("Category added successfully");
+                return Ok(new GeneralResponse { StatusCode = "Success" , Message="Category added successfully"});
             }
             catch (Exception)
             {
-                return StatusCode(500 , "Can't add a category");
+                return BadRequest(new GeneralResponse { StatusCode ="Error" , Message="Can't add category!"});
             }
         }
 
@@ -43,7 +51,7 @@ namespace GraduationProject.API.Controllers.Category_Controller
             }
             catch (Exception)
             {
-                return StatusCode(500, "Can't get all categories");
+                return BadRequest(new GeneralResponse { StatusCode="Error" , Message= "Can't get all categories" });
             }
 
         }
@@ -56,13 +64,13 @@ namespace GraduationProject.API.Controllers.Category_Controller
             {
                 if (category is null)
                 {
-                    return NotFound(" no category found with this name");
+                    return NotFound(new GeneralResponse { StatusCode="Error" , Message= " no category found with this name" });
                 }
                 return Ok(category);
             }
             catch (Exception)
             {
-                return StatusCode(500, "Can't find category");
+                 return NotFound(new GeneralResponse { StatusCode = "Error", Message = "Can't find category!" });
             }
 
         }
@@ -74,14 +82,14 @@ namespace GraduationProject.API.Controllers.Category_Controller
             try { 
             if (!IsFound)
             {
-                return NotFound();
+                return NotFound(new GeneralResponse { StatusCode="Error" , Message="Category not found"});
             }
             
-                return Ok("Category Removed Successfully");
+                return Ok(new GeneralResponse { StatusCode="Success" , Message="Category deleted successfully"});
             }
             catch (Exception)
             {
-                return StatusCode(500, "Can't delete category");
+                return NotFound(new GeneralResponse { StatusCode = "Error", Message = "Can't delete category!" });
             }
 
         }

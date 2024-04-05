@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using GraduationProject.BL.Dtos.SignDtos.ForgotPassword;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using GraduationProject.BL.Dtos.SignDtos;
+using GraduationProject.BL.Dtos.UserDto;
+using System.Security.Claims;
 
 
 namespace GraduationProject.API.Controllers.Register_Login_controllers.ForgotPass
@@ -93,5 +95,47 @@ namespace GraduationProject.API.Controllers.Register_Login_controllers.ForgotPas
             int verificationCode = rnd.Next(100000, 999999);
             return verificationCode.ToString();
         }
+
+        
+
+        [HttpPost("ChangePassword")]
+        public async Task<IActionResult> ChangePassword(ChangePasswordDto changePasswordDto)
+        {
+            try
+            {
+                var user = await _userManager.FindByIdAsync(changePasswordDto.UserId);
+                if (user == null)
+                {
+                    return NotFound("User not found.");
+                }
+
+                string hashedPasswordFromDb = user.Password;
+
+                string oldPasswordHash = PasswordHasherService.HashPassword(changePasswordDto.OldPassword);
+
+                if (hashedPasswordFromDb != oldPasswordHash)
+                {
+                    return BadRequest("Failed to change password. The old password is incorrect.");
+                }
+
+                var newPasswordHash = PasswordHasherService.HashPassword(changePasswordDto.NewPassword);
+
+                user.Password = newPasswordHash;
+
+                var result = await _userManager.UpdateAsync(user);
+                if (!result.Succeeded)
+                {
+                    return BadRequest("Failed to change password. Please try again later.");
+                }
+
+                return Ok("Password changed successfully.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $" Error: {ex.Message}");
+            }
+        }
+
+
     }
 }
