@@ -12,6 +12,7 @@ using System;
 using GraduationProject.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using GraduationProject.BL.Dtos;
 
 namespace GraduationProject.API.Controllers
 {
@@ -66,6 +67,24 @@ namespace GraduationProject.API.Controllers
             }
             var userProfile = await _userManger.GetUserProfile(id);
             return Ok(userProfile);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<UpdateUserProfileDto>> UpdateUserProfile(string id, UpdateUserProfileDto profileDto)
+        {
+            try
+            {
+                var profile = await _userManger.UpdateUserProfile(id, profileDto);
+                if (profile is null)
+                {
+                    return NotFound(new GeneralResponse { StatusCode = "Error", Message = "Can't update profile!" });
+                }
+                return Ok(profile);
+            }
+            catch (Exception)
+            {
+                return NotFound(new GeneralResponse { StatusCode = "Error", Message = "Can't update profile!" });
+            }
         }
         
     }
