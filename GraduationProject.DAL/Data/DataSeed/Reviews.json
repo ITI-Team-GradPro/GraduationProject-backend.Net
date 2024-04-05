@@ -1,0 +1,751 @@
+[
+  {
+    "ReviewDate": "2024-01-15T20:30:00",
+    "ReviewText": "The ambiance of the venue was truly enchanting, making our wedding night a dream come true. The staff's attention to detail and warm hospitality made all the difference.",
+    "Rating": 5,
+    "UserId": "c8e90cbd-fdeb-4162-93a9-762380e4fe9e",
+    "PlaceId": 15
+  },
+  {
+    "ReviewDate": "2024-02-10T13:00:00",
+    "ReviewText": "I had my birthday party here and it was fantastic! The location was easy for everyone to get to, and the space was just the right size for my guests.",
+    "Rating": 4,
+    "UserId": "f27a27fa-000c-467e-b6e6-ab1270f22938",
+    "PlaceId": 22
+  },
+  {
+    "ReviewDate": "2024-03-22T18:45:00",
+    "ReviewText": "The venue had a magical setting by the Nile. However, the event coordinator was a bit late in responding to our requests, which caused some initial stress.",
+    "Rating": 3,
+    "UserId": "f27a27fa-000c-467e-b6e6-ab1270f22938",
+    "PlaceId": 37
+  },
+  {
+    "ReviewDate": "2024-04-05T16:15:00",
+    "ReviewText": "Sadly, the experience didn't meet our expectations. The place was not as clean as we hoped, and the sound system had issues that weren't resolved quickly.",
+    "Rating": 2,
+    "UserId": "f27a27fa-000c-467e-b6e6-ab1270f22938",
+    "PlaceId": 48
+  },
+  {
+    "ReviewDate": "2024-01-25T11:00:00",
+    "ReviewText": "What a remarkable photoshoot location! The lighting was perfect during the golden hour, and the staff helped us capture stunning shots.",
+    "Rating": 5,
+    "UserId": "f27a27fa-000c-467e-b6e6-ab1270f22938",
+    "PlaceId": 9
+  },
+  {
+    "ReviewDate": "2024-02-14T19:00:00",
+    "ReviewText": "The Valentine's Day event was spectacular! The venue's romantic setting made our evening unforgettable. Kudos to the management for such a well-organized event.",
+    "Rating": 5,
+    "UserId": "f27a27fa-000c-467e-b6e6-ab1270f22938",
+    "PlaceId": 5
+  },
+  {
+    "ReviewDate": "2024-03-01T15:30:00",
+    "ReviewText": "Attended a conference here and the facilities were top-notch. The staff was professional and the catering was delicious. Highly recommend for corporate events!",
+    "Rating": 5,
+    "UserId": "f27a27fa-000c-467e-b6e6-ab1270f22938",
+    "PlaceId": 18
+  },
+  {
+    "ReviewDate": "2024-01-10T10:15:00",
+    "ReviewText": "We had our engagement party at this venue and it was a bit of a letdown. The decor was not as promised and we had to make last-minute changes.",
+    "Rating": 2,
+    "UserId": "f27a27fa-000c-467e-b6e6-ab1270f22938",
+    "PlaceId": 29
+  },
+  {
+    "ReviewDate": "2024-02-20T22:00:00",
+    "ReviewText": "What an epic birthday bash! The sound system was incredible and the lighting set the perfect mood. Everyone had a blast!",
+    "Rating": 5,
+    "UserId": "f27a27fa-000c-467e-b6e6-ab1270f22938",
+    "PlaceId": 34
+  },
+  {
+    "ReviewDate": "2024-03-15T13:45:00",
+    "ReviewText": "The view from this venue is unmatched. Watching the sunset over the Nile as we celebrated our anniversary was truly special.",
+    "Rating": 4,
+    "UserId": "f27a27fa-000c-467e-b6e6-ab1270f22938",
+    "PlaceId": 41
+  },
+  {
+    "ReviewDate": "2024-01-22T18:30:00",
+    "ReviewText": "The staff at this venue were angels! They went above and beyond to accommodate our needs and made sure our event ran smoothly.",
+    "Rating": 5,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 46
+  },
+  {
+    "ReviewDate": "2024-03-30T16:00:00",
+    "ReviewText": "Unfortunately, the parking situation was a nightmare. The venue itself was great, but better organization is needed for events.",
+    "Rating": 3,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 51
+  },
+  {
+    "ReviewDate": "2024-02-05T20:15:00",
+    "ReviewText": "The venue's acoustics were perfect for our musical event. The guests were impressed and we're definitely booking here again.",
+    "Rating": 5,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 55
+  },
+  {
+    "ReviewDate": "2024-04-02T12:00:00",
+    "ReviewText": "I attended a wedding here and it was decent, but the air conditioning wasn't strong enough for the crowd. It got uncomfortably warm.",
+    "Rating": 3,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 59
+  },
+  {
+    "ReviewDate": "2024-03-05T09:30:00",
+    "ReviewText": "The garden setting was idyllic for our family reunion. The kids had space to play and the adults enjoyed the tranquil atmosphere.",
+    "Rating": 4,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 8
+  },
+  {
+    "ReviewDate": "2024-03-12T17:30:00",
+    "ReviewText": "The venue's ancient Egyptian theme added a touch of history to our event. It was a conversation starter for many of our guests!",
+    "Rating": 4,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 14
+  },
+  {
+    "ReviewDate": "2024-01-05T12:00:00",
+    "ReviewText": "Our corporate event was a success, thanks to the venue's impeccable service and state-of-the-art facilities.",
+    "Rating": 5,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 21
+  },
+  {
+    "ReviewDate": "2024-02-25T20:00:00",
+    "ReviewText": "The outdoor setting was perfect for our spring wedding. The blooming flowers and greenery made our photos look stunning.",
+    "Rating": 5,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 30
+  },
+  {
+    "ReviewDate": "2024-03-22T09:00:00",
+    "ReviewText": "The venue was a bit crowded and noisy, which took away from the intimate atmosphere we wanted for our anniversary dinner.",
+    "Rating": 3,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 39
+  },
+  {
+    "ReviewDate": "2024-01-18T14:00:00",
+    "ReviewText": "The acoustics in the hall were perfect for our musical performance. The staff was also very helpful with the setup.",
+    "Rating": 5,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 47
+  },
+  {
+    "ReviewDate": "2024-02-11T19:45:00",
+    "ReviewText": "The lighting at the venue was too dim for our liking, and it affected the mood of our celebration.",
+    "Rating": 2,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 56
+  },
+  {
+    "ReviewDate": "2024-03-30T11:30:00",
+    "ReviewText": "The historical venue provided a unique backdrop for our event, but the facilities could use some modern upgrades.",
+    "Rating": 3,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 7
+  },
+  {
+    "ReviewDate": "2024-01-28T16:20:00",
+    "ReviewText": "The staff's professionalism and the venue's elegant decor made our wedding reception a night to remember.",
+    "Rating": 5,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 16
+  },
+  {
+    "ReviewDate": "2024-02-08T13:50:00",
+    "ReviewText": "The venue's location was convenient, but the parking was insufficient for the number of guests we had.",
+    "Rating": 3,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 25
+  },
+  {
+    "ReviewDate": "2024-03-18T21:00:00",
+    "ReviewText": "The beachfront venue was absolutely breathtaking for our sunset wedding. The staff ensured everything went smoothly.",
+    "Rating": 5,
+    "UserId": "20ec9b87-be7c-4a43-9127-1fb98b59a736",
+    "PlaceId": 35
+  },
+  {
+    "ReviewDate": "2024-01-22T10:10:00",
+    "ReviewText": "The venue's intimate setting was perfect for our family gathering, though some additional signage would help with navigation.",
+    "Rating": 4,
+    "UserId": "20ec9b87-be7c-4a43-9127-1fb98b59a736",
+    "PlaceId": 43
+  },
+  {
+    "ReviewDate": "2024-02-17T18:30:00",
+    "ReviewText": "The rooftop venue offered stunning views of the city, but the elevator service was slow, causing some inconvenience.",
+    "Rating": 3,
+    "UserId": "20ec9b87-be7c-4a43-9127-1fb98b59a736",
+    "PlaceId": 52
+  },
+  {
+    "ReviewDate": "2024-03-08T15:20:00",
+    "ReviewText": "The garden venue was a natural paradise, but the mosquitoes were a nuisance. Remember to bring repellent!",
+    "Rating": 4,
+    "UserId": "20ec9b87-be7c-4a43-9127-1fb98b59a736",
+    "PlaceId": 10
+  },
+  {
+    "ReviewDate": "2024-01-30T22:15:00",
+    "ReviewText": "The ballroom's classic elegance added a touch of sophistication to our event, though the air conditioning was a bit too cold.",
+    "Rating": 4,
+    "UserId": "20ec9b87-be7c-4a43-9127-1fb98b59a736",
+    "PlaceId": 19
+  },
+  {
+    "ReviewDate": "2024-02-22T12:30:00",
+    "ReviewText": "The venue's modern design was impressive, but the soundproofing between conference rooms needs improvement.",
+    "Rating": 3,
+    "UserId": "20ec9b87-be7c-4a43-9127-1fb98b59a736",
+    "PlaceId": 28
+  },
+  {
+    "ReviewDate": "2024-03-25T17:00:00",
+    "ReviewText": "The rooftop view was mesmerizing, making our night unforgettable. The staff was attentive and the food was divine.",
+    "Rating": 5,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 1
+  },
+  {
+    "ReviewDate": "2024-01-12T14:30:00",
+    "ReviewText": "The historical charm of the venue added a unique touch to our event, but the modern amenities were lacking.",
+    "Rating": 3,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 2
+  },
+  {
+    "ReviewDate": "2024-01-03T12:30:00",
+    "ReviewText": "The venue's panoramic view of the city skyline was breathtaking. Our guests were in awe, and the service was impeccable.",
+    "Rating": 5,
+    "UserId": "20ec9b87-be7c-4a43-9127-1fb98b59a736",
+    "PlaceId": 11
+  },
+  {
+    "ReviewDate": "2024-01-15T18:45:00",
+    "ReviewText": "The beach venue was stunning, but the event was marred by a late start due to setup delays.",
+    "Rating": 3,
+    "UserId": "282b0639-2556-452a-b6e8-4ce97593a262",
+    "PlaceId": 12
+  },
+  {
+    "ReviewDate": "2024-02-09T16:00:00",
+    "ReviewText": "The historic venue was the perfect setting for our vintage-themed event. It was like stepping back in time!",
+    "Rating": 4,
+    "UserId": "282b0639-2556-452a-b6e8-4ce97593a262",
+    "PlaceId": 13
+  },
+  {
+    "ReviewDate": "2024-02-22T20:30:00",
+    "ReviewText": "The garden venue's natural beauty was enchanting, though some areas were not well-lit for our evening event.",
+    "Rating": 4,
+    "UserId": "282b0639-2556-452a-b6e8-4ce97593a262",
+    "PlaceId": 14
+  },
+  {
+    "ReviewDate": "2024-03-05T11:15:00",
+    "ReviewText": "The staff at this venue were incredibly supportive and made our charity event a huge success.",
+    "Rating": 5,
+    "UserId": "282b0639-2556-452a-b6e8-4ce97593a262",
+    "PlaceId": 15
+  },
+  {
+    "ReviewDate": "2024-01-20T09:30:00",
+    "ReviewText": "The acoustics were not ideal, which affected our live music performance. The venue needs better sound equipment.",
+    "Rating": 2,
+    "UserId": "282b0639-2556-452a-b6e8-4ce97593a262",
+    "PlaceId": 16
+  },
+  {
+    "ReviewDate": "2024-02-12T14:00:00",
+    "ReviewText": "The ballroom was elegant and spacious, but the air conditioning was too cold, causing some discomfort.",
+    "Rating": 3,
+    "UserId": "282b0639-2556-452a-b6e8-4ce97593a262",
+    "PlaceId": 17
+  },
+  {
+    "ReviewDate": "2024-03-18T19:00:00",
+    "ReviewText": "The venue's waterfront location provided a serene atmosphere for our yoga retreat. Simply tranquil.",
+    "Rating": 5,
+    "UserId": "282b0639-2556-452a-b6e8-4ce97593a262",
+    "PlaceId": 18
+  },
+  {
+    "ReviewDate": "2024-01-28T17:30:00",
+    "ReviewText": "The venue's urban chic decor was the perfect backdrop for our product launch. The central location was a plus.",
+    "Rating": 5,
+    "UserId": "282b0639-2556-452a-b6e8-4ce97593a262",
+    "PlaceId": 19
+  },
+  {
+    "ReviewDate": "2024-02-18T13:00:00",
+    "ReviewText": "The venue was a bit difficult to find, and signage could be improved. The event space itself was excellent.",
+    "Rating": 4,
+    "UserId": "282b0639-2556-452a-b6e8-4ce97593a262",
+    "PlaceId": 20
+  },
+  {
+    "ReviewDate": "2024-03-25T10:00:00",
+    "ReviewText": "The venue's classic architecture made for a stunning wedding ceremony, but the restrooms were not well-maintained.",
+    "Rating": 3,
+    "UserId": "2a39736d-d46f-40d9-83b7-1d5c286fed61",
+    "PlaceId": 21
+  },
+  {
+    "ReviewDate": "2024-01-11T15:45:00",
+    "ReviewText": "The venue's intimate setting was perfect for our small gathering, creating a warm and inviting atmosphere.",
+    "Rating": 5,
+    "UserId": "2a39736d-d46f-40d9-83b7-1d5c286fed61",
+    "PlaceId": 22
+  },
+  {
+    "ReviewDate": "2024-02-27T18:15:00",
+    "ReviewText": "The venue's sound system was top-notch, making our dance party a hit. The vibrant lighting added to the fun.",
+    "Rating": 5,
+    "UserId": "2a39736d-d46f-40d9-83b7-1d5c286fed61",
+    "PlaceId": 23
+  },
+  {
+    "ReviewDate": "2024-03-14T12:30:00",
+    "ReviewText": "The venue's modern art installations provided a unique and inspiring setting for our creative workshop.",
+    "Rating": 4,
+    "UserId": "2a39736d-d46f-40d9-83b7-1d5c286fed61",
+    "PlaceId": 24
+  },
+  {
+    "ReviewDate": "2024-01-19T20:00:00",
+    "ReviewText": "The venue's outdoor patio was lovely, but the event was disrupted by unexpected construction noise nearby.",
+    "Rating": 3,
+    "UserId": "2a39736d-d46f-40d9-83b7-1d5c286fed61",
+    "PlaceId": 25
+  },
+  {
+    "ReviewDate": "2024-02-03T17:45:00",
+    "ReviewText": "The grandeur of the palace venue made us feel like royalty on our special day. The historical ambiance was truly mesmerizing.",
+    "Rating": 5,
+    "UserId": "2a39736d-d46f-40d9-83b7-1d5c286fed61",
+    "PlaceId": 26
+  },
+  {
+    "ReviewDate": "2024-01-21T13:30:00",
+    "ReviewText": "The boutique farm lodge was a rustic paradise for our wedding, blending elegance with nature's charm.",
+    "Rating": 5,
+    "UserId": "2a39736d-d46f-40d9-83b7-1d5c286fed61",
+    "PlaceId": 27
+  },
+  {
+    "ReviewDate": "2024-03-11T19:00:00",
+    "ReviewText": "The yacht venue provided an intimate and luxurious setting for our anniversary celebration, cruising along the Nile.",
+    "Rating": 5,
+    "UserId": "4efc3ebc-0b04-4fdd-9bcc-2406ba7def32",
+    "PlaceId": 28
+  },
+  {
+    "ReviewDate": "2024-01-08T14:15:00",
+    "ReviewText": "The villa's garden was a serene setting for our family reunion, though some additional outdoor heating would have been appreciated.",
+    "Rating": 4,
+    "UserId": "4efc3ebc-0b04-4fdd-9bcc-2406ba7def32",
+    "PlaceId": 29
+  },
+  {
+    "ReviewDate": "2024-02-17T10:30:00",
+    "ReviewText": "The modern art venue inspired creativity and conversation, making our corporate event a standout experience.",
+    "Rating": 4,
+    "UserId": "4efc3ebc-0b04-4fdd-9bcc-2406ba7def32",
+    "PlaceId": 30
+  },
+  {
+    "ReviewDate": "2024-03-20T16:00:00",
+    "ReviewText": "The ballroom's opulence was matched by the staff's meticulous service, ensuring our gala was a resounding success.",
+    "Rating": 5,
+    "UserId": "4efc3ebc-0b04-4fdd-9bcc-2406ba7def32",
+    "PlaceId": 31
+  },
+  {
+    "ReviewDate": "2024-01-30T11:00:00",
+    "ReviewText": "The rooftop garden venue offered a stunning cityscape view, though the elevator access was a bit slow for our guests.",
+    "Rating": 4,
+    "UserId": "4efc3ebc-0b04-4fdd-9bcc-2406ba7def32",
+    "PlaceId": 32
+  },
+  {
+    "ReviewDate": "2024-02-25T18:30:00",
+    "ReviewText": "The beachfront pavilion was the perfect canvas for our dream wedding, with the sound of waves complementing our vows.",
+    "Rating": 5,
+    "UserId": "5ae05ddc-6674-4d50-b96e-eed5ac0db7c6",
+    "PlaceId": 33
+  },
+  {
+    "ReviewDate": "2024-03-07T20:15:00",
+    "ReviewText": "The desert oasis venue provided a breathtaking backdrop for our event, though the remote location made transportation challenging.",
+    "Rating": 4,
+    "UserId": "5ae05ddc-6674-4d50-b96e-eed5ac0db7c6",
+    "PlaceId": 34
+  },
+  {
+    "ReviewDate": "2024-01-16T09:45:00",
+    "ReviewText": "The convention center's facilities were top-tier, accommodating our large conference with ease and professionalism.",
+    "Rating": 5,
+    "UserId": "5ae05ddc-6674-4d50-b96e-eed5ac0db7c6",
+    "PlaceId": 35
+  },
+  {
+    "ReviewDate": "2024-02-08T12:30:00",
+    "ReviewText": "The marina venue's picturesque setting made our social gathering a memorable one, with the sunset providing a perfect photo op.",
+    "Rating": 5,
+    "UserId": "5ae05ddc-6674-4d50-b96e-eed5ac0db7c6",
+    "PlaceId": 36
+  },
+  {
+    "ReviewDate": "2024-03-18T15:00:00",
+    "ReviewText": "The palace venue's historical significance added depth to our cultural event, though some modern amenities were missing.",
+    "Rating": 4,
+    "UserId": "5ae05ddc-6674-4d50-b96e-eed5ac0db7c6",
+    "PlaceId": 37
+  },
+  {
+    "ReviewDate": "2024-01-25T17:30:00",
+    "ReviewText": "The lotus hall's traditional decor was the perfect setting for our heritage celebration, immersing guests in the local culture.",
+    "Rating": 5,
+    "UserId": "5ae05ddc-6674-4d50-b96e-eed5ac0db7c6",
+    "PlaceId": 38
+  },
+  {
+    "ReviewDate": "2024-02-15T13:45:00",
+    "ReviewText": "The citadel view venue's historic panorama made our event feel like a journey through time, though accessibility could be improved.",
+    "Rating": 4,
+    "UserId": "5ae05ddc-6674-4d50-b96e-eed5ac0db7c6",
+    "PlaceId": 39
+  },
+  {
+    "ReviewDate": "2024-03-23T10:15:00",
+    "ReviewText": "The floating boat venue offered a unique experience on the Nile, though the limited space required careful planning.",
+    "Rating": 4,
+    "UserId": "5ef8fc50-8393-4649-9d28-ef3e3d3bd706",
+    "PlaceId": 40
+  },
+  {
+    "ReviewDate": "2024-01-04T10:20:00",
+    "ReviewText": "The venue's location right by the pyramids provided an awe-inspiring backdrop for our event. Truly a once-in-a-lifetime experience.",
+    "Rating": 5,
+    "UserId": "5ef8fc50-8393-4649-9d28-ef3e3d3bd706",
+    "PlaceId": 40
+  },
+  {
+    "ReviewDate": "2024-02-11T17:30:00",
+    "ReviewText": "The park venue was a green oasis in the city, perfect for our casual outdoor wedding. The natural setting was refreshing.",
+    "Rating": 4,
+    "UserId": "5ef8fc50-8393-4649-9d28-ef3e3d3bd706",
+    "PlaceId": 41
+  },
+  {
+    "ReviewDate": "2024-03-21T15:00:00",
+    "ReviewText": "The villa's garden was enchanting, with beautiful lighting that made our evening celebration magical.",
+    "Rating": 5,
+    "UserId": "5ef8fc50-8393-4649-9d28-ef3e3d3bd706",
+    "PlaceId": 42
+  },
+  {
+    "ReviewDate": "2024-01-12T19:45:00",
+    "ReviewText": "The boutique farm lodge was a unique venue that provided a cozy and rustic charm for our intimate gathering.",
+    "Rating": 5,
+    "UserId": "5ef8fc50-8393-4649-9d28-ef3e3d3bd706",
+    "PlaceId": 43
+  },
+  {
+    "ReviewDate": "2024-02-18T13:15:00",
+    "ReviewText": "The yacht experience was exceptional, offering stunning views of the Nile as we celebrated our special occasion.",
+    "Rating": 5,
+    "UserId": "679c3c6a-9f14-486b-ab4e-0cb2a42413a7",
+    "PlaceId": 44
+  },
+  {
+    "ReviewDate": "2024-03-28T11:30:00",
+    "ReviewText": "The palace venue was regal and provided a historic atmosphere that added depth to our cultural event.",
+    "Rating": 4,
+    "UserId": "679c3c6a-9f14-486b-ab4e-0cb2a42413a7",
+    "PlaceId": 45
+  },
+  {
+    "ReviewDate": "2024-01-22T14:00:00",
+    "ReviewText": "The convention center was well-equipped and spacious, making it ideal for our large-scale corporate event.",
+    "Rating": 5,
+    "UserId": "679c3c6a-9f14-486b-ab4e-0cb2a42413a7",
+    "PlaceId": 46
+  },
+  {
+    "ReviewDate": "2024-02-05T18:20:00",
+    "ReviewText": "The marina venue's waterfront setting was picturesque, providing a tranquil environment for our event.",
+    "Rating": 4,
+    "UserId": "679c3c6a-9f14-486b-ab4e-0cb2a42413a7",
+    "PlaceId": 47
+  },
+  {
+    "ReviewDate": "2024-03-15T09:45:00",
+    "ReviewText": "The ballroom venue was elegant and sophisticated, perfect for our formal gala with its luxurious decor.",
+    "Rating": 5,
+    "UserId": "679c3c6a-9f14-486b-ab4e-0cb2a42413a7",
+    "PlaceId": 48
+  },
+  {
+    "ReviewDate": "2024-01-30T16:30:00",
+    "ReviewText": "The rooftop garden venue offered a stunning view of the city, making our cocktail event a memorable one.",
+    "Rating": 5,
+    "UserId": "679c3c6a-9f14-486b-ab4e-0cb2a42413a7",
+    "PlaceId": 49
+  },
+  {
+    "ReviewDate": "2024-02-20T12:00:00",
+    "ReviewText": "The beach pavilion was a dreamy location for our wedding, with the sound of the waves adding to the ambiance.",
+    "Rating": 5,
+    "UserId": "88d186e2-e073-4123-9b08-97995d10b59b",
+    "PlaceId": 50
+  },
+  {
+    "ReviewDate": "2024-03-10T20:15:00",
+    "ReviewText": "The desert arena was an adventurous choice for our event, offering a unique experience under the stars.",
+    "Rating": 4,
+    "UserId": "88d186e2-e073-4123-9b08-97995d10b59b",
+    "PlaceId": 51
+  },
+  {
+    "ReviewDate": "2024-01-17T17:50:00",
+    "ReviewText": "The open-air venue by the Nile was serene and beautiful, providing a calm atmosphere for our yoga retreat.",
+    "Rating": 5,
+    "UserId": "88d186e2-e073-4123-9b08-97995d10b59b",
+    "PlaceId": 52
+  },
+  {
+    "ReviewDate": "2024-02-28T14:30:00",
+    "ReviewText": "The palace's grand architecture made our wedding feel like a fairy tale come true, with every detail meticulously handled.",
+    "Rating": 5,
+    "UserId": "88d186e2-e073-4123-9b08-97995d10b59b",
+    "PlaceId": 53
+  },
+  {
+    "ReviewDate": "2024-03-19T10:00:00",
+    "ReviewText": "The boutique lodge was a charming and cozy venue that provided a personalized touch to our small gathering.",
+    "Rating": 4,
+    "UserId": "88d186e2-e073-4123-9b08-97995d10b59b",
+    "PlaceId": 54
+  },
+  {
+    "ReviewDate": "2024-01-29T15:20:00",
+    "ReviewText": "The modern venue's sleek design and state-of-the-art facilities made our tech conference a standout event.",
+    "Rating": 5,
+    "UserId": "997b6284-2d10-409e-b213-fd587261f44b",
+    "PlaceId": 55
+  },
+  {
+    "ReviewDate": "2024-02-16T11:10:00",
+    "ReviewText": "The villa's spacious garden was the perfect setting for our outdoor festival, with ample space for activities and relaxation.",
+    "Rating": 4,
+    "UserId": "997b6284-2d10-409e-b213-fd587261f44b",
+    "PlaceId": 56
+  },
+  {
+    "ReviewDate": "2024-03-24T13:35:00",
+    "ReviewText": "The historic venue offered a glimpse into the past, making our historical reenactment event truly authentic.",
+    "Rating": 5,
+    "UserId": "997b6284-2d10-409e-b213-fd587261f44b",
+    "PlaceId": 57
+  },
+  {
+    "ReviewDate": "2024-01-06T18:00:00",
+    "ReviewText": "The rooftop venue's ambiance was chic and modern, providing a great atmosphere for our corporate mixer.",
+    "Rating": 5,
+    "UserId": "997b6284-2d10-409e-b213-fd587261f44b",
+    "PlaceId": 58
+  },
+  {
+    "ReviewDate": "2024-02-23T09:25:00",
+    "ReviewText": "The beachfront location was idyllic for our sunrise event, offering peaceful vibes and stunning views.",
+    "Rating": 5,
+    "UserId": "997b6284-2d10-409e-b213-fd587261f44b",
+    "PlaceId": 59
+  },
+  {
+    "ReviewDate": "2024-03-02T14:20:00",
+    "ReviewText": "The art gallery venue was a sophisticated space that provided a creative atmosphere for our corporate event.",
+    "Rating": 5,
+    "UserId": "997b6284-2d10-409e-b213-fd587261f44b",
+    "PlaceId": 40
+  },
+  {
+    "ReviewDate": "2024-01-23T18:30:00",
+    "ReviewText": "The riverside venue offered a peaceful retreat from the city's bustle, perfect for our family day.",
+    "Rating": 4,
+    "UserId": "99d7f3f8-ffb5-4f95-991e-2816da9b2e12",
+    "PlaceId": 41
+  },
+  {
+    "ReviewDate": "2024-02-28T16:45:00",
+    "ReviewText": "The luxury hotel venue was impeccable, providing an elegant setting for our high-profile conference.",
+    "Rating": 5,
+    "UserId": "99d7f3f8-ffb5-4f95-991e-2816da9b2e12",
+    "PlaceId": 42
+  },
+  {
+    "ReviewDate": "2024-03-16T11:00:00",
+    "ReviewText": "The historic mansion venue was a captivating setting for our themed event, filled with character and charm.",
+    "Rating": 5,
+    "UserId": "99d7f3f8-ffb5-4f95-991e-2816da9b2e12",
+    "PlaceId": 43
+  },
+  {
+    "ReviewDate": "2024-01-10T20:15:00",
+    "ReviewText": "The botanical garden venue was a natural wonder, providing a lush backdrop for our outdoor wedding.",
+    "Rating": 5,
+    "UserId": "99d7f3f8-ffb5-4f95-991e-2816da9b2e12",
+    "PlaceId": 44
+  },
+  {
+    "ReviewDate": "2024-02-15T09:30:00",
+    "ReviewText": "The mountaintop venue offered breathtaking views, making our sunrise event truly spectacular.",
+    "Rating": 5,
+    "UserId": "99d7f3f8-ffb5-4f95-991e-2816da9b2e12",
+    "PlaceId": 45
+  },
+  {
+    "ReviewDate": "2024-03-09T17:50:00",
+    "ReviewText": "The seaside resort venue was a slice of paradise, providing a tranquil setting for our wellness retreat.",
+    "Rating": 5,
+    "UserId": "99d7f3f8-ffb5-4f95-991e-2816da9b2e12",
+    "PlaceId": 46
+  },
+  {
+    "ReviewDate": "2024-01-18T13:20:00",
+    "ReviewText": "The urban loft venue was a trendy and modern space, perfect for our art exhibition and cocktail evening.",
+    "Rating": 5,
+    "UserId": "a2cf2555-fb4e-40d4-823c-715b023cad6e",
+    "PlaceId": 47
+  },
+  {
+    "ReviewDate": "2024-02-22T12:10:00",
+    "ReviewText": "The castle venue was a fairytale setting, making our dream wedding feel like a royal affair.",
+    "Rating": 5,
+    "UserId": "a2cf2555-fb4e-40d4-823c-715b023cad6e",
+    "PlaceId": 48
+  },
+  {
+    "ReviewDate": "2024-03-21T19:35:00",
+    "ReviewText": "The vineyard venue was picturesque, providing a romantic and rustic setting for our anniversary celebration.",
+    "Rating": 5,
+    "UserId": "a2cf2555-fb4e-40d4-823c-715b023cad6e",
+    "PlaceId": 49
+  },
+  {
+    "ReviewDate": "2024-01-06T15:45:00",
+    "ReviewText": "The country club venue was a classic choice, offering a blend of elegance and comfort for our charity gala.",
+    "Rating": 5,
+    "UserId": "a2cf2555-fb4e-40d4-823c-715b023cad6e",
+    "PlaceId": 50
+  },
+  {
+    "ReviewDate": "2024-02-19T10:25:00",
+    "ReviewText": "The industrial chic venue was a unique space that provided a dynamic backdrop for our fashion show.",
+    "Rating": 5,
+    "UserId": "a2cf2555-fb4e-40d4-823c-715b023cad6e",
+    "PlaceId": 51
+  },
+  {
+    "ReviewDate": "2024-03-13T14:40:00",
+    "ReviewText": "The lakeside venue was serene, offering a beautiful and calm environment for our spiritual gathering.",
+    "Rating": 5,
+    "UserId": "a2cf2555-fb4e-40d4-823c-715b023cad6e",
+    "PlaceId": 52
+  },
+  {
+    "ReviewDate": "2024-01-27T18:55:00",
+    "ReviewText": "The sky-high venue was an exhilarating choice, providing stunning panoramic views for our exclusive event.",
+    "Rating": 5,
+    "UserId": "b1e307ec-273f-4893-8d59-345869608712",
+    "PlaceId": 53
+  },
+  {
+    "ReviewDate": "2024-02-26T16:05:00",
+    "ReviewText": "The underground venue was an avant-garde space that offered a unique and memorable experience for our night event.",
+    "Rating": 5,
+    "UserId": "b1e307ec-273f-4893-8d59-345869608712",
+    "PlaceId": 54
+  },
+  {
+    "ReviewDate": "2024-03-24T12:50:00",
+    "ReviewText": "The museum venue was an educational and inspiring setting, perfect for our cultural event and exhibition.",
+    "Rating": 5,
+    "UserId": "b1e307ec-273f-4893-8d59-345869608712",
+    "PlaceId": 55
+  },
+  {
+    "ReviewDate": "2024-01-09T11:35:00",
+    "ReviewText": "The forest retreat venue was a natural sanctuary, offering a peaceful and rejuvenating setting for our company retreat.",
+    "Rating": 5,
+    "UserId": "b1e307ec-273f-4893-8d59-345869608712",
+    "PlaceId": 56
+  },
+  {
+    "ReviewDate": "2024-02-13T17:10:00",
+    "ReviewText": "The waterfront venue was a stunning choice, providing a picturesque setting for our waterfront dining experience.",
+    "Rating": 5,
+    "UserId": "b1e307ec-273f-4893-8d59-345869608712",
+    "PlaceId": 57
+  },
+  {
+    "ReviewDate": "2024-03-17T13:20:00",
+    "ReviewText": "The penthouse venue was a luxurious space, offering a chic and modern setting for our VIP event.",
+    "Rating": 5,
+    "UserId": "c8e90cbd-fdeb-4162-93a9-762380e4fe9e",
+    "PlaceId": 58
+  },
+  {
+    "ReviewDate": "2024-01-31T20:40:00",
+    "ReviewText": "The cliffside venue was a breathtaking choice, providing an awe-inspiring setting for our adventurous event.",
+    "Rating": 5,
+    "UserId": "c8e90cbd-fdeb-4162-93a9-762380e4fe9e",
+    "PlaceId": 59
+  },
+  {
+    "ReviewDate": "2024-02-24T14:30:00",
+    "ReviewText": "The rooftop venue was a chic and stylish space, offering a trendy setting for our fashion event.",
+    "Rating": 5,
+    "UserId": "c8e90cbd-fdeb-4162-93a9-762380e4fe9e",
+    "PlaceId": 40
+  },
+  {
+    "ReviewDate": "2024-03-08T16:50:00",
+    "ReviewText": "The garden venue was a lush and vibrant space, providing a beautiful setting for our outdoor celebration.",
+    "Rating": 5,
+    "UserId": "c8e90cbd-fdeb-4162-93a9-762380e4fe9e",
+    "PlaceId": 51
+  },
+  {
+    "ReviewDate": "2024-01-19T18:30:00",
+    "ReviewText": "The historic venue was a charming choice, offering a unique and memorable setting for our vintage event.",
+    "Rating": 5,
+    "UserId": "c8e90cbd-fdeb-4162-93a9-762380e4fe9e",
+    "PlaceId": 42
+  },
+  {
+    "ReviewDate": "2024-02-29T12:40:00",
+    "ReviewText": "The beachfront venue was a stunning location, providing a picturesque setting for our seaside celebration.",
+    "Rating": 5,
+    "UserId": "c8e90cbd-fdeb-4162-93a9-762380e4fe9e",
+    "PlaceId": 53
+  },
+  {
+    "ReviewDate": "2024-03-18T14:30:00",
+    "ReviewText": "The palace venue was a regal choice, offering a grand and elegant setting for our royal-themed event.",
+    "Rating": 5,
+    "UserId": "c8e90cbd-fdeb-4162-93a9-762380e4fe9e",
+    "PlaceId": 54
+  }
+]

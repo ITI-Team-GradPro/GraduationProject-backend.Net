@@ -93,6 +93,8 @@ namespace GraduationProject.API
             {
                 services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseSqlServer(configuration.GetConnectionString("con1")));
+                //ContextSeed.SeedAsync(services.BuildServiceProvider().GetRequiredService<ApplicationDbContext>());
+
             }
             services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
             services.AddScoped<IPlacesRepo, PlacesRepo>();
