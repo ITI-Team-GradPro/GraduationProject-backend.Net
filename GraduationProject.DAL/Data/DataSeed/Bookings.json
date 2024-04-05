@@ -1,0 +1,1109 @@
+[
+  {
+    "TotalPrice": 5200,
+    "BookingStatus": 1,
+    "BookingDate": "2023-03-12T08:30:00",
+    "EventDate": "2024-02-14T14:00:00",
+    "Period": 1,
+    "UserId": "586f5b2c-c156-4368-b963-9f6861e91caa",
+    "PlaceId": 7
+  },
+  {
+    "TotalPrice": 3800,
+    "BookingStatus": 1,
+    "BookingDate": "2023-05-20T11:45:00",
+    "EventDate": "2024-03-28T10:00:00",
+    "Period": 0,
+    "UserId": "586f5b2c-c156-4368-b963-9f6861e91caa",
+    "PlaceId": 12
+  },
+  {
+    "TotalPrice": 2700,
+    "BookingStatus": 0,
+    "BookingDate": "2023-07-18T15:20:00",
+    "EventDate": "2024-04-01T17:30:00",
+    "Period": 2,
+    "UserId": "20ec9b87-be7c-4a43-9127-1fb98b59a736",
+    "PlaceId": 3
+  },
+  {
+    "TotalPrice": 4800,
+    "BookingStatus": 0,
+    "BookingDate": "2023-09-05T10:10:00",
+    "EventDate": "2024-03-12T12:00:00",
+    "Period": 1,
+    "UserId": "20ec9b87-be7c-4a43-9127-1fb98b59a736",
+    "PlaceId": 19
+  },
+  {
+    "TotalPrice": 4200,
+    "BookingStatus": 0,
+    "BookingDate": "2023-10-14T13:55:00",
+    "EventDate": "2024-02-20T09:00:00",
+    "Period": 0,
+    "UserId": "20ec9b87-be7c-4a43-9127-1fb98b59a736",
+    "PlaceId": 5
+  },
+  {
+    "TotalPrice": 3300,
+    "BookingStatus": 0,
+    "BookingDate": "2023-11-22T16:40:00",
+    "EventDate": "2024-01-16T14:30:00",
+    "Period": 2,
+    "UserId": "20ec9b87-be7c-4a43-9127-1fb98b59a736",
+    "PlaceId": 31
+  },
+  {
+    "TotalPrice": 2900,
+    "BookingStatus": 0,
+    "BookingDate": "2023-12-30T09:15:00",
+    "EventDate": "2024-01-02T11:00:00",
+    "Period": 1,
+    "UserId": "20ec9b87-be7c-4a43-9127-1fb98b59a736",
+    "PlaceId": 41
+  },
+  {
+    "TotalPrice": 4500,
+    "BookingStatus": 0,
+    "BookingDate": "2023-02-05T14:50:00",
+    "EventDate": "2024-01-10T16:00:00",
+    "Period": 0,
+    "UserId": "20ec9b87-be7c-4a43-9127-1fb98b59a736",
+    "PlaceId": 23
+  },
+  {
+    "TotalPrice": 3600,
+    "BookingStatus": 0,
+    "BookingDate": "2023-03-15T12:35:00",
+    "EventDate": "2024-02-08T09:00:00",
+    "Period": 2,
+    "UserId": "20ec9b87-be7c-4a43-9127-1fb98b59a736",
+    "PlaceId": 9
+  },
+  {
+    "TotalPrice": 3100,
+    "BookingStatus": 0,
+    "BookingDate": "2023-04-23T17:00:00",
+    "EventDate": "2024-01-24T15:00:00",
+    "Period": 1,
+    "UserId": "282b0639-2556-452a-b6e8-4ce97593a262",
+    "PlaceId": 27
+  },
+  {
+    "TotalPrice": 5000,
+    "BookingStatus": 0,
+    "BookingDate": "2023-06-02T09:25:00",
+    "EventDate": "2024-02-05T10:00:00",
+    "Period": 0,
+    "UserId": "282b0639-2556-452a-b6e8-4ce97593a262",
+    "PlaceId": 35
+  },
+  {
+    "TotalPrice": 2400,
+    "BookingStatus": 0,
+    "BookingDate": "2023-07-11T14:15:00",
+    "EventDate": "2024-04-04T13:30:00",
+    "Period": 2,
+    "UserId": "282b0639-2556-452a-b6e8-4ce97593a262",
+    "PlaceId": 14
+  },
+  {
+    "TotalPrice": 2800,
+    "BookingStatus": 0,
+    "BookingDate": "2023-08-19T11:05:00",
+    "EventDate": "2024-03-22T16:00:00",
+    "Period": 1,
+    "UserId": "282b0639-2556-452a-b6e8-4ce97593a262",
+    "PlaceId": 47
+  },
+  {
+    "TotalPrice": 4300,
+    "BookingStatus": 0,
+    "BookingDate": "2023-09-27T16:55:00",
+    "EventDate": "2024-01-31T14:00:00",
+    "Period": 0,
+    "UserId": "2a39736d-d46f-40d9-83b7-1d5c286fed61",
+    "PlaceId": 17
+  },
+  {
+    "TotalPrice": 3700,
+    "BookingStatus": 0,
+    "BookingDate": "2023-11-05T09:40:00",
+    "EventDate": "2024-02-29T09:30:00",
+    "Period": 2,
+    "UserId": "2a39736d-d46f-40d9-83b7-1d5c286fed61",
+    "PlaceId": 37
+  },
+  {
+    "TotalPrice": 2600,
+    "BookingStatus": 0,
+    "BookingDate": "2023-12-13T12:25:00",
+    "EventDate": "2024-03-18T10:00:00",
+    "Period": 1,
+    "UserId": "2a39736d-d46f-40d9-83b7-1d5c286fed61",
+    "PlaceId": 29
+  },
+  {
+    "TotalPrice": 4900,
+    "BookingStatus": 0,
+    "BookingDate": "2023-01-20T15:10:00",
+    "EventDate": "2024-03-25T14:30:00",
+    "Period": 0,
+    "UserId": "2a39736d-d46f-40d9-83b7-1d5c286fed61",
+    "PlaceId": 21
+  },
+  {
+    "TotalPrice": 3400,
+    "BookingStatus": 0,
+    "BookingDate": "2023-02-28T10:55:00",
+    "EventDate": "2024-01-28T09:00:00",
+    "Period": 2,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 25
+  },
+  {
+    "TotalPrice": 3000,
+    "BookingStatus": 0,
+    "BookingDate": "2023-04-07T13:30:00",
+    "EventDate": "2024-02-26T10:00:00",
+    "Period": 1,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 33
+  },
+  {
+    "TotalPrice": 4600,
+    "BookingStatus": 0,
+    "BookingDate": "2023-05-16T16:15:00",
+    "EventDate": "2024-01-19T14:30:00",
+    "Period": 0,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 39
+  },
+  {
+    "TotalPrice": 4000,
+    "BookingStatus": 0,
+    "BookingDate": "2023-06-24T09:00:00",
+    "EventDate": "2024-03-08T09:00:00",
+    "Period": 2,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 43
+  },
+  {
+    "TotalPrice": 3200,
+    "BookingStatus": 0,
+    "BookingDate": "2023-08-02T14:45:00",
+    "EventDate": "2024-02-22T10:00:00",
+    "Period": 1,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 45
+  },
+  {
+    "TotalPrice": 5100,
+    "BookingStatus": 0,
+    "BookingDate": "2023-09-10T17:30:00",
+    "EventDate": "2024-01-13T14:30:00",
+    "Period": 0,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 49
+  },
+  {
+    "TotalPrice": 4400,
+    "BookingStatus": 0,
+    "BookingDate": "2023-10-19T10:15:00",
+    "EventDate": "2024-03-15T09:00:00",
+    "Period": 2,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 51
+  },
+  {
+    "TotalPrice": 3800,
+    "BookingStatus": 0,
+    "BookingDate": "2023-11-27T14:00:00",
+    "EventDate": "2024-02-17T10:00:00",
+    "Period": 1,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 53
+  },
+  {
+    "TotalPrice": 4700,
+    "BookingStatus": 0,
+    "BookingDate": "2023-01-04T16:45:00",
+    "EventDate": "2024-02-23T14:30:00",
+    "Period": 0,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 55
+  },
+  {
+    "TotalPrice": 4200,
+    "BookingStatus": 0,
+    "BookingDate": "2023-02-11T09:30:00",
+    "EventDate": "2024-01-27T09:00:00",
+    "Period": 2,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 57
+  },
+  {
+    "TotalPrice": 3900,
+    "BookingStatus": 0,
+    "BookingDate": "2023-03-21T13:15:00",
+    "EventDate": "2024-03-04T10:00:00",
+    "Period": 1,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 59
+  },
+  {
+    "TotalPrice": 3300,
+    "BookingStatus": 0,
+    "BookingDate": "2023-04-29T10:00:00",
+    "EventDate": "2024-02-12T09:00:00",
+    "Period": 0,
+    "UserId": "4efc3ebc-0b04-4fdd-9bcc-2406ba7def32",
+    "PlaceId": 51
+  },
+  {
+    "TotalPrice": 3700,
+    "BookingStatus": 1,
+    "BookingDate": "2023-10-07T09:30:00",
+    "EventDate": "2024-02-29T10:00:00",
+    "Period": 0,
+    "UserId": "4efc3ebc-0b04-4fdd-9bcc-2406ba7def32",
+    "PlaceId": 25
+  },
+  {
+    "TotalPrice": 2900,
+    "BookingStatus": 1,
+    "BookingDate": "2023-11-15T11:45:00",
+    "EventDate": "2024-01-11T12:30:00",
+    "Period": 1,
+    "UserId": "4efc3ebc-0b04-4fdd-9bcc-2406ba7def32",
+    "PlaceId": 36
+  },
+  {
+    "TotalPrice": 4100,
+    "BookingStatus": 1,
+    "BookingDate": "2023-12-23T15:20:00",
+    "EventDate": "2024-03-06T16:00:00",
+    "Period": 0,
+    "UserId": "4efc3ebc-0b04-4fdd-9bcc-2406ba7def32",
+    "PlaceId": 49
+  },
+  {
+    "TotalPrice": 4400,
+    "BookingStatus": 1,
+    "BookingDate": "2023-02-01T10:10:00",
+    "EventDate": "2024-01-20T11:00:00",
+    "Period": 1,
+    "UserId": "4efc3ebc-0b04-4fdd-9bcc-2406ba7def32",
+    "PlaceId": 11
+  },
+  {
+    "TotalPrice": 3200,
+    "BookingStatus": 1,
+    "BookingDate": "2023-03-11T13:55:00",
+    "EventDate": "2024-04-02T14:30:00",
+    "Period": 0,
+    "UserId": "4efc3ebc-0b04-4fdd-9bcc-2406ba7def32",
+    "PlaceId": 33
+  },
+  {
+    "TotalPrice": 3600,
+    "BookingStatus": 1,
+    "BookingDate": "2023-04-19T16:40:00",
+    "EventDate": "2024-02-15T17:00:00",
+    "Period": 2,
+    "UserId": "4efc3ebc-0b04-4fdd-9bcc-2406ba7def32",
+    "PlaceId": 43
+  },
+  {
+    "TotalPrice": 2500,
+    "BookingStatus": 1,
+    "BookingDate": "2023-05-28T09:15:00",
+    "EventDate": "2024-03-19T10:30:00",
+    "Period": 1,
+    "UserId": "5ae05ddc-6674-4d50-b96e-eed5ac0db7c6",
+    "PlaceId": 21
+  },
+  {
+    "TotalPrice": 4700,
+    "BookingStatus": 1,
+    "BookingDate": "2023-07-06T14:50:00",
+    "EventDate": "2024-04-03T15:00:00",
+    "Period": 0,
+    "UserId": "5ae05ddc-6674-4d50-b96e-eed5ac0db7c6",
+    "PlaceId": 39
+  },
+  {
+    "TotalPrice": 3000,
+    "BookingStatus": 1,
+    "BookingDate": "2023-08-14T12:35:00",
+    "EventDate": "2024-01-28T13:00:00",
+    "Period": 2,
+    "UserId": "5ae05ddc-6674-4d50-b96e-eed5ac0db7c6",
+    "PlaceId": 13
+  },
+  {
+    "TotalPrice": 3900,
+    "BookingStatus": 1,
+    "BookingDate": "2023-09-22T17:00:00",
+    "EventDate": "2024-02-07T18:00:00",
+    "Period": 0,
+    "UserId": "5ae05ddc-6674-4d50-b96e-eed5ac0db7c6",
+    "PlaceId": 29
+  },
+  {
+    "TotalPrice": 4200,
+    "BookingStatus": 1,
+    "BookingDate": "2023-10-31T09:25:00",
+    "EventDate": "2024-03-14T10:30:00",
+    "Period": 1,
+    "UserId": "5ae05ddc-6674-4d50-b96e-eed5ac0db7c6",
+    "PlaceId": 45
+  },
+  {
+    "TotalPrice": 3500,
+    "BookingStatus": 1,
+    "BookingDate": "2023-12-08T14:15:00",
+    "EventDate": "2024-01-03T15:00:00",
+    "Period": 2,
+    "UserId": "5ae05ddc-6674-4d50-b96e-eed5ac0db7c6",
+    "PlaceId": 15
+  },
+  {
+    "TotalPrice": 4300,
+    "BookingStatus": 1,
+    "BookingDate": "2023-01-16T11:05:00",
+    "EventDate": "2024-03-01T12:00:00",
+    "Period": 0,
+    "UserId": "5ef8fc50-8393-4649-9d28-ef3e3d3bd706",
+    "PlaceId": 37
+  },
+  {
+    "TotalPrice": 2800,
+    "BookingStatus": 1,
+    "BookingDate": "2023-02-24T16:55:00",
+    "EventDate": "2024-04-05T17:00:00",
+    "Period": 1,
+    "UserId": "5ef8fc50-8393-4649-9d28-ef3e3d3bd706",
+    "PlaceId": 19
+  },
+  {
+    "TotalPrice": 3100,
+    "BookingStatus": 1,
+    "BookingDate": "2023-04-03T09:30:00",
+    "EventDate": "2024-02-09T10:30:00",
+    "Period": 2,
+    "UserId": "5ef8fc50-8393-4649-9d28-ef3e3d3bd706",
+    "PlaceId": 41
+  },
+  {
+    "TotalPrice": 3400,
+    "BookingStatus": 1,
+    "BookingDate": "2023-05-12T11:45:00",
+    "EventDate": "2024-01-21T12:45:00",
+    "Period": 0,
+    "UserId": "5ef8fc50-8393-4649-9d28-ef3e3d3bd706",
+    "PlaceId": 8
+  },
+  {
+    "TotalPrice": 4800,
+    "BookingStatus": 1,
+    "BookingDate": "2023-06-20T15:20:00",
+    "EventDate": "2024-02-15T16:30:00",
+    "Period": 1,
+    "UserId": "5ef8fc50-8393-4649-9d28-ef3e3d3bd706",
+    "PlaceId": 24
+  },
+  {
+    "TotalPrice": 2600,
+    "BookingStatus": 1,
+    "BookingDate": "2023-08-06T10:10:00",
+    "EventDate": "2024-03-05T11:00:00",
+    "Period": 2,
+    "UserId": "679c3c6a-9f14-486b-ab4e-0cb2a42413a7",
+    "PlaceId": 50
+  },
+  {
+    "TotalPrice": 3900,
+    "BookingStatus": 1,
+    "BookingDate": "2023-09-14T13:55:00",
+    "EventDate": "2024-01-16T14:00:00",
+    "Period": 0,
+    "UserId": "679c3c6a-9f14-486b-ab4e-0cb2a42413a7",
+    "PlaceId": 10
+  },
+  {
+    "TotalPrice": 4200,
+    "BookingStatus": 1,
+    "BookingDate": "2023-11-01T09:15:00",
+    "EventDate": "2024-02-24T10:15:00",
+    "Period": 1,
+    "UserId": "679c3c6a-9f14-486b-ab4e-0cb2a42413a7",
+    "PlaceId": 31
+  },
+  {
+    "TotalPrice": 3300,
+    "BookingStatus": 1,
+    "BookingDate": "2023-12-09T09:30:00",
+    "EventDate": "2024-03-12T10:00:00",
+    "Period": 0,
+    "UserId": "679c3c6a-9f14-486b-ab4e-0cb2a42413a7",
+    "PlaceId": 45
+  },
+  {
+    "TotalPrice": 2800,
+    "BookingStatus": 1,
+    "BookingDate": "2023-01-17T11:45:00",
+    "EventDate": "2024-02-21T12:30:00",
+    "Period": 1,
+    "UserId": "679c3c6a-9f14-486b-ab4e-0cb2a42413a7",
+    "PlaceId": 51
+  },
+  {
+    "TotalPrice": 3900,
+    "BookingStatus": 1,
+    "BookingDate": "2023-02-25T15:20:00",
+    "EventDate": "2024-03-29T16:00:00",
+    "Period": 0,
+    "UserId": "679c3c6a-9f14-486b-ab4e-0cb2a42413a7",
+    "PlaceId": 47
+  },
+  {
+    "TotalPrice": 3400,
+    "BookingStatus": 1,
+    "BookingDate": "2023-04-04T10:10:00",
+    "EventDate": "2024-01-01T11:00:00",
+    "Period": 1,
+    "UserId": "679c3c6a-9f14-486b-ab4e-0cb2a42413a7",
+    "PlaceId": 58
+  },
+  {
+    "TotalPrice": 4700,
+    "BookingStatus": 1,
+    "BookingDate": "2023-05-13T13:55:00",
+    "EventDate": "2024-04-04T14:30:00",
+    "Period": 0,
+    "UserId": "88d186e2-e073-4123-9b08-97995d10b59b",
+    "PlaceId": 56
+  },
+  {
+    "TotalPrice": 3000,
+    "BookingStatus": 1,
+    "BookingDate": "2023-06-21T17:00:00",
+    "EventDate": "2024-01-08T18:00:00",
+    "Period": 2,
+    "UserId": "88d186e2-e073-4123-9b08-97995d10b59b",
+    "PlaceId": 43
+  },
+  {
+    "TotalPrice": 4800,
+    "BookingStatus": 1,
+    "BookingDate": "2023-07-30T09:25:00",
+    "EventDate": "2024-02-22T10:30:00",
+    "Period": 1,
+    "UserId": "88d186e2-e073-4123-9b08-97995d10b59b",
+    "PlaceId": 50
+  },
+  {
+    "TotalPrice": 2600,
+    "BookingStatus": 1,
+    "BookingDate": "2023-09-07T14:15:00",
+    "EventDate": "2024-03-08T15:00:00",
+    "Period": 2,
+    "UserId": "88d186e2-e073-4123-9b08-97995d10b59b",
+    "PlaceId": 54
+  },
+  {
+    "TotalPrice": 3700,
+    "BookingStatus": 1,
+    "BookingDate": "2023-10-15T11:05:00",
+    "EventDate": "2024-01-15T12:00:00",
+    "Period": 0,
+    "UserId": "88d186e2-e073-4123-9b08-97995d10b59b",
+    "PlaceId": 48
+  },
+  {
+    "TotalPrice": 4200,
+    "BookingStatus": 1,
+    "BookingDate": "2023-11-23T16:55:00",
+    "EventDate": "2024-04-06T17:00:00",
+    "Period": 1,
+    "UserId": "88d186e2-e073-4123-9b08-97995d10b59b",
+    "PlaceId": 59
+  },
+  {
+    "TotalPrice": 3100,
+    "BookingStatus": 1,
+    "BookingDate": "2023-01-31T09:30:00",
+    "EventDate": "2024-01-20T10:30:00",
+    "Period": 2,
+    "UserId": "88d186e2-e073-4123-9b08-97995d10b59b",
+    "PlaceId": 41
+  },
+  {
+    "TotalPrice": 4300,
+    "BookingStatus": 1,
+    "BookingDate": "2023-03-09T11:45:00",
+    "EventDate": "2024-02-16T12:45:00",
+    "Period": 0,
+    "UserId": "88d186e2-e073-4123-9b08-97995d10b59b",
+    "PlaceId": 44
+  },
+  {
+    "TotalPrice": 3600,
+    "BookingStatus": 1,
+    "BookingDate": "2023-04-17T15:20:00",
+    "EventDate": "2024-03-22T16:30:00",
+    "Period": 1,
+    "UserId": "88d186e2-e073-4123-9b08-97995d10b59b",
+    "PlaceId": 52
+  },
+  {
+    "TotalPrice": 2500,
+    "BookingStatus": 1,
+    "BookingDate": "2023-05-25T10:10:00",
+    "EventDate": "2024-01-18T11:00:00",
+    "Period": 2,
+    "UserId": "997b6284-2d10-409e-b213-fd587261f44b",
+    "PlaceId": 57
+  },
+  {
+    "TotalPrice": 4600,
+    "BookingStatus": 1,
+    "BookingDate": "2023-07-03T12:35:00",
+    "EventDate": "2024-04-05T13:00:00",
+    "Period": 0,
+    "UserId": "997b6284-2d10-409e-b213-fd587261f44b",
+    "PlaceId": 42
+  },
+  {
+    "TotalPrice": 2900,
+    "BookingStatus": 1,
+    "BookingDate": "2023-08-11T14:50:00",
+    "EventDate": "2024-01-22T15:00:00",
+    "Period": 1,
+    "UserId": "997b6284-2d10-409e-b213-fd587261f44b",
+    "PlaceId": 53
+  },
+  {
+    "TotalPrice": 3800,
+    "BookingStatus": 1,
+    "BookingDate": "2023-09-19T16:40:00",
+    "EventDate": "2024-02-25T17:00:00",
+    "Period": 2,
+    "UserId": "997b6284-2d10-409e-b213-fd587261f44b",
+    "PlaceId": 46
+  },
+  {
+    "TotalPrice": 3000,
+    "BookingStatus": 1,
+    "BookingDate": "2023-10-27T09:15:00",
+    "EventDate": "2024-03-10T10:00:00",
+    "Period": 0,
+    "UserId": "997b6284-2d10-409e-b213-fd587261f44b",
+    "PlaceId": 49
+  },
+  {
+    "TotalPrice": 4900,
+    "BookingStatus": 1,
+    "BookingDate": "2023-12-05T11:05:00",
+    "EventDate": "2024-01-23T12:00:00",
+    "Period": 1,
+    "UserId": "997b6284-2d10-409e-b213-fd587261f44b",
+    "PlaceId": 40
+  },
+  {
+    "TotalPrice": 2700,
+    "BookingStatus": 1,
+    "BookingDate": "2023-01-12T14:55:00",
+    "EventDate": "2024-03-28T15:00:00",
+    "Period": 2,
+    "UserId": "997b6284-2d10-409e-b213-fd587261f44b",
+    "PlaceId": 55
+  },
+  {
+    "TotalPrice": 3500,
+    "BookingStatus": 1,
+    "BookingDate": "2023-02-20T16:00:00",
+    "EventDate": "2024-02-14T17:00:00",
+    "Period": 0,
+    "UserId": "997b6284-2d10-409e-b213-fd587261f44b",
+    "PlaceId": 40
+  },
+  {
+    "TotalPrice": 4200,
+    "BookingStatus": 1,
+    "BookingDate": "2023-04-29T10:00:00",
+    "EventDate": "2024-01-09T11:00:00",
+    "Period": 1,
+    "UserId": "997b6284-2d10-409e-b213-fd587261f44b",
+    "PlaceId": 43
+  },
+  {
+    "TotalPrice": 3900,
+    "BookingStatus": 1,
+    "BookingDate": "2023-06-06T12:30:00",
+    "EventDate": "2024-02-03T13:00:00",
+    "Period": 2,
+    "UserId": "99d7f3f8-ffb5-4f95-991e-2816da9b2e12",
+    "PlaceId": 51
+  },
+  {
+    "TotalPrice": 4300,
+    "BookingStatus": 1,
+    "BookingDate": "2023-07-14T14:30:00",
+    "EventDate": "2024-03-07T15:00:00",
+    "Period": 0,
+    "UserId": "99d7f3f8-ffb5-4f95-991e-2816da9b2e12",
+    "PlaceId": 54
+  },
+  {
+    "TotalPrice": 3700,
+    "BookingStatus": 1,
+    "BookingDate": "2023-08-22T17:00:00",
+    "EventDate": "2024-01-10T18:00:00",
+    "Period": 1,
+    "UserId": "99d7f3f8-ffb5-4f95-991e-2816da9b2e12",
+    "PlaceId": 57
+  },
+  {
+    "TotalPrice": 4600,
+    "BookingStatus": 1,
+    "BookingDate": "2023-10-10T09:25:00",
+    "EventDate": "2024-02-06T10:30:00",
+    "Period": 2,
+    "UserId": "99d7f3f8-ffb5-4f95-991e-2816da9b2e12",
+    "PlaceId": 59
+  },
+  {
+    "TotalPrice": 3000,
+    "BookingStatus": 1,
+    "BookingDate": "2023-11-28T10:30:00",
+    "EventDate": "2024-03-02T11:00:00",
+    "Period": 0,
+    "UserId": "99d7f3f8-ffb5-4f95-991e-2816da9b2e12",
+    "PlaceId": 59
+  },
+  {
+    "TotalPrice": 4800,
+    "BookingStatus": 1,
+    "BookingDate": "2023-01-02T13:00:00",
+    "EventDate": "2024-01-26T14:00:00",
+    "Period": 1,
+    "UserId": "99d7f3f8-ffb5-4f95-991e-2816da9b2e12",
+    "PlaceId": 59
+  },
+  {
+    "TotalPrice": 2600,
+    "BookingStatus": 1,
+    "BookingDate": "2023-02-09T15:00:00",
+    "EventDate": "2024-03-01T15:30:00",
+    "Period": 2,
+    "UserId": "99d7f3f8-ffb5-4f95-991e-2816da9b2e12",
+    "PlaceId": 59
+  },
+  {
+    "TotalPrice": 3500,
+    "BookingStatus": 1,
+    "BookingDate": "2023-03-18T17:00:00",
+    "EventDate": "2024-02-12T18:00:00",
+    "Period": 0,
+    "UserId": "99d7f3f8-ffb5-4f95-991e-2816da9b2e12",
+    "PlaceId": 59
+  },
+  {
+    "TotalPrice": 4400,
+    "BookingStatus": 1,
+    "BookingDate": "2023-05-26T09:30:00",
+    "EventDate": "2024-01-29T10:00:00",
+    "Period": 1,
+    "UserId": "99d7f3f8-ffb5-4f95-991e-2816da9b2e12",
+    "PlaceId": 59
+  },
+  {
+    "TotalPrice": 3100,
+    "BookingStatus": 1,
+    "BookingDate": "2023-07-13T09:30:00",
+    "EventDate": "2024-03-28T10:00:00",
+    "Period": 0,
+    "UserId": "a2cf2555-fb4e-40d4-823c-715b023cad6e",
+    "PlaceId": 47
+  },
+  {
+    "TotalPrice": 3700,
+    "BookingStatus": 1,
+    "BookingDate": "2023-08-20T11:45:00",
+    "EventDate": "2024-01-17T12:30:00",
+    "Period": 1,
+    "UserId": "a2cf2555-fb4e-40d4-823c-715b023cad6e",
+    "PlaceId": 58
+  },
+  {
+    "TotalPrice": 3400,
+    "BookingStatus": 1,
+    "BookingDate": "2023-09-28T15:20:00",
+    "EventDate": "2024-03-04T16:00:00",
+    "Period": 0,
+    "UserId": "a2cf2555-fb4e-40d4-823c-715b023cad6e",
+    "PlaceId": 49
+  },
+  {
+    "TotalPrice": 4100,
+    "BookingStatus": 1,
+    "BookingDate": "2023-11-05T10:10:00",
+    "EventDate": "2024-01-23T11:00:00",
+    "Period": 1,
+    "UserId": "a2cf2555-fb4e-40d4-823c-715b023cad6e",
+    "PlaceId": 50
+  },
+  {
+    "TotalPrice": 4500,
+    "BookingStatus": 1,
+    "BookingDate": "2023-12-13T13:55:00",
+    "EventDate": "2024-04-05T14:30:00",
+    "Period": 0,
+    "UserId": "a2cf2555-fb4e-40d4-823c-715b023cad6e",
+    "PlaceId": 53
+  },
+  {
+    "TotalPrice": 3200,
+    "BookingStatus": 1,
+    "BookingDate": "2023-02-21T17:00:00",
+    "EventDate": "2024-01-22T18:00:00",
+    "Period": 2,
+    "UserId": "a2cf2555-fb4e-40d4-823c-715b023cad6e",
+    "PlaceId": 40
+  },
+  {
+    "TotalPrice": 4800,
+    "BookingStatus": 1,
+    "BookingDate": "2023-04-01T09:25:00",
+    "EventDate": "2024-02-10T10:30:00",
+    "Period": 1,
+    "UserId": "a2cf2555-fb4e-40d4-823c-715b023cad6e",
+    "PlaceId": 45
+  },
+  {
+    "TotalPrice": 2700,
+    "BookingStatus": 1,
+    "BookingDate": "2023-05-09T12:35:00",
+    "EventDate": "2024-04-01T13:00:00",
+    "Period": 0,
+    "UserId": "b1e307ec-273f-4893-8d59-345869608712",
+    "PlaceId": 55
+  },
+  {
+    "TotalPrice": 4300,
+    "BookingStatus": 1,
+    "BookingDate": "2023-06-17T14:50:00",
+    "EventDate": "2024-01-16T15:00:00",
+    "Period": 1,
+    "UserId": "b1e307ec-273f-4893-8d59-345869608712",
+    "PlaceId": 54
+  },
+  {
+    "TotalPrice": 3800,
+    "BookingStatus": 1,
+    "BookingDate": "2023-07-25T16:40:00",
+    "EventDate": "2024-02-17T17:00:00",
+    "Period": 2,
+    "UserId": "b1e307ec-273f-4893-8d59-345869608712",
+    "PlaceId": 48
+  },
+  {
+    "TotalPrice": 3900,
+    "BookingStatus": 1,
+    "BookingDate": "2023-08-31T09:15:00",
+    "EventDate": "2024-03-16T10:00:00",
+    "Period": 0,
+    "UserId": "b1e307ec-273f-4893-8d59-345869608712",
+    "PlaceId": 52
+  },
+  {
+    "TotalPrice": 4200,
+    "BookingStatus": 1,
+    "BookingDate": "2023-10-08T11:45:00",
+    "EventDate": "2024-01-04T12:30:00",
+    "Period": 1,
+    "UserId": "b1e307ec-273f-4893-8d59-345869608712",
+    "PlaceId": 57
+  },
+  {
+    "TotalPrice": 2900,
+    "BookingStatus": 1,
+    "BookingDate": "2023-11-15T15:20:00",
+    "EventDate": "2024-03-23T16:00:00",
+    "Period": 0,
+    "UserId": "b1e307ec-273f-4893-8d59-345869608712",
+    "PlaceId": 51
+  },
+  {
+    "TotalPrice": 4400,
+    "BookingStatus": 1,
+    "BookingDate": "2023-12-23T10:10:00",
+    "EventDate": "2024-01-10T11:00:00",
+    "Period": 1,
+    "UserId": "b1e307ec-273f-4893-8d59-345869608712",
+    "PlaceId": 56
+  },
+  {
+    "TotalPrice": 2600,
+    "BookingStatus": 1,
+    "BookingDate": "2023-02-02T13:55:00",
+    "EventDate": "2024-03-30T14:30:00",
+    "Period": 0,
+    "UserId": "c8e90cbd-fdeb-4162-93a9-762380e4fe9e",
+    "PlaceId": 46
+  },
+  {
+    "TotalPrice": 3500,
+    "BookingStatus": 1,
+    "BookingDate": "2023-03-12T17:00:00",
+    "EventDate": "2024-01-05T18:00:00",
+    "Period": 2,
+    "UserId": "c8e90cbd-fdeb-4162-93a9-762380e4fe9e",
+    "PlaceId": 59
+  },
+  {
+    "TotalPrice": 4700,
+    "BookingStatus": 1,
+    "BookingDate": "2023-04-20T09:25:00",
+    "EventDate": "2024-03-06T10:30:00",
+    "Period": 1,
+    "UserId": "c8e90cbd-fdeb-4162-93a9-762380e4fe9e",
+    "PlaceId": 50
+  },
+  {
+    "TotalPrice": 3000,
+    "BookingStatus": 1,
+    "BookingDate": "2023-06-28T12:35:00",
+    "EventDate": "2024-02-20T13:00:00",
+    "Period": 0,
+    "UserId": "c8e90cbd-fdeb-4162-93a9-762380e4fe9e",
+    "PlaceId": 55
+  },
+  {
+    "TotalPrice": 4600,
+    "BookingStatus": 1,
+    "BookingDate": "2023-08-06T14:50:00",
+    "EventDate": "2024-03-26T15:00:00",
+    "Period": 1,
+    "UserId": "c8e90cbd-fdeb-4162-93a9-762380e4fe9e",
+    "PlaceId": 58
+  },
+  {
+    "TotalPrice": 3300,
+    "BookingStatus": 1,
+    "BookingDate": "2023-09-13T16:40:00",
+    "EventDate": "2024-02-18T17:00:00",
+    "Period": 2,
+    "UserId": "c8e90cbd-fdeb-4162-93a9-762380e4fe9e",
+    "PlaceId": 47
+  },
+  {
+    "TotalPrice": 3800,
+    "BookingStatus": 1,
+    "BookingDate": "2023-10-21T09:15:00",
+    "EventDate": "2024-03-05T10:00:00",
+    "Period": 0,
+    "UserId": "f27a27fa-000c-467e-b6e6-ab1270f22938",
+    "PlaceId": 51
+  },
+  {
+    "TotalPrice": 4200,
+    "BookingStatus": 1,
+    "BookingDate": "2023-12-01T11:45:00",
+    "EventDate": "2024-01-26T12:30:00",
+    "Period": 1,
+    "UserId": "f27a27fa-000c-467e-b6e6-ab1270f22938",
+    "PlaceId": 54
+  },
+  {
+    "TotalPrice": 2900,
+    "BookingStatus": 1,
+    "BookingDate": "2023-01-08T15:20:00",
+    "EventDate": "2024-03-15T16:00:00",
+    "Period": 0,
+    "UserId": "f27a27fa-000c-467e-b6e6-ab1270f22938",
+    "PlaceId": 45
+  },
+  {
+    "TotalPrice": 4300,
+    "BookingStatus": 1,
+    "BookingDate": "2023-02-15T10:10:00",
+    "EventDate": "2024-01-02T11:00:00",
+    "Period": 1,
+    "UserId": "f27a27fa-000c-467e-b6e6-ab1270f22938",
+    "PlaceId": 46
+  },
+  {
+    "TotalPrice": 3900,
+    "BookingStatus": 1,
+    "BookingDate": "2023-03-25T12:30:00",
+    "EventDate": "2024-02-19T13:00:00",
+    "Period": 2,
+    "UserId": "f27a27fa-000c-467e-b6e6-ab1270f22938",
+    "PlaceId": 49
+  },
+  {
+    "TotalPrice": 4600,
+    "BookingStatus": 1,
+    "BookingDate": "2023-05-02T17:00:00",
+    "EventDate": "2024-01-28T18:00:00",
+    "Period": 0,
+    "UserId": "f27a27fa-000c-467e-b6e6-ab1270f22938",
+    "PlaceId": 52
+  },
+  {
+    "TotalPrice": 2500,
+    "BookingStatus": 1,
+    "BookingDate": "2023-06-10T09:25:00",
+    "EventDate": "2024-02-27T10:30:00",
+    "Period": 1,
+    "UserId": "f27a27fa-000c-467e-b6e6-ab1270f22938",
+    "PlaceId": 57
+  },
+  {
+    "TotalPrice": 4900,
+    "BookingStatus": 1,
+    "BookingDate": "2023-07-18T12:35:00",
+    "EventDate": "2024-03-31T13:00:00",
+    "Period": 0,
+    "UserId": "f27a27fa-000c-467e-b6e6-ab1270f22938",
+    "PlaceId": 58
+  },
+  {
+    "TotalPrice": 2700,
+    "BookingStatus": 1,
+    "BookingDate": "2023-08-26T14:30:00",
+    "EventDate": "2024-01-19T15:00:00",
+    "Period": 1,
+    "UserId": "f27a27fa-000c-467e-b6e6-ab1270f22938",
+    "PlaceId": 59
+  },
+  {
+    "TotalPrice": 3500,
+    "BookingStatus": 1,
+    "BookingDate": "2023-10-03T16:40:00",
+    "EventDate": "2024-03-13T17:00:00",
+    "Period": 2,
+    "UserId": "f27a27fa-000c-467e-b6e6-ab1270f22938",
+    "PlaceId": 40
+  },
+  {
+    "TotalPrice": 4400,
+    "BookingStatus": 1,
+    "BookingDate": "2023-11-11T09:15:00",
+    "EventDate": "2024-01-11T10:00:00",
+    "Period": 0,
+    "UserId": "f27a27fa-000c-467e-b6e6-ab1270f22938",
+    "PlaceId": 45
+  },
+  {
+    "TotalPrice": 2800,
+    "BookingStatus": 1,
+    "BookingDate": "2023-12-19T11:45:00",
+    "EventDate": "2024-02-14T12:30:00",
+    "Period": 1,
+    "UserId": "f27a27fa-000c-467e-b6e6-ab1270f22938",
+    "PlaceId": 46
+  },
+  {
+    "TotalPrice": 3600,
+    "BookingStatus": 1,
+    "BookingDate": "2023-01-27T15:20:00",
+    "EventDate": "2024-03-27T16:00:00",
+    "Period": 2,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 13
+  },
+  {
+    "TotalPrice": 2500,
+    "BookingStatus": 1,
+    "BookingDate": "2023-03-06T10:10:00",
+    "EventDate": "2024-01-24T11:00:00",
+    "Period": 0,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 15
+  },
+  {
+    "TotalPrice": 3500,
+    "BookingStatus": 1,
+    "BookingDate": "2023-04-14T12:30:00",
+    "EventDate": "2024-02-27T13:00:00",
+    "Period": 1,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 19
+  },
+  {
+    "TotalPrice": 4500,
+    "BookingStatus": 1,
+    "BookingDate": "2023-05-22T14:50:00",
+    "EventDate": "2024-01-20T15:00:00",
+    "Period": 2,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 24
+  },
+  {
+    "TotalPrice": 2600,
+    "BookingStatus": 1,
+    "BookingDate": "2023-07-01T16:40:00",
+    "EventDate": "2024-03-03T17:00:00",
+    "Period": 0,
+    "UserId": "3df0689b-f19c-4fdc-b31f-f8bc2faa3f3b",
+    "PlaceId": 29
+  },
+  {
+    "TotalPrice": 3600,
+    "BookingStatus": 1,
+    "BookingDate": "2023-08-08T09:15:00",
+    "EventDate": "2024-01-30T10:00:00",
+    "Period": 1,
+    "UserId": "586f5b2c-c156-4368-b963-9f6861e91caa",
+    "PlaceId": 35
+  },
+  {
+    "TotalPrice": 4600,
+    "BookingStatus": 1,
+    "BookingDate": "2023-09-16T11:45:00",
+    "EventDate": "2024-02-23T12:30:00",
+    "Period": 2,
+    "UserId": "586f5b2c-c156-4368-b963-9f6861e91caa",
+    "PlaceId": 37
+  },
+  {
+    "TotalPrice": 2700,
+    "BookingStatus": 1,
+    "BookingDate": "2023-10-25T15:20:00",
+    "EventDate": "2024-01-25T16:00:00",
+    "Period": 0,
+    "UserId": "586f5b2c-c156-4368-b963-9f6861e91caa",
+    "PlaceId": 41
+  },
+  {
+    "TotalPrice": 3700,
+    "BookingStatus": 1,
+    "BookingDate": "2023-12-03T10:10:00",
+    "EventDate": "2024-02-21T11:00:00",
+    "Period": 1,
+    "UserId": "586f5b2c-c156-4368-b963-9f6861e91caa",
+    "PlaceId": 44
+  },
+  {
+    "TotalPrice": 2800,
+    "BookingStatus": 1,
+    "BookingDate": "2023-01-13T12:35:00",
+    "EventDate": "2024-03-05T13:00:00",
+    "Period": 2,
+    "UserId": "586f5b2c-c156-4368-b963-9f6861e91caa",
+    "PlaceId": 45
+  },
+  {
+    "TotalPrice": 3800,
+    "BookingStatus": 1,
+    "BookingDate": "2023-02-26T14:50:00",
+    "EventDate": "2024-01-16T15:00:00",
+    "Period": 0,
+    "UserId": "586f5b2c-c156-4368-b963-9f6861e91caa",
+    "PlaceId": 56
+  }
+]

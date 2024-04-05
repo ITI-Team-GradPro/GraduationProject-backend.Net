@@ -1,6 +1,7 @@
 ﻿using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using GraduationProject.Bl.Dtos.PlaceDtos;
+using GraduationProject.BL.Dtos;
 using GraduationProject.BL.Dtos.UserDto;
 using GraduationProject.BL.Managers.Places;
 using GraduationProject.DAL.Data;
@@ -90,6 +91,25 @@ public class UserManager : IUserManager
         };
     }
 
+    public async Task<UpdateUserProfileDto> UpdateUserProfile(string userid, UpdateUserProfileDto newprofile)
+    {
+        var oldprofile = await _UnitOfWork.Userrepo.GetUserProfile(userid);
+        if (oldprofile is null)
+        {
+            return null;
+        }
 
+        oldprofile.FirstName = newprofile.FirstName;
+        oldprofile.LastName = newprofile.LastName;
+        oldprofile.Gender = newprofile.Gender;
+        oldprofile.DateOfBirth = newprofile.DateOfBirth;
+        oldprofile.Phone = newprofile.Phone;
+        oldprofile.Bio = newprofile.Bio;
+        oldprofile.Address = newprofile.Address;
+
+        await _UnitOfWork.SaveChangesAsync();
+        return newprofile;
+         
+    }
 
 }

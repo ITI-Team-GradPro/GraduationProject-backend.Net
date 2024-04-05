@@ -1,0 +1,238 @@
+"Clients":[
+  {
+    "email": "ahmed.alghamdi@example.com",
+    "password": "hashed_password_13",
+    "firstName": "Ahmed",
+    "lastName": "Alghamdi",
+    "roleName": "Client",
+    "role": 3
+  },
+  {
+    "email": "laila.alhassan@example.com",
+    "password": "hashed_password_14",
+    "firstName": "Laila",
+    "lastName": "Alhassan",
+    "roleName": "Host",
+    "role": 2
+  },
+  {
+    "email": "yousef.almaktoum@example.com",
+    "password": "hashed_password_15",
+    "firstName": "Yousef",
+    "lastName": "Almaktoum",
+    "roleName": "Admin",
+    "role": 1
+  },
+  {
+    "email": "huda.alnahyan@example.com",
+    "password": "hashed_password_16",
+    "firstName": "Huda",
+    "lastName": "Alnahyan",
+    "roleName": "Client",
+    "role": 3
+  },
+  {
+    "email": "ali.alshehhi@example.com",
+    "password": "hashed_password_17",
+    "firstName": "Ali",
+    "lastName": "Alshehhi",
+    "roleName": "Host",
+    "role": 2
+  },
+  {
+    "email": "mariam.alhosani@example.com",
+    "password": "hashed_password_18",
+    "firstName": "Mariam",
+    "lastName": "Alhosani",
+    "roleName": "Client",
+    "role": 3
+  },
+  {
+    "email": "omar.alrashid@example.com",
+    "password": "hashed_password_19",
+    "firstName": "Omar",
+    "lastName": "Alrashid",
+    "roleName": "Host",
+    "role": 2
+  },
+  {
+    "email": "fatima.alsuwaidi@example.com",
+    "password": "hashed_password_20",
+    "firstName": "Fatima",
+    "lastName": "Alsuwaidi",
+    "roleName": "Client",
+    "role": 3
+  },
+  {
+    "email": "saeed.alghamdi@example.com",
+    "password": "hashed_password_21",
+    "firstName": "Saeed",
+    "lastName": "Alghamdi",
+    "roleName": "Admin",
+    "role": 1
+  },
+  {
+    "email": "aisha.alhassan@example.com",
+    "password": "hashed_password_22",
+    "firstName": "Aisha",
+    "lastName": "Alhassan",
+    "roleName": "Host",
+    "role": 2
+  },
+  {
+    "email": "nadia.almazroui@example.com",
+    "password": "hashed_password_23",
+    "firstName": "Nadia",
+    "lastName": "Almazroui",
+    "roleName": "Client",
+    "role": 3
+  },
+  {
+    "email": "faisal.alahbabi@example.com",
+    "password": "hashed_password_24",
+    "firstName": "Faisal",
+    "lastName": "Alahbabi",
+    "roleName": "Host",
+    "role": 2
+  },
+  {
+    "email": "sara.alhammadi@example.com",
+    "password": "hashed_password_25",
+    "firstName": "Sara",
+    "lastName": "Alhammadi",
+    "roleName": "Admin",
+    "role": 1
+  },
+  {
+    "email": "khalid.alketbi@example.com",
+    "password": "hashed_password_26",
+    "firstName": "Khalid",
+    "lastName": "Alketbi",
+    "roleName": "Client",
+    "role": 3
+  },
+  {
+    "email": "asma.aljanahi@example.com",
+    "password": "hashed_password_27",
+    "firstName": "Asma",
+    "lastName": "Aljanahi",
+    "roleName": "Host",
+    "role": 2
+  }
+]
+"Hosts":[
+    {
+        "email": "abdullah.alzarooni@example.com",
+        "password": "hashed_password_28",
+        "firstName": "Abdullah",
+        "lastName": "Alzarooni",
+        "roleName": "Client",
+        "role": 3
+    },
+    {
+        "email": "mohammed.alsuwaidi@example.com",
+        "password": "hashed_password_29",
+        "firstName": "Mohammed",
+        "lastName": "Alsuwaidi",
+        "roleName": "Host",
+        "role": 2
+    },
+    {
+        "email": "fatma.alqubaisi@example.com",
+        "password": "hashed_password_30",
+        "firstName": "Fatma",
+        "lastName": "Alqubaisi",
+        "roleName": "Client",
+        "role": 3
+    },
+    {
+        "email": "ahmed.alhashmi@example.com",
+        "password": "hashed_password_31",
+        "firstName": "Ahmed",
+        "lastName": "Alhashmi",
+        "roleName": "Admin",
+        "role": 1
+    },
+    {
+        "email": "mariam.alshamsi@example.com",
+        "password": "hashed_password_32",
+        "firstName": "Mariam",
+        "lastName": "Alshamsi",
+        "roleName": "Client",
+        "role": 3
+    },
+    {
+        "email": "saif.almeqbali@example.com",
+        "password": "hashed_password_33",
+        "firstName": "Saif",
+        "lastName": "Almeqbali",
+        "roleName": "Host",
+        "role": 2
+    },
+    {
+        "email": "noora.almansoori@example.com",
+        "password": "hashed_password_34",
+        "firstName": "Noora",
+        "lastName": "Almansoori",
+        "roleName": "Client",
+        "role": 3
+    },
+    {
+        "email": "omar.alnuaimi@example.com",
+        "password": "hashed_password_35",
+        "firstName": "Omar",
+        "lastName": "Alnuaimi",
+        "roleName": "Host",
+        "role": 2
+    },
+    {
+        "email": "hamed.alhosani@example.com",
+        "password": "hashed_password_36",
+        "firstName": "Hamed",
+        "lastName": "Alhosani",
+        "roleName": "Client",
+        "role": 3
+    },
+    {
+        "email": "latifa.alkhouri@example.com",
+        "password": "hashed_password_37",
+        "firstName": "Latifa",
+        "lastName": "Alkhouri",
+        "roleName": "Host",
+        "role": 2
+    }
+]
+"Admins":[
+    {
+        "email": "mustafa.mahmoud@example.com",
+        "password": "AdminPassword1",
+        "firstName": "Mustafa",
+        "lastName": "Mahmoud",
+        "roleName": "Admin",
+        "role": 2
+    },
+    {
+        "email": "Alsafi.Abousaad@example.com",
+        "password": "AdminPassword2",
+        "firstName": "Alsafi",
+        "lastName": "Abousaad",
+        "roleName": "Admin",
+        "role": 2
+    },
+    {
+        "email": "Ahmed.Safwat@example.com",
+        "password": "AdminPassword3",
+        "firstName": "Ahmed",
+        "lastName": "Safwat",
+        "roleName": "Admin",
+        "role": 2
+    },
+    {
+        "email": "Tasneem.Alaa@example.com",
+        "password": "AdminPassword4",
+        "firstName": "Tasneem",
+        "lastName": "Alaa",
+        "roleName": "Admin",
+        "role": 2
+    }
+]

@@ -28,7 +28,7 @@ public class CountController : ControllerBase
         }
         catch (Exception)
         {
-            return StatusCode(500, "Can't get data");
+            return NotFound(new GeneralResponse { StatusCode = "Error", Message = "Can't get data!" });
         }
     }
 }
