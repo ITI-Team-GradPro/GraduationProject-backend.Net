@@ -98,7 +98,7 @@ namespace GraduationProject.API.Controllers.Register_Login_controllers.ForgotPas
 
         
 
-        [HttpPost("ChangePassword")]
+        [HttpPut("ChangePassword")]
         public async Task<IActionResult> ChangePassword(ChangePasswordDto changePasswordDto)
         {
             try
@@ -128,7 +128,7 @@ namespace GraduationProject.API.Controllers.Register_Login_controllers.ForgotPas
                     return BadRequest("Failed to change password. Please try again later.");
                 }
 
-                return Ok("Password changed successfully.");
+                return Ok(new Response { Status = "Success", Message = "Password updated successfully!" });
             }
             catch (Exception ex)
             {

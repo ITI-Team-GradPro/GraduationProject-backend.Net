@@ -123,42 +123,44 @@ public class WishlistController : ControllerBase
     [HttpGet("{userId}")]
     public async Task<ActionResult<IEnumerable<GetPlaceWishlistDto>>> userwishlist(string userId)
     {
-        try
-        {
-            var wishlist = await _context.WishList
-               .Include(a => a.User)
-               .Where(d => d.UserId == userId)
-               .Include(s => s.Places)
-               .ThenInclude(e => e.Images)
-               .ToListAsync();
+        var wish = await _wishlistManager.GetAll(userId);
+        return Ok(wish);
+        //try
+        //{
+        //    var wishlist = await _context.WishList
+        //       .Include(a => a.User)
+        //       .Where(d => d.UserId == userId)
+        //       .Include(s => s.Places)
+        //       .ThenInclude(e => e.Images)
+        //       .ToListAsync();
 
 
-            var wishlistDtoList = wishlist
-                .Select(item => item.Places)
-                .Select(place => new GetPlaceWishlistDto
-                {
-                    PlaceId = place.PlaceId,
-                    Name = place.Name,
-                    Price = place.Price,
-                    OverAllRating = place.OverAllRating,
-                    Description = place.Description,
-                    ImgsPlaces = place.Images.Select(i => new GetImagePlaceWishlistDto
-                    {
+        //    var wishlistDtoList = wishlist
+        //        .Select(item => item.Places)
+        //        .Select(place => new GetPlaceWishlistDto
+        //        {
+        //            PlaceId = place.PlaceId,
+        //            Name = place.Name,
+        //            Price = place.Price,
+        //            OverAllRating = place.OverAllRating,
+        //            Description = place.Description,
+        //            ImgsPlaces = place.Images.Select(i => new GetImagePlaceWishlistDto
+        //            {
 
-                        ImageUrl = i.ImageUrl
+        //                ImageUrl = i.ImageUrl
 
-                    }).ToList()
-                })
-                .ToList();
+        //            }).ToList()
+        //        })
+        //        .ToList();
 
 
-            return Ok(wishlistDtoList);
-        }
-             catch (Exception ex)
-              {
+        //    return Ok(wishlistDtoList);
+        //}
+        //     catch (Exception ex)
+        //      {
 
-              return StatusCode(500, "Can't get user's wishlist.");
-              }
+        //      return StatusCode(500, "Can't get user's wishlist.");
+        //      }
     }
 
 
