@@ -112,4 +112,23 @@ public class UserManager : IUserManager
          
     }
 
+    //public async Task<HostPlaceBookingDto> GetHostBookingDetails(string userid , int bookingid)
+    //{
+    //    var users = await _UnitOfWork.Userrepo.GetAll();
+    //    var booking = await _context.Bookings
+    //  .Where(b => b.BookingId == bookingid)
+    //  .Include(b => b.User)
+    //  .Where(b => b.UserId == userid)
+    //  .Include(b => b.Place)
+    //  .FirstOrDefaultAsync();
+
+    //    foreach (var user in users)
+    //    {
+    //        if(user.RoleName == "Host")
+    //        {
+    //        booking.
+    //        }
+    //    }
+    //}
+
 }

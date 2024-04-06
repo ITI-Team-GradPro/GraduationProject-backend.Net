@@ -142,12 +142,7 @@ public class WishlistController : ControllerBase
                     Price = place.Price,
                     OverAllRating = place.OverAllRating,
                     Description = place.Description,
-                    ImgsPlaces = place.Images.Select(i => new GetImagePlaceWishlistDto
-                    {
-
-                        ImageUrl = i.ImageUrl
-
-                    }).ToList()
+                    ImageUrls = place.Images.Select(x => x.ImageUrl).ToArray()
                 })
                 .ToList();
 

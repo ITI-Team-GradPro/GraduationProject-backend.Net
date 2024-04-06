@@ -2,6 +2,8 @@
 using GraduationProject.Data.Context;
 using GraduationProject.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +32,28 @@ public class UserRepo : GenericRepo<User>, IUserRepo
         return user;
     }
 
+    //public async Task<Place> GetHostBookingDetails(string hostid, int placeid)
+    //{
+    ////    //    var Booking = await _context.Bookings.Where(d => d.BookingId == bookingid)
+    ////    //        .Include(a => a.User)
+    ////    //        .Where(d => d.UserId == userid)
+    ////    //        .Include(e => e.Place);
 
-  
+    ////            var userBooking = await _context.Users
+    ////         .Where(u => u.Id == hostid)
+    ////         .Include(u => u.OwnedPlaces)
+    ////         .Select(u => new UserBookingResult
+    ////         {
+    ////             User = u,
+    ////             Booking = _context.Places
+    ////                 .Where(p => p.PlaceId == placeid)
+    ////                 .Include(p => p.Bookings)
+    ////                 .FirstOrDefault()
+    ////         })
+    ////         .FirstOrDefaultAsync();
+
+
+    ////    return userBooking ;
+
+    //        }
 }

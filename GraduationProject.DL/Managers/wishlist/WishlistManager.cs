@@ -76,12 +76,7 @@ public class WishlistManager : IWishlistManager
             Price = p.Price,
             OverAllRating = p.OverAllRating,
             Description = p.Description,
-            ImgsPlaces = p.Images.Select(i => new GetImagePlaceWishlistDto
-            {
-              
-                ImageUrl = i.ImageUrl
-              
-            }).ToList()
+            ImageUrls = p.Images.Select(x => x.ImageUrl).ToArray()
         }).ToList();
 
         return placeDtos;

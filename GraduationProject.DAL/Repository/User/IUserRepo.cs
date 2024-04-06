@@ -12,5 +12,5 @@ public interface IUserRepo : IGenericRepo<User>
 {
     Task<User> GetUserProfile(string id);
 
-  
+    //Task<Place> GetHostBookingDetails(string userid, int bookingid);
 }
