@@ -34,7 +34,7 @@ namespace GraduationProject.DAL.Data
                 {
                     context.Set<Place>().Add(x);
                 }
-                await context.SaveChangesAsync();
+                `await context.SaveChangesAsync();
             }
             if (context.Bookings.Count() == 0)
             {
