@@ -98,7 +98,7 @@ namespace GraduationProject.API.Controllers.Register_Login_controllers.ForgotPas
 
         
 
-        [HttpPost("ChangePassword")]
+        [HttpPut("ChangePassword")]
         public async Task<IActionResult> ChangePassword(ChangePasswordDto changePasswordDto)
         {
             try
@@ -106,7 +106,8 @@ namespace GraduationProject.API.Controllers.Register_Login_controllers.ForgotPas
                 var user = await _userManager.FindByIdAsync(changePasswordDto.UserId);
                 if (user == null)
                 {
-                    return NotFound("User not found.");
+                    return NotFound(new Response { Status = "Error", Message = "User not found!" });
+
                 }
 
                 string hashedPasswordFromDb = user.Password;
@@ -115,7 +116,8 @@ namespace GraduationProject.API.Controllers.Register_Login_controllers.ForgotPas
 
                 if (hashedPasswordFromDb != oldPasswordHash)
                 {
-                    return BadRequest("Failed to change password. The old password is incorrect.");
+                    return BadRequest(new Response { Status = "Error", Message = "Failed to change password. The old password is incorrect." });
+
                 }
 
                 var newPasswordHash = PasswordHasherService.HashPassword(changePasswordDto.NewPassword);
@@ -125,14 +127,18 @@ namespace GraduationProject.API.Controllers.Register_Login_controllers.ForgotPas
                 var result = await _userManager.UpdateAsync(user);
                 if (!result.Succeeded)
                 {
-                    return BadRequest("Failed to change password. Please try again later.");
+                    return BadRequest(new Response { Status = "Error", Message = "Failed to change password. Please try again later." });
+
                 }
 
-                return Ok("Password changed successfully.");
+                return Ok(new Response { Status = "Success", Message = "Password changed successfully!" });
             }
             catch (Exception ex)
             {
-                return StatusCode(500, $" Error: {ex.Message}");
+
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = $" Error: {ex.Message}" });
+
+
             }
         }
 

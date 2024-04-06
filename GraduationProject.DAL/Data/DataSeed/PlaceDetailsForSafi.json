@@ -1,0 +1,297 @@
+[
+  {
+    "PlaceId": 1,
+    "Name": "Nile Garden",
+    "Description": "Lush garden venue by the Nile, perfect for outdoor weddings and large gatherings."
+  },
+  {
+    "PlaceId": 2,
+    "Name": "Pyramid Views Hall",
+    "Description": "An elegant hall with a stunning view of the pyramids, ideal for weddings and galas."
+  },
+  {
+    "PlaceId": 3,
+    "Name": "Alexandria Ballroom",
+    "Description": "A grand ballroom with a classic touch, suitable for sophisticated wedding receptions."
+  },
+  {
+    "PlaceId": 4,
+    "Name": "Red Sea Beach",
+    "Description": "A private beach venue with a romantic setting, perfect for intimate weddings and parties."
+  },
+  {
+    "PlaceId": 5,
+    "Name": "Luxor Palace",
+    "Description": "A luxurious palace venue with a historical backdrop, ideal for royal weddings and events."
+  },
+  {
+    "PlaceId": 6,
+    "Name": "Aswan Oasis",
+    "Description": "A serene oasis venue with a tranquil ambiance, perfect for nature-inspired weddings and retreats."
+  },
+  {
+    "PlaceId": 7,
+    "Name": "Cairo Tower",
+    "Description": "An iconic tower venue with panoramic views of the city, suitable for modern events and celebrations."
+  },
+  {
+    "PlaceId": 8,
+    "Name": "Siwa Oasis",
+    "Description": "A magical oasis venue with a mystical charm, perfect for enchanting weddings and spiritual retreats."
+  },
+  {
+    "PlaceId": 9,
+    "Name": "White Desert Camp",
+    "Description": "A unique camp venue in the white desert, ideal for adventurous weddings and stargazing events."
+  },
+  {
+    "PlaceId": 10,
+    "Name": "Cairo Opera House",
+    "Description": "A cultural venue with artistic flair, suitable for elegant weddings and artistic performances."
+  },
+  {
+    "PlaceId": 11,
+    "Name": "Khan El Khalili",
+    "Description": "A historic bazaar venue with traditional charm, perfect for cultural weddings and themed events."
+  },
+  {
+    "PlaceId": 12,
+    "Name": "Cairo Grand Ballroom",
+    "Description": "Spacious ballroom with modern amenities, perfect for grand weddings and events."
+  },
+  {
+    "PlaceId": 13,
+    "Name": "Luxor Banquet Hall",
+    "Description": "Elegant banquet hall with a traditional Egyptian ambiance, suitable for all types of celebrations."
+  },
+  {
+    "PlaceId": 14,
+    "Name": "Aswan Riverside Terrace",
+    "Description": "Open-air terrace overlooking the Nile, ideal for intimate gatherings and photoshoots."
+  },
+  {
+    "PlaceId": 15,
+    "Name": "Sharm El-Sheikh Beachfront",
+    "Description": "Exclusive beachfront venue for luxurious weddings and events with a stunning sea view."
+  },
+  {
+    "PlaceId": 16,
+    "Name": "Alex Marina Event Space",
+    "Description": "Contemporary event space at the marina, perfect for chic weddings and corporate events."
+  },
+  {
+    "PlaceId": 17,
+    "Name": "Garden City Greenhouse",
+    "Description": "Unique greenhouse venue surrounded by exotic plants, suitable for themed parties and events."
+  },
+  {
+    "PlaceId": 18,
+    "Name": "Dahab Desert Oasis",
+    "Description": "Desert oasis venue for a magical wedding or special event under the stars."
+  },
+  {
+    "PlaceId": 19,
+    "Name": "Hurghada Grand Resort",
+    "Description": "Luxurious resort venue offering a grand setting for weddings and large-scale events."
+  },
+  {
+    "PlaceId": 20,
+    "Name": "Siwa Paradise Hall",
+    "Description": "Charming hall in Siwa, perfect for cultural events and traditional weddings."
+  },
+  {
+    "PlaceId": 21,
+    "Name": "El Gouna Waterfront",
+    "Description": "Stunning waterfront venue with panoramic views, ideal for exclusive events and celebrations."
+  },
+  {
+    "PlaceId": 22,
+    "Name": "Cairo Citadel Courtyard",
+    "Description": "Historic courtyard venue with a traditional Egyptian ambiance, suitable for cultural weddings and events."
+  },
+  {
+    "PlaceId": 23,
+    "Name": "Luxor Temple Terrace",
+    "Description": "Rooftop terrace overlooking Luxor Temple, perfect for intimate gatherings and photoshoots."
+  },
+  {
+    "PlaceId": 24,
+    "Name": "Aswan Nubian House",
+    "Description": "Traditional Nubian house venue with a cultural touch, ideal for authentic weddings and events."
+  },
+  {
+    "PlaceId": 25,
+    "Name": "Sharm El-Sheikh Coral Reef",
+    "Description": "Exclusive coral reef venue for underwater weddings and marine-themed events."
+  },
+  {
+    "PlaceId": 26,
+    "Name": "Sphinx Convention Center",
+    "Description": "State-of-the-art convention center with a view of the Sphinx, ideal for large conferences and events."
+  },
+  {
+    "PlaceId": 27,
+    "Name": "Red Sea Marina",
+    "Description": "Luxurious marina venue offering a picturesque setting for weddings and upscale events."
+  },
+  {
+    "PlaceId": 28,
+    "Name": "Pharaoh\u0027s Palace",
+    "Description": "Opulent palace venue that transports guests back to the time of the pharaohs, perfect for themed weddings."
+  },
+  {
+    "PlaceId": 29,
+    "Name": "Aswan Lotus Hall",
+    "Description": "Elegant hall with traditional Nubian decor, suitable for weddings and cultural events."
+  },
+  {
+    "PlaceId": 30,
+    "Name": "Cairo Citadel View",
+    "Description": "Historic venue with a breathtaking view of the Cairo Citadel, ideal for weddings and grand events."
+  },
+  {
+    "PlaceId": 31,
+    "Name": "Nile Lily Boat",
+    "Description": "Floating venue on the Nile, offering a unique experience for birthdays and special celebrations."
+  },
+  {
+    "PlaceId": 32,
+    "Name": "Desert Starlight Arena",
+    "Description": "Open-air venue in the heart of the desert, perfect for starlit weddings and events."
+  },
+  {
+    "PlaceId": 33,
+    "Name": "Alexandria Rooftop Garden",
+    "Description": "Rooftop garden venue with panoramic views of the Mediterranean, suitable for intimate gatherings."
+  },
+  {
+    "PlaceId": 34,
+    "Name": "El Gouna Beach Pavilion",
+    "Description": "Beach pavilion venue with a modern design, ideal for chic beach weddings and events."
+  },
+  {
+    "PlaceId": 35,
+    "Name": "Dahab Blue Lagoon",
+    "Description": "Idyllic beach venue with crystal-clear waters, perfect for destination weddings and photoshoots."
+  },
+  {
+    "PlaceId": 36,
+    "Name": "Hurghada Coral Reef",
+    "Description": "Exclusive coral reef venue for underwater weddings and marine-themed events."
+  },
+  {
+    "PlaceId": 37,
+    "Name": "Siwa Desert Camp",
+    "Description": "Desert camp venue with traditional Bedouin tents, perfect for cultural weddings and retreats."
+  },
+  {
+    "PlaceId": 38,
+    "Name": "Cairo Skyline Terrace",
+    "Description": "Rooftop terrace with panoramic views of the city, ideal for modern events and celebrations."
+  },
+  {
+    "PlaceId": 39,
+    "Name": "Luxor River Cruise",
+    "Description": "Luxurious river cruise venue with a historical backdrop, perfect for elegant weddings and events."
+  },
+  {
+    "PlaceId": 40,
+    "Name": "The Kingdom for Events",
+    "Description": "A royal setting with lush landscapes, perfect for extravagant weddings and events."
+  },
+  {
+    "PlaceId": 41,
+    "Name": "San Stefano Ballroom",
+    "Description": "Luxurious ballroom with a Mediterranean view, ideal for elegant weddings and galas."
+  },
+  {
+    "PlaceId": 42,
+    "Name": "The Venue",
+    "Description": "A modern, versatile space for all types of events, from weddings to corporate gatherings."
+  },
+  {
+    "PlaceId": 43,
+    "Name": "Taracina",
+    "Description": "Open-air venue on the Nile, offering a serene atmosphere for weddings and events."
+  },
+  {
+    "PlaceId": 44,
+    "Name": "The Clubhouse Uptown Cairo",
+    "Description": "An upscale venue with breathtaking views of Cairo, suitable for luxurious open-air weddings."
+  },
+  {
+    "PlaceId": 45,
+    "Name": "Cupid Yacht",
+    "Description": "A unique wedding experience on a yacht cruising the Nile, with a capacity for cozy celebrations."
+  },
+  {
+    "PlaceId": 46,
+    "Name": "N\u016Bt Boutique Farm Lodge",
+    "Description": "A serene farm lodge with a blend of nature and Egyptian heritage, perfect for unique weddings."
+  },
+  {
+    "PlaceId": 47,
+    "Name": "Villa Makky",
+    "Description": "A charming villa with a spacious garden, offering a flexible venue for intimate weddings."
+  },
+  {
+    "PlaceId": 48,
+    "Name": "Muhammad Ali Pasha Palace",
+    "Description": "A historic palace that offers a majestic setting for grand weddings and royal events."
+  },
+  {
+    "PlaceId": 49,
+    "Name": "Kundalini by the Pyramids",
+    "Description": "An event venue at the base of the Pyramids, providing a spectacular backdrop for any event."
+  },
+  {
+    "PlaceId": 50,
+    "Name": "Al-Azhar Park Venue",
+    "Description": "A versatile park venue that can host everything from a cozy wedding to a large festival."
+  },
+  {
+    "PlaceId": 51,
+    "Name": "El Gouna Oasis",
+    "Description": "An oasis venue with lush landscapes and luxury amenities, ideal for exclusive events."
+  },
+  {
+    "PlaceId": 52,
+    "Name": "Cairo Tower Sky Lounge",
+    "Description": "A rooftop lounge with panoramic views of Cairo, perfect for modern weddings and events."
+  },
+  {
+    "PlaceId": 53,
+    "Name": "Siwa Salt Lake",
+    "Description": "A unique venue by the salt lake, offering a serene setting for intimate weddings and retreats."
+  },
+  {
+    "PlaceId": 54,
+    "Name": "Red Sea Coral Reef",
+    "Description": "Exclusive coral reef venue for underwater weddings and marine-themed events."
+  },
+  {
+    "PlaceId": 55,
+    "Name": "Luxor Temple Hall",
+    "Description": "Elegant hall with a view of Luxor Temple, suitable for grand weddings and cultural events."
+  },
+  {
+    "PlaceId": 56,
+    "Name": "Aswan Nile Cruise",
+    "Description": "Luxurious Nile cruise venue with a historical backdrop, perfect for elegant weddings and events."
+  },
+  {
+    "PlaceId": 57,
+    "Name": "Sharm El-Sheikh Coral Garden",
+    "Description": "Exclusive coral garden venue for underwater weddings and marine-themed events."
+  },
+  {
+    "PlaceId": 58,
+    "Name": "Alexandria Lighthouse Terrace",
+    "Description": "Rooftop terrace with panoramic views of the Mediterranean, suitable for intimate gatherings."
+  },
+  {
+    "PlaceId": 59,
+    "Name": "El Gouna Marina",
+    "Description": "Luxurious marina venue offering a picturesque setting for weddings and upscale events."
+  }
+]

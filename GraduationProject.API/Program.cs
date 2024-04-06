@@ -49,7 +49,7 @@ namespace GraduationProject.API
                             .Select()
                             .Filter()
                             .OrderBy()
-                            .SetMaxTop(20)
+                            .SetMaxTop(10)
                             .Count()
                             .Expand()
     );
@@ -93,7 +93,7 @@ namespace GraduationProject.API
             {
                 services.AddDbContext<ApplicationDbContext>(options =>
                     options.UseSqlServer(configuration.GetConnectionString("con1")));
-                //ContextSeed.SeedAsync(services.BuildServiceProvider().GetRequiredService<ApplicationDbContext>());
+                ContextSeed.SeedAsync(services.BuildServiceProvider().GetRequiredService<ApplicationDbContext>());
 
             }
             services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));

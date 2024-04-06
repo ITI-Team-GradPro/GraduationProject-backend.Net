@@ -126,6 +126,51 @@ public class WishlistManager : IWishlistManager
     {
         return await _UnitOfWork.Wishlistrepo.Wishlistbyuseridandplaceid(userid, placeid);
     }
+
+
+
+
+   public async Task<IEnumerable<GetPlaceWishlistDto>> GetAll(string userid)
+    {
+        try
+        {
+            var wishlist = await _context.WishList
+               .Include(a => a.User)
+               .Where(d => d.UserId == userid)
+               .Include(s => s.Places)
+               .ThenInclude(e => e.Images)
+               .ToListAsync();
+
+
+            var wishlistDtoList = wishlist
+                .Select(item => item.Places)
+                .Select(place => new GetPlaceWishlistDto
+                {
+                    PlaceId = place.PlaceId,
+                    Name = place.Name,
+                    Price = place.Price,
+                    OverAllRating = place.OverAllRating,
+                    Description = place.Description,
+                    ImgsPlaces = place.Images.Select(i => new GetImagePlaceWishlistDto
+                    {
+
+                        ImageUrl = i.ImageUrl
+
+                    }).ToList()
+                })
+                .ToList();
+
+
+            return wishlistDtoList;
+        }
+        catch (Exception ex)
+        {
+
+            return null;
+        }
+
+    }
+
 }
 
 
