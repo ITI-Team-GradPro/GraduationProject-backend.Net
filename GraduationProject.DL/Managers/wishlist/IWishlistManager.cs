@@ -11,7 +11,7 @@ namespace GraduationProject.BL.Managers;
 
 public interface IWishlistManager
 {
-    //Task<IEnumerable<GetPlaceWishlistDto>> GetAll(string userid);
+    Task<IEnumerable<GetPlaceWishlistDto>> GetAll(string userid);
 
     Task<int> Add(AddWishlistDto addWishlistDto);
     Task<WishList> DeletePlaceFromWishlist(string userid, int placeid);

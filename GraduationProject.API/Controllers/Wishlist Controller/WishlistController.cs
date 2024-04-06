@@ -123,43 +123,71 @@ public class WishlistController : ControllerBase
     [HttpGet("{userId}")]
     public async Task<ActionResult<IEnumerable<GetPlaceWishlistDto>>> userwishlist(string userId)
     {
-        try
-        {
-            var wishlist = await _context.WishList
-               .Include(a => a.User)
-               .Where(d => d.UserId == userId)
-               .Include(s => s.Places)
-               .ThenInclude(e => e.Images)
-               .ToListAsync();
+        var wish = await _wishlistManager.GetAll(userId);
+        return Ok(wish);
+        //try
+        //{
+        //    var wishlist = await _context.WishList
+        //       .Include(a => a.User)
+        //       .Where(d => d.UserId == userId)
+        //       .Include(s => s.Places)
+        //       .ThenInclude(e => e.Images)
+        //       .ToListAsync();
 
 
-            var wishlistDtoList = wishlist
-                .Select(item => item.Places)
-                .Select(place => new GetPlaceWishlistDto
-                {
-                    PlaceId = place.PlaceId,
-                    Name = place.Name,
-                    Price = place.Price,
-                    OverAllRating = place.OverAllRating,
-                    Description = place.Description,
-                    ImgsPlaces = place.Images.Select(i => new GetImagePlaceWishlistDto
-                    {
+        //    var wishlistDtoList = wishlist
+        //        .Select(item => item.Places)
+        //        .Select(place => new GetPlaceWishlistDto
+        //        {
+        //            PlaceId = place.PlaceId,
+        //            Name = place.Name,
+        //            Price = place.Price,
+        //            OverAllRating = place.OverAllRating,
+        //            Description = place.Description,
+        //            ImgsPlaces = place.Images.Select(i => new GetImagePlaceWishlistDto
+        //            {
 
-                        ImageUrl = i.ImageUrl
+        //                ImageUrl = i.ImageUrl
 
-                    }).ToList()
-                })
-                .ToList();
+        //            }).ToList()
+        //        })
+        //        .ToList();
 
 
-            return Ok(wishlistDtoList);
-        }
-             catch (Exception ex)
-              {
+        //    return Ok(wishlistDtoList);
+        //}
+        //     catch (Exception ex)
+        //      {
 
               return Conflict(new GeneralResponse { StatusCode="Error" , Message= "Can't get user's wishlist." });
               }
+
+
+
+    [HttpDelete("{userid}/wishlist/{placeid}")]
+    public async Task<ActionResult> DeletePlaceFromWishlist(string userid, int placeid)
+    {
+        IEnumerable<WishList> wishlist = await _UnitOfWork.Wishlistrepo.GetAll();
+        try
+        {
+            var deletedPlace = await _wishlistManager.DeletePlaceFromWishlist(userid, placeid);
+
+            if (deletedPlace != null)
+            {
+                return Ok(new GeneralResponse { StatusCode = "Success", Message = "place deleted from your wishlist successfully" });
+            }
+            else
+            {
+                return NotFound(new GeneralResponse { StatusCode = "Error", Message = "Place not found" });
+            }
+        }
+        catch (Exception ex)
+        {
+
+            return NotFound(new GeneralResponse { StatusCode = "Error", Message = "An error occurred while deleting the place from your wishlist" });
+        }
     }
+}
 
 
 
@@ -191,35 +219,13 @@ public class WishlistController : ControllerBase
     //}
 
 
-    [HttpDelete("{userid}/wishlist/{placeid}")]
-    public async Task<ActionResult> DeletePlaceFromWishlist(string userid, int placeid)
-    {
-        IEnumerable<WishList> wishlist = await _UnitOfWork.Wishlistrepo.GetAll();
-        try
-        {
-            var deletedPlace = await _wishlistManager.DeletePlaceFromWishlist(userid, placeid);
-
-            if (deletedPlace != null)
-            {
-                return Ok(new GeneralResponse { StatusCode="Success" , Message= "place deleted from your wishlist successfully" }); 
-            }
-            else
-            {
-                return NotFound(new GeneralResponse { StatusCode="Error" , Message="Place not found"}); 
-            }
-        }
-        catch (Exception ex)
-        {
-           
-            return NotFound(new GeneralResponse { StatusCode="Error" , Message= "An error occurred while deleting the place from your wishlist" });
-        }
-    }
+ 
 
 
 
 
 
 
-}
+
 
 

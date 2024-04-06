@@ -5,6 +5,8 @@ using GraduationProject.Data.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using GraduationProject.BL.Dtos.SignDtos;
+
 
 namespace GraduationProject.API.Controllers.Booking_Controller
 {
@@ -28,10 +30,12 @@ namespace GraduationProject.API.Controllers.Booking_Controller
             {
                 var allBookingsDTO = await _bookingService.GetAllBookings();
                 return Ok(allBookingsDTO);
+
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "An error occurred while retrieving bookings.");
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "An error occurred while retrieving bookings." });
+
             }
         }
 
@@ -49,7 +53,8 @@ namespace GraduationProject.API.Controllers.Booking_Controller
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "An error occurred while retrieving user bookings.");
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "An error occurred while retrieving user bookings." });
+
             }
         }
 
@@ -58,17 +63,20 @@ namespace GraduationProject.API.Controllers.Booking_Controller
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState); // Return validation errors
+                return BadRequest(new Response { Status = "Error", Message = $" Error in {ModelState}" });
+
             }
 
             try
             {
                 await _bookingService.AddNewBooking(newBooking);
-                return Ok("booking added successfully");
+                return Ok(new Response { Status = "Success", Message = "booking added successfully" });
+
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "An error occurred while creating the booking.");
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "An error occurred while creating the booking." });
+
             }
         }
 
@@ -82,15 +90,18 @@ namespace GraduationProject.API.Controllers.Booking_Controller
 
                 if (targetBooking == null)
                 {
-                    throw new KeyNotFoundException("Booking not found"); // Throw specific exception for better handling
+                    return BadRequest(new Response { Status = "Error", Message = "Booking not found" });
+
                 }
 
                 await _bookingService.DeleteBooking(bookingId);
-                return Ok("Booking deleted successfully.");
+                return Ok(new Response { Status = "Success", Message = "Booking deleted successfully." });
+
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "An error occurred while deleting the booking.");
+                return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "An error occurred while deleting the booking." });
+
             }
         }
         [HttpGet("{placeId:int}")]

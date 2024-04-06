@@ -1,4 +1,5 @@
 ﻿using CloudinaryDotNet.Actions;
+using GraduationProject.BL.Dtos;
 using GraduationProject.BL.Dtos.PlaceDtos;
 using GraduationProject.BL.Dtos.UserDto;
 using GraduationProject.Data.Models;
@@ -17,7 +18,7 @@ namespace GraduationProject.BL
         public Task<ImageUploadResult> UploadImageToCloudinary(IFormFile file , string userId);
         Task<GetUserProfileDto> GetUserProfile(string id);
 
-
+        Task<UpdateUserProfileDto> UpdateUserProfile(string userid, UpdateUserProfileDto profileDto);
 
 
     }

@@ -12,6 +12,9 @@ using System;
 using GraduationProject.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using GraduationProject.BL.Dtos;
+using GraduationProject.BL.Dtos.SignDtos;
+
 
 namespace GraduationProject.API.Controllers
 {
@@ -35,20 +38,23 @@ namespace GraduationProject.API.Controllers
             var result = await _userManger.UploadImageToCloudinary(file, userId);
             if (result.Error != null)
             {
-                return BadRequest(result.Error.Message);
+                return BadRequest(new Response { Status = "Error", Message = result.Error.Message });
+
             }
 
             var user = await _context.Users.FindAsync(userId);
             if (user == null)
             {
-                return NotFound();
+                return NotFound(new Response { Status = "Error", Message = "User not found!" });
+
             }
 
             user.ImageUrl = result.SecureUrl.AbsoluteUri;
 
             await _context.SaveChangesAsync();
 
-            return StatusCode(200, "User image uploaded successfully");
+            return Ok(new Response { Status = "Success", Message = "User image uploaded successfully" });
+
         }
         //[Authorize]
         [HttpGet("{id}")]
@@ -66,6 +72,24 @@ namespace GraduationProject.API.Controllers
             }
             var userProfile = await _userManger.GetUserProfile(id);
             return Ok(userProfile);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<UpdateUserProfileDto>> UpdateUserProfile(string id, UpdateUserProfileDto profileDto)
+        {
+            try
+            {
+                var profile = await _userManger.UpdateUserProfile(id, profileDto);
+                if (profile is null)
+                {
+                    return NotFound(new GeneralResponse { StatusCode = "Error", Message = "Can't update profile!" });
+                }
+                return Ok(profile);
+            }
+            catch (Exception)
+            {
+                return NotFound(new GeneralResponse { StatusCode = "Error", Message = "Can't update profile!" });
+            }
         }
         
     }
