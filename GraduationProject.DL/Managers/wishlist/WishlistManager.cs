@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace GraduationProject.BL.Managers;
 
@@ -37,27 +38,7 @@ public class WishlistManager : IWishlistManager
 
     }
 
-    //async Task<IEnumerable<GetPlaceWishlistDto>> IWishlistManager.GetAll(string userid)
-    //{
-    //    IEnumerable<Place> wishLists = await _UnitOfWork.Placesrepo.GetAll();
-
-    //    var placeDtos = wishLists.Select(p => new GetPlaceWishlistDto
-    //    {
-    //        PlaceId = p.PlaceId,
-    //        Name = p.Name,
-    //        Price = p.Price,
-    //        OverAllRating = p.OverAllRating,
-    //        Description = p.Description,
-    //        ImgsPlaces = p.Images.Select(i => new GetImagePlaceWishlistDto
-    //        {
-
-    //            ImageUrl = i.ImageUrl
-
-    //        }).ToList()
-    //    }).ToList();
-
-    //    return placeDtos;
-    //}
+    
 
     [HttpGet("{userid}")]
     public async Task<ActionResult<IEnumerable<GetPlaceWishlistDto>>> UserplaceList(string userid)
@@ -83,22 +64,6 @@ public class WishlistManager : IWishlistManager
     }
 
 
-    //async Task<bool> IWishlistManager.Delete(string userid, int placeid)
-    //{
-    //    IEnumerable<WishList> wishlist = await _UnitOfWork.Wishlistrepo.GetAll();
-    //    IEnumerable<Place> userplaces = await _UnitOfWork.Wishlistrepo.UserplaceList(userid);
-    //    WishList? placetoberemoved = wishlist.FirstOrDefault(d => d.PlaceId == placeid);
-
-    //    if (placetoberemoved is null)
-    //    {
-    //        return false;
-    //    }
-    //    await _UnitOfWork.Wishlistrepo.Delete(placetoberemoved);
-    //    await _UnitOfWork.SaveChangesAsync();
-    //    return true;
-
-
-    //}
 
     public async Task<WishList> DeletePlaceFromWishlist(string userid, int placeid)
     {
@@ -151,14 +116,10 @@ public class WishlistManager : IWishlistManager
                     Price = place.Price,
                     OverAllRating = place.OverAllRating,
                     Description = place.Description,
-                    ImgsPlaces = place.Images.Select(i => new GetImagePlaceWishlistDto
-                    {
+                    ImageUrls = place.Images.Select(x => x.ImageUrl).ToArray()
 
-                        ImageUrl = i.ImageUrl
-
-                    }).ToList()
-                })
-                .ToList();
+                }).ToList();
+              
 
 
             return wishlistDtoList;
