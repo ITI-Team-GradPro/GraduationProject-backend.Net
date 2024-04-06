@@ -56,7 +56,50 @@ namespace GraduationProject.DAL.Data
                 }
                 await context.SaveChangesAsync();
             }
+            //if (context.Places.Count() != 0)
+            //{
+            //    var places = context.Places.Select(x => new { x.PlaceId, x.Name, x.Description }).ToList();
+            //    var placesData = JsonSerializer.Serialize(places, new
+            //    JsonSerializerOptions
+            //    {
+            //        WriteIndented = true
+            //    });
+            //    Filte.WriteAllText("../GraduationProject.DAL/Data/DataSeed/PlaceDetailsForSafi.json", placesData);
+            //}
+            if (context.ImagesPlaces.Count() == 0)
+            {
+                var imagesPlacesData = File.ReadAllText("../GraduationProject.DAL/Data/DataSeed/ImagesPlaces.json");
+                var imagesPlaces = JsonSerializer.Deserialize<List<ImgsPlace>>(imagesPlacesData);
+                foreach (var x in imagesPlaces)
+                {
+                    context.Set<ImgsPlace>().Add(x);
+                }
+                await context.SaveChangesAsync();
+            }
+            //if all users ImageUrl property is null
+            if (context.Users.All(x => x.ImageUrl == null))
+            {
+                var usersData = File.ReadAllText("../GraduationProject.DAL/Data/DataSeed/UserProfileImage.json");
+                var users = JsonSerializer.Deserialize<List<UserImageDto>>(usersData);
+                foreach (var user in users)
+                {
+                    var userEntity = context.Users.FirstOrDefault(x => x.Email == user.email);
+                    if (userEntity != null)
+                    {
+                        userEntity.ImageUrl = user.ImageUrl;
+                    }
+                }
+                await context.SaveChangesAsync();
+                
+
+            }
 
         }
+    }
+
+    internal class UserImageDto
+    {
+        public string email { get; set; }
+        public string ImageUrl { get; set; }
     }
 }
