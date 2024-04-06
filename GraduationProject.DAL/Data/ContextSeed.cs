@@ -76,7 +76,6 @@ namespace GraduationProject.DAL.Data
                 }
                 await context.SaveChangesAsync();
             }
-            //if all users ImageUrl property is null
             if (context.Users.All(x => x.ImageUrl == null))
             {
                 var usersData = File.ReadAllText("../GraduationProject.DAL/Data/DataSeed/UserProfileImage.json");
@@ -90,8 +89,16 @@ namespace GraduationProject.DAL.Data
                     }
                 }
                 await context.SaveChangesAsync();
-                
-
+            }
+            if (context.Users.Count() == 0)
+            {
+                var usersDatajson = File.ReadAllText("../GraduationProject.DAL/Data/DataSeed/UsersSerialized.json");
+                var usersjson = JsonSerializer.Deserialize<List<User>>(usersDatajson);
+                foreach (var x in usersjson)
+                {
+                    context.Set<User>().Add(x);
+                }
+                await context.SaveChangesAsync();
             }
 
         }

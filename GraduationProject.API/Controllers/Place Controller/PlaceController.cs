@@ -221,7 +221,7 @@ namespace GraduationProject.API.Controllers.Place_Controller
          Api/Place/filter?$filter=CategoryName {categoryCheck} '{categoryName}' and price le {price} and rating ge {rating} and PeopleCapacity ge {capacity} and location {locationCheck} '{location}'&$orderby={order} {ascORdesc}&skip={skippedItems}
          */
         [HttpGet("filter")]
-        [EnableQuery(PageSize = 20)]
+        [EnableQuery(PageSize = 10)]
         public ActionResult<IQueryable<FilterSearchPlaceDto>> FilterPlaces()
         {
             var places = _placesManager.FilterPlaces().AsQueryable();
@@ -238,7 +238,7 @@ namespace GraduationProject.API.Controllers.Place_Controller
             Api/Place/search?$filter=contains(location, '{query}') or contains(name, '{query}')&$orderby={order} {AscOrDesc}
          */
         [HttpGet("search")]
-        [EnableQuery(PageSize = 20)]
+        [EnableQuery(PageSize = 10)]
         public ActionResult<IQueryable<FilterSearchPlaceDto>> SearchPlaces(string query)
         {
             var places = _placesManager.SearchPlaces().AsQueryable();
@@ -250,7 +250,7 @@ namespace GraduationProject.API.Controllers.Place_Controller
             Api/Place/category?$filter=categoryname eq '{categoryName}'&$orderby={order} {AscOrDesc}
          */
         [HttpGet("category")]
-        [EnableQuery(PageSize = 20)]
+        [EnableQuery(PageSize = 10)]
         public ActionResult<IQueryable<CategoryPlacesDto>> GetCategoryPlaces(string query)
         {
             var places = _placesManager.GetCategoryPlaces().AsQueryable();
