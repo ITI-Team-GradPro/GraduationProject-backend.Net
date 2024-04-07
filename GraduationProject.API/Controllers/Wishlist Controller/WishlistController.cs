@@ -47,45 +47,6 @@ public class WishlistController : ControllerBase
 
 
 
-    //[HttpGet("{userid}")]
-    //public async Task<ActionResult<IEnumerable<GetPlaceWishlistDto>>> UserplaceList(string userid)
-    //{
-    //    IEnumerable<Place> wishlist = await _UnitOfWork.Placesrepo.GetAll();
-
-    //    try
-    //    {
-    //        var userPlaces = await _context.Users
-    //            .Where(u => u.Id == userid)
-    //            .Include(u => u.OwnedPlaces)
-    //            .ThenInclude(p => p.Images)
-    //            .SelectMany(u => u.OwnedPlaces)
-    //            .Select(d => d.Images)
-    //            .ToListAsync();
-
-    //        var placeDtos = wishlist.Select(p => new GetPlaceWishlistDto
-    //        {
-    //            PlaceId = p.PlaceId,
-    //            Name = p.Name,
-    //            Price = p.Price,
-    //            OverAllRating = p.OverAllRating,
-    //            Description = p.Description,
-    //            ImgsPlaces = p.Images.Select(i => new GetImagePlaceWishlistDto
-    //            {
-    //                PlaceId = p.PlaceId,
-    //                ImgsPlaceId = i.ImgsPlaceId,
-    //                ImageUrl = i.ImageUrl,
-    //                publicId = i.publicId
-    //            }).ToList()
-    //        }).ToList();
-
-    //        return placeDtos;
-    //    }
-    //    catch (Exception ex)
-    //    {
-
-    //        return StatusCode(500, "Can't get user's wishlist.");
-    //    }
-    //}
 
     //[HttpGet("{userid}")]
     //public async Task<ActionResult<IEnumerable<GetPlaceWishlistDto>>> UserplaceList(string userid)
@@ -123,71 +84,56 @@ public class WishlistController : ControllerBase
     [HttpGet("{userId}")]
     public async Task<ActionResult<IEnumerable<GetPlaceWishlistDto>>> userwishlist(string userId)
     {
-        var wish = await _wishlistManager.GetAll(userId);
-        return Ok(wish);
-        //try
-        //{
-        //    var wishlist = await _context.WishList
-        //       .Include(a => a.User)
-        //       .Where(d => d.UserId == userId)
-        //       .Include(s => s.Places)
-        //       .ThenInclude(e => e.Images)
-        //       .ToListAsync();
+        var wishlist = await _wishlistManager.GetAll(userId);
+
+        var wishlistuser = await _context.WishList
+             .Include(a => a.User)
+             .Where(d => d.UserId == userId)
+             .Include(s => s.Places)
+             .ThenInclude(e => e.Images)
+             .ToListAsync();
 
 
-        //    var wishlistDtoList = wishlist
-        //        .Select(item => item.Places)
-        //        .Select(place => new GetPlaceWishlistDto
-        //        {
-        //            PlaceId = place.PlaceId,
-        //            Name = place.Name,
-        //            Price = place.Price,
-        //            OverAllRating = place.OverAllRating,
-        //            Description = place.Description,
-        //            ImgsPlaces = place.Images.Select(i => new GetImagePlaceWishlistDto
-        //            {
-
-        //                ImageUrl = i.ImageUrl
-
-        //            }).ToList()
-        //        })
-        //        .ToList();
-
-
-        //    return Ok(wishlistDtoList);
-        //}
-        //     catch (Exception ex)
-        //      {
-
-              return Conflict(new GeneralResponse { StatusCode="Error" , Message= "Can't get user's wishlist." });
-              }
-
-
-
-    [HttpDelete("{userid}/wishlist/{placeid}")]
-    public async Task<ActionResult> DeletePlaceFromWishlist(string userid, int placeid)
-    {
-        IEnumerable<WishList> wishlist = await _UnitOfWork.Wishlistrepo.GetAll();
-        try
+        var wishlistDtoList = wishlistuser
+        .Select(item => item.Places)
+        .Select(place => new GetPlaceWishlistDto
         {
-            var deletedPlace = await _wishlistManager.DeletePlaceFromWishlist(userid, placeid);
+            PlaceId = place.PlaceId,
+            Name = place.Name,
+            Price = place.Price,
+            OverAllRating = place.OverAllRating,
+            Description = place.Description,
+            ImageUrls = place.Images.Select(x => x.ImageUrl).ToArray()
+        }).ToList();
 
-            if (deletedPlace != null)
-            {
-                return Ok(new GeneralResponse { StatusCode = "Success", Message = "place deleted from your wishlist successfully" });
-            }
-            else
-            {
-                return NotFound(new GeneralResponse { StatusCode = "Error", Message = "Place not found" });
-            }
-        }
-        catch (Exception ex)
+
+        return Ok(wishlistDtoList);
+    }
+        [HttpDelete("{userid}/wishlist/{placeid}")]
+
+        public async Task<ActionResult> DeletePlaceFromWishlist(string userid, int placeid)
         {
+            IEnumerable<WishList> wishlist = await _UnitOfWork.Wishlistrepo.GetAll();
+            try
+            {
+                var deletedPlace = await _wishlistManager.DeletePlaceFromWishlist(userid, placeid);
 
-            return NotFound(new GeneralResponse { StatusCode = "Error", Message = "An error occurred while deleting the place from your wishlist" });
+                if (deletedPlace != null)
+                {
+                    return Ok(new GeneralResponse { StatusCode = "Success", Message = "place deleted from your wishlist successfully" });
+                }
+                else
+                {
+                    return NotFound(new GeneralResponse { StatusCode = "Error", Message = "Place not found" });
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return NotFound(new GeneralResponse { StatusCode = "Error", Message = "An error occurred while deleting the place from your wishlist" });
+            }
         }
     }
-}
 
 
 

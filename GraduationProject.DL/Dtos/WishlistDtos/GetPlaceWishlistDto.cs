@@ -14,8 +14,7 @@ public class GetPlaceWishlistDto
     public decimal Price { get; set; }
     public double OverAllRating { get; set; }
     public string Description { get; set; }
-
-    public ICollection <GetImagePlaceWishlistDto> ImgsPlaces{ get; set; }
+    public string[] ImageUrls { get; set; }
 
 
 }

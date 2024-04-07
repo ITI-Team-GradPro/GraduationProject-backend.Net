@@ -19,7 +19,7 @@ namespace GraduationProject.BL
         Task<GetUserProfileDto> GetUserProfile(string id);
 
         Task<UpdateUserProfileDto> UpdateUserProfile(string userid, UpdateUserProfileDto profileDto);
-
+        //Task<HostPlaceBookingDto> GetHostBookingDetails(string userid, int bookingid);
 
     }
 }
