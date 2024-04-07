@@ -34,7 +34,7 @@ namespace GraduationProject.DAL.Data
                 {
                     context.Set<Place>().Add(x);
                 }
-                `await context.SaveChangesAsync();
+                await context.SaveChangesAsync();
             }
             if (context.Bookings.Count() == 0)
             {
@@ -68,7 +68,7 @@ namespace GraduationProject.DAL.Data
             //}
             if (context.ImagesPlaces.Count() == 0)
             {
-                var imagesPlacesData = File.ReadAllText("../GraduationProject.DAL/Data/DataSeed/ImagesPlaces.json");
+                var imagesPlacesData = File.ReadAllText("../GraduationProject.DAL/Data/DataSeed/ImagesPlacesV2.json");
                 var imagesPlaces = JsonSerializer.Deserialize<List<ImgsPlace>>(imagesPlacesData);
                 foreach (var x in imagesPlaces)
                 {
